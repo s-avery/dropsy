@@ -1,0 +1,25 @@
+FF14 GEAR MANAGER MVP
+1. who's got what gear
+    a. create your guy
+        input & store: name, and for each loot slot select "don't need it/ want it don't have it yet/ have it" -- mandatory
+    b. edit existing guy
+        update all the above values
+
+
+
+
+
+
+stretch goals
+2. we just killed a boss
+    which boss? (1-4, store data for each boss which loot it drops)
+        choose which loot dropped
+        website tells you which characters want which loot
+        click on a character to give them that piece of loot, updates their gear page to say they have it
+
+
+- light/dark mode
+- make it prettier (images of in-game bosses, sprites of gear, etc)
+- track who wants food/potions
+- mb pull info from https://xivapi.com/
+- let ppl upload character images/more detailed character info page
