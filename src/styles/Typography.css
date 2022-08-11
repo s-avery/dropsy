@@ -1,0 +1,24 @@
+* {
+	font-family: "Rubik", sans-serif;
+}
+
+h1 {
+	font-size: 4rem;
+	text-align: center;
+	font-weight: normal;
+	margin: 1% auto;
+}
+
+h2 {
+	font-size: 1.4rem;
+	font-weight: normal;
+	text-align: center;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100vw;
+	text-align: center;
+}

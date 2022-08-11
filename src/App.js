@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+// !IMPORT ZONE
+import "./App.css";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Link, Routes, Route, Outlet } from "react-router-dom";
 
+// *Components
+import Home from "./components/Home";
+import CharacterSelect from "./components/CharacterSelect";
+import CharacterEdit from "./components/CharacterEdit";
+import CharacterCreate from "./components/CharacterCreate";
+
+// !STATE ZONE
+
+// !APP
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			{/* <LandingPage /> */}
+
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/charSelect" element={<CharacterSelect />} />
+				<Route path="/charEdit" element={<CharacterEdit />} />
+				<Route path="/charCreate" element={<CharacterCreate />} />
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
+
