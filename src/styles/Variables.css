@@ -5,4 +5,8 @@
 	--dark: #141414;
 	--black: #000000;
 	--white: #ffffff;
+
+	--neutral: #acb3f5;
+	--red: rgba(251, 24, 78, 0.6);
+	--green: rgba(97, 248, 84, 0.6);
 }

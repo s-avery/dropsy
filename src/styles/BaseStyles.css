@@ -3,6 +3,15 @@
 	background-color: var(--light);
 }
 
+main {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+button {
+	border: 3px solid transparent;
+}
 .button {
 	font-size: 2.6rem;
 	text-decoration: none;
@@ -11,6 +20,9 @@
 	transition: 300ms;
 	padding: 3%;
 	display: inline-block;
+	align-self: center;
+	text-align: center;
+	width: 40%;
 
 	margin: 2%;
 }
@@ -18,4 +30,5 @@
 .button:hover {
 	background-color: var(--black);
 	color: var(--white);
+	cursor: pointer;
 }

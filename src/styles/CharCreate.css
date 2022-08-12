@@ -1,0 +1,88 @@
+.charCreate {
+	display: flex;
+	flex-direction: row;
+}
+
+/* *LEFT CONTAINER */
+.charCreate__leftContainer {
+	flex-basis: 33%;
+}
+
+.charCreate__charName {
+	display: flex;
+	flex-direction: column;
+}
+
+.charCreate .button {
+	width: 90%;
+	font-size: 1.6rem;
+	border: 3px solid transparent;
+}
+
+.charCreate .button:hover,
+.charCreate .button:focus {
+	background-color: var(--green);
+	color: var(--black);
+	border: 3px solid var(--black);
+}
+
+/* *RIGHT CONTAINER */
+.charCreate__rightContainer {
+	flex-basis: 66%;
+}
+
+.charCreate__gearChoices {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	text-align: center;
+}
+
+.charCreate__radioContainer {
+	display: flex;
+}
+
+.charCreate__option {
+	margin: 0 3%;
+}
+
+.charCreate__radio {
+	width: 33%;
+}
+.charCreate__radio input {
+	display: none;
+}
+.charCreate__radio label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--grey);
+	padding: 4px 11px;
+	font-size: 18px;
+	cursor: pointer;
+	border: 4px solid transparent;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	/* margin: 3%; */
+}
+
+.charCreate__radio label:hover,
+.charCreate__radio label:focus {
+	border: 4px solid white;
+}
+
+/* *Checked Styles */
+input[type="radio"]:checked + .charCreate__noNeed {
+	border: 4px solid var(--black);
+	background-color: var(--neutral);
+}
+
+input[type="radio"]:checked + .charCreate__want {
+	border: 4px solid var(--black);
+	background-color: var(--red);
+}
+
+input[type="radio"]:checked + .charCreate__got {
+	border: 4px solid var(--black);
+	background-color: var(--green);
+}

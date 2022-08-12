@@ -1,5 +1,4 @@
 import Radio from "./Radio";
-import NameInstructionsCreator from "./NameInstructionsCreator";
 
 const CharacterCreate = () => {
 	return (
@@ -10,14 +9,36 @@ const CharacterCreate = () => {
 				<h2>character creator</h2>
 			</header>
 
-			<main className="charCreate">
-				<form>
+			<main>
+				<form className="charCreate">
 					{/* //*left container */}
 					<fieldset className="charCreate__leftContainer">
-						<NameInstructionsCreator />
+						<div className="charCreate__charName">
+							<label htmlFor="charName">character name: </label>
+							<input
+								type="text"
+								name="charName"
+								id="charName"
+								className="button"
+								placeholder="paisley pudge?"
+							/>
+						</div>
+						<div className="charCreate__instructions">
+							<ol>
+								<li>put in your character name.</li>
+								<li>
+									for each piece of raid gear, choose if you
+									don’t need it, want it but don't have it
+									yet, or got it.
+								</li>
+							</ol>
+						</div>
+						<div className="charCreate__submit">
+							<button className="button">submit!</button>
+						</div>
 					</fieldset>
 
-					{/* //* mid container */}
+					{/* //* right container */}
 					<fieldset className="charCreate__rightContainer">
 						<Radio />
 					</fieldset>

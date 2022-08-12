@@ -15,19 +15,33 @@ const CharacterSelect = () => {
 
 			<main className="charSelect">
 				<div className="charSelect__dropdown">
-					{/* <label htmlFor="charSelectDropdown">
+					<label htmlFor="charSelectDropdown">
 						choose an existing character:
 					</label>
+
 					<select
 						name="charSelectDropdown"
 						id="charSelectDropdown"
-					></select> */}
-					<Link to="/charEdit">edit character</Link>
+						placeholder="paisley pudge"
+						defaultValue={"placeholder"}
+					>
+						<option value="placeholder" disabled>
+							paisley pudge?
+						</option>
+					</select>
+				</div>
+
+				<div className="charSelect__edit">
+					<Link to="/charEdit" className="button">
+						edit character
+					</Link>
 				</div>
 
 				<div className="charSelect__newChar">
 					<p>or make a new one:</p>
-					<Link to="/charCreate">create character</Link>
+					<Link to="/charCreate" className="button">
+						create character
+					</Link>
 				</div>
 			</main>
 		</div>
