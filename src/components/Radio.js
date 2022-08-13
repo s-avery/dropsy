@@ -1,5 +1,4 @@
-const Radio = (props) => {
-	const { gearPiece } = props;
+const Radio = ({ gearPiece, handleInputChange, handleRadioChange }) => {
 	const gearPieces = [
 		"head",
 		"body",
@@ -26,6 +25,7 @@ const Radio = (props) => {
 										name={gearPiece}
 										id={`noNeed${gearPiece}`}
 										value={false}
+										onChange={handleRadioChange}
 									/>
 									<label
 										htmlFor={`noNeed${gearPiece}`}
@@ -42,6 +42,7 @@ const Radio = (props) => {
 										name={gearPiece}
 										id={`want${gearPiece}`}
 										value={true}
+										onChange={handleRadioChange}
 									/>
 									<label
 										htmlFor={`want${gearPiece}`}
@@ -58,6 +59,7 @@ const Radio = (props) => {
 										name={gearPiece}
 										id={`got${gearPiece}`}
 										value={false}
+										onChange={handleRadioChange}
 									/>
 									<label
 										htmlFor={`got${gearPiece}`}

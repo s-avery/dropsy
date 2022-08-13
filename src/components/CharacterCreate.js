@@ -1,6 +1,10 @@
 import Radio from "./Radio";
 
-const CharacterCreate = () => {
+const CharacterCreate = ({
+	handleSubmit,
+	handleNameChange,
+	handleRadioChange,
+}) => {
 	return (
 		<div>
 			<header>
@@ -21,6 +25,7 @@ const CharacterCreate = () => {
 								id="charName"
 								className="button"
 								placeholder="paisley pudge?"
+								onChange={handleNameChange}
 							/>
 						</div>
 						<div className="charCreate__instructions">
@@ -34,13 +39,18 @@ const CharacterCreate = () => {
 							</ol>
 						</div>
 						<div className="charCreate__submit">
-							<button className="button">submit!</button>
+							<button className="button" onClick={handleSubmit}>
+								submit!
+							</button>
 						</div>
 					</fieldset>
 
 					{/* //* right container */}
 					<fieldset className="charCreate__rightContainer">
-						<Radio />
+						<Radio
+							handleNameChange={handleNameChange}
+							handleRadioChange={handleRadioChange}
+						/>
 					</fieldset>
 				</form>
 			</main>
