@@ -3,8 +3,9 @@ import Radio from "./Radio";
 const CharacterCreate = ({
 	handleSubmit,
 	handleNameChange,
-	handleRadioChange,
 	gearPieces,
+	setRadioValue,
+	radioValue,
 }) => {
 	// *Letting useRadio work
 	// const { radioSelected, render } = useRadio();
@@ -29,7 +30,7 @@ const CharacterCreate = ({
 								id="charName"
 								className="button"
 								placeholder="paisley pudge?"
-								required
+								required="required"
 								onChange={handleNameChange}
 							/>
 						</div>
@@ -54,8 +55,9 @@ const CharacterCreate = ({
 					<fieldset className="charCreate__rightContainer">
 						<Radio
 							handleNameChange={handleNameChange}
-							// handleRadioChange={handleRadioChange}
+							setRadioValue={setRadioValue}
 							gearPieces={gearPieces}
+							radioValue={radioValue}
 						/>
 					</fieldset>
 				</form>

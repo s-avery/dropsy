@@ -11,6 +11,10 @@ import CharacterSelect from "./components/CharacterSelect";
 import CharacterEdit from "./components/CharacterEdit";
 import CharacterCreate from "./components/CharacterCreate";
 
+// *Create references to the database
+const database = getDatabase(firebase);
+const dbRef = ref(database);
+
 // !APP
 function App() {
 	// !ARRAY ZONE
@@ -34,10 +38,13 @@ function App() {
 	const [charName, setCharName] = useState([]);
 
 	// *Radio Value
-	const [radioValue, setRadioValue] = useState([]);
+	const [radioValue, setRadioValue] = useState([false]);
 
-	// *Form Valid
-	const [formValid, setFormValid] = useState(false);
+	// *Dropdown Value
+	const [dropdownValue, setDropdownValue] = useState([]);
+
+	// *Name Valid
+	const [nameValid, setNameValid] = useState(false);
 
 	// !FUNCTION ZONE
 	// *Handle Name Change
@@ -45,52 +52,53 @@ function App() {
 		setCharName(e.target.value);
 	};
 
+	// *Populate Dropdown
+	const characterNamesList = ["zat", "pp", "blibby"];
+	// database.forEach((item) => {
+	// 	return item.characterName;
+	// });
+
+	// *Handle Dropdown Change
+	const handleDropdownChange = (e) => {
+		setDropdownValue(e.target.value);
+	};
+
+	// *Validate Name
+	const validateName = () => {
+		if (charName.trim) {
+			console.log("name exists!");
+			setNameValid(true);
+		}
+	};
+
 	// *Handle Form Submit
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// *Create references to the database
-		const database = getDatabase(firebase);
-		const dbRef = ref(database);
-
 		// *update gearPieces with user name input (radio input updating the array was delegated to within the Radio component cuz it was the best way I found to make it not change the state of EVERY radio button value when one was clicked)
 		gearPieces.characterName = charName;
 
+		validateName();
+
+		// *submit it!
+		// if (radioValue == true && charName == true) {
+		// console.log("valid!");
+		// ! add charName to our firebase database. takes two variables: ref to the database, what's being pushed
+		// push(dbRef, gearPieces);
+
+		// clear user input
+		// setCharName("");
+
+		// alert user
 		// console.log(gearPieces);
-
-		// *only push to database if all slots have been filled
-		// *formatting it as: if the condititions aren't met, setFormValid to false
-		gearPieces.forEach((item) => {
-			if (
-				// *if gearPieces item has wanted value, it must not be empty (aka be either true or false)
-				item.wanted !== (true || false) &&
-				// *if it's the characterName item, it's allowed to not have a wanted value
-				item !== "characterName"
-			) {
-				setFormValid(false);
-			}
-			// *if conditions are met, make form valid
-			else {
-				setFormValid(true);
-			}
-		});
-
-		// *if form isn't valid, alert user; if valid, submit
-		if (formValid === false) {
-			console.log(gearPieces);
-			alert("please fill out all the boxes!!");
-		} else {
-			// ! add charName to our firebase database. takes two variables: ref to the database, what's being pushed
-			// push(dbRef, charName);
-			// push(dbRef, character);
-
-			// clear user input
-			setCharName("");
-
-			// alert user
-			console.log(gearPieces);
-			alert("user info updated!");
-		}
+		// alert("user info updated!");
+		// }
+		// *if not, alert user
+		// else {
+		// console.log(gearPieces);
+		// console.log("form invalid");
+		// alert("please fill out all the boxes!");
+		// }
 	};
 
 	// !PRINT TO PAGE ZONE
@@ -98,8 +106,37 @@ function App() {
 		<div>
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/charSelect" element={<CharacterSelect />} />
-				<Route path="/charEdit" element={<CharacterEdit />} />
+				<Route
+					path="/charSelect"
+					element={
+						<CharacterSelect
+							characterNamesList={characterNamesList}
+							dropdownValue={dropdownValue}
+							handleDropdownChange={handleDropdownChange}
+							handleSubmit={handleSubmit}
+							handleNameChange={handleNameChange}
+							// handleRadioChange={handleRadioChange}
+							gearPieces={gearPieces}
+							setRadioValue={setRadioValue}
+							radioValue={radioValue}
+						/>
+					}
+				/>
+				<Route
+					path="/charEdit"
+					element={
+						<CharacterEdit
+							dropdownValue={dropdownValue}
+							handleSubmit={handleSubmit}
+							handleNameChange={handleNameChange}
+							// handleRadioChange={handleRadioChange}
+							gearPieces={gearPieces}
+							setRadioValue={setRadioValue}
+							radioValue={radioValue}
+							characterNamesList={characterNamesList}
+						/>
+					}
+				/>
 				<Route
 					path="/charCreate"
 					element={
@@ -108,6 +145,8 @@ function App() {
 							handleNameChange={handleNameChange}
 							// handleRadioChange={handleRadioChange}
 							gearPieces={gearPieces}
+							setRadioValue={setRadioValue}
+							radioValue={radioValue}
 						/>
 					}
 				/>
@@ -149,4 +188,35 @@ export default App;
 // 	gearPiecesObject[gearPiece] = { radioValue };
 // 	console.log(gearPiecesObject);
 // }
+
+// *only push to database if all slots have been filled
+// *formatting it as: if the condititions aren't met, setFormValid to false
+// gearPieces.forEach((item) => {
+// 	if (
+// 		// *if gearPieces item has wanted value, it must not be empty (aka be either true or false)
+// item.wanted !== (true || false) &&
+// 		// *if it's the characterName item, it's allowed to not have a wanted value
+// 		item !== "characterName"
+// 	) {
+// 		setFormValid(false);
+// 	}
+// 	// *if conditions are met, make form valid
+// 	else {
+// 		setFormValid(true);
+// 	}
+// });
+
+// *if form is valid...
+// if (
+// 	// gearPieces.characterName &&
+// 	gearPieces[0].wanted === (true || false) &&
+// 	gearPieces[1].wanted === (true || false) &&
+// 	gearPieces[2].wanted === (true || false) &&
+// 	gearPieces[3].wanted === (true || false) &&
+// 	gearPieces[4].wanted === (true || false) &&
+// 	gearPieces[5].wanted === (true || false) &&
+// 	gearPieces[6].wanted === (true || false) &&
+// 	gearPieces[7].wanted === (true || false)
+
+// ) {
 

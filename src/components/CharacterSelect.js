@@ -4,7 +4,11 @@ import { Link, Routes, Route, Outlet } from "react-router-dom";
 
 // *Components
 
-const CharacterSelect = () => {
+const CharacterSelect = ({
+	dropdownValue,
+	handleDropdownChange,
+	gearPieces,
+}) => {
 	return (
 		<div>
 			<header>
@@ -14,24 +18,8 @@ const CharacterSelect = () => {
 			</header>
 
 			<main className="charSelect">
-				<div className="charSelect__dropdown">
-					<label htmlFor="charSelectDropdown">
-						choose an existing character:
-					</label>
-
-					<select
-						name="charSelectDropdown"
-						id="charSelectDropdown"
-						placeholder="paisley pudge"
-						defaultValue={"placeholder"}
-					>
-						<option value="placeholder" disabled>
-							paisley pudge?
-						</option>
-					</select>
-				</div>
-
 				<div className="charSelect__edit">
+					<p>edit an existing character:</p>
 					<Link to="/charEdit" className="button">
 						edit character
 					</Link>

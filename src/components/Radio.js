@@ -1,18 +1,11 @@
 // !IMPORT ZONE
 import { useState } from "react";
 
-const Radio = ({ gearPieces, handleInputChange, handleRadioChange }) => {
-	// !STATE ZONE
-	const [radioValue, setRadioValue] = useState([]);
-
+const Radio = ({ gearPieces, setRadioValue, radioValue }) => {
 	// !Component
 	return (
 		<div className="charCreate__gearChoices">
 			{gearPieces.map((gearPiece) => {
-				// let testObect = {
-				// 	test: "it worked",
-				// };
-
 				return (
 					<>
 						<div className="charCreate__option">
@@ -27,13 +20,10 @@ const Radio = ({ gearPieces, handleInputChange, handleRadioChange }) => {
 										id={`noNeed${gearPiece.pieceName}`}
 										value={false}
 										onChange={(e) => {
-											// setRadioValue(e.target.value);
-											// console.log(radioValue);
 											gearPiece.wanted = false;
-											// console.log(gearPiece);
-											// console.log(gearPieces);
+											setRadioValue(true);
 										}}
-										required
+										required="required"
 									/>
 									<label
 										htmlFor={`noNeed${gearPiece.pieceName}`}
@@ -51,12 +41,10 @@ const Radio = ({ gearPieces, handleInputChange, handleRadioChange }) => {
 										id={`want${gearPiece.pieceName}`}
 										value={true}
 										onChange={(e) => {
-											// setRadioValue(e.target.value);
-											// console.log(radioValue);
 											gearPiece.wanted = true;
-											// console.log(gearPiece);
-											// console.log(gearPieces);
+											setRadioValue(true);
 										}}
+										required="required"
 									/>
 									<label
 										htmlFor={`want${gearPiece.pieceName}`}
@@ -74,12 +62,10 @@ const Radio = ({ gearPieces, handleInputChange, handleRadioChange }) => {
 										id={`got${gearPiece.pieceName}`}
 										value={false}
 										onChange={(e) => {
-											// setRadioValue(e.target.value);
-											// console.log(radioValue);
 											gearPiece.wanted = false;
-											// console.log(gearPiece);
-											// console.log(gearPieces);
+											setRadioValue(true);
 										}}
+										required="required"
 									/>
 									<label
 										htmlFor={`got${gearPiece.pieceName}`}

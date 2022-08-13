@@ -4,8 +4,11 @@ import Radio from "./Radio";
 const CharacterEdit = ({
 	handleSubmit,
 	handleNameChange,
-	handleRadioChange,
 	gearPieces,
+	setRadioValue,
+	radioValue,
+	dropdownValue,
+	characterNamesList,
 }) => {
 	return (
 		<div>
@@ -20,7 +23,30 @@ const CharacterEdit = ({
 					{/* //*left container */}
 					<fieldset className="charCreate__leftContainer">
 						<div className="charCreate__charName">
-							<h3>paisley pudge</h3>
+							<div className="charSelect__dropdown">
+								<label htmlFor="charSelectDropdown">
+									choose a character:
+								</label>
+
+								<select
+									name="charSelectDropdown"
+									id="charSelectDropdown"
+									placeholder="paisley pudge"
+									defaultValue={"placeholder"}
+								>
+									<option value="placeholder" disabled>
+										who's it gonna be
+									</option>
+
+									{characterNamesList.map((character) => {
+										return (
+											<option value={character}>
+												{character}
+											</option>
+										);
+									})}
+								</select>
+							</div>{" "}
 						</div>
 						<div className="charCreate__instructions">
 							<p>
@@ -38,8 +64,9 @@ const CharacterEdit = ({
 					<fieldset className="charCreate__rightContainer">
 						<Radio
 							handleNameChange={handleNameChange}
-							handleRadioChange={handleRadioChange}
+							setRadioValue={setRadioValue}
 							gearPieces={gearPieces}
+							radioValue={radioValue}
 						/>
 					</fieldset>
 				</form>
