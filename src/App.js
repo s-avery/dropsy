@@ -13,19 +13,21 @@ import CharacterCreate from "./components/CharacterCreate";
 
 // !APP
 function App() {
+	// !ARRAY ZONE
+	const gearPieces = [
+		"head",
+		"body",
+		"legs",
+		"feet",
+		"earring",
+		"necklace",
+		"bracelet",
+		"ring",
+	];
+
 	// !STATE ZONE
 	// *character
-	const [character, setCharacter] = useState({
-		name: "",
-		head: "",
-		body: "",
-		legs: "",
-		feet: "",
-		earring: "",
-		necklace: "",
-		bracelet: "",
-		ring: "",
-	});
+	const [character, setCharacter] = useState([]);
 
 	// *charName
 	const [charName, setCharName] = useState([]);
@@ -48,27 +50,37 @@ function App() {
 	// *Handle Form Submit
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// create references to the database
+
+		// *Create references to the database
 		const database = getDatabase(firebase);
 		const dbRef = ref(database);
 
-		setCharacter({
-			name: charName,
-			head: "y",
-			body: "y",
-			legs: "y",
-			feet: "y",
-			earring: "y",
-			necklace: "y",
-			bracelet: "y",
-			ring: "123",
-		});
+		// *Turn GearPieces Array Into Object
+		// sourced from: https://stackoverflow.com/questions/54789406/convert-array-to-object-keys
+		let gearPiecesObject = gearPieces.reduce(
+			(acc, curr) => ((acc[curr] = ""), acc),
+			{}
+		);
 
-		// only push it if it's not an empty string
+		// adding charName to it
+		// gearPiecesObject.push({ charName });
+		console.log(gearPiecesObject);
+
+		// *Declare variable for radio select's value
+		// const { radioSelected, render } = useRadio();
+		// <Radio {...{ radioSelected }} />;
+
+		// *Feed gearPiecesObject values equal to each gearPiece's radio selected value
+		for (const gearPiece in gearPiecesObject) {
+			gearPiecesObject[gearPiece] = { radioValue };
+			console.log(gearPiecesObject);
+		}
+
+		// *only push it if it's not an empty string
 		if (charName) {
-			// add charName to our firebase database. takes two variables: ref to the database, what's being pushed
-			push(dbRef, charName);
-			push(dbRef, character);
+			// ! add charName to our firebase database. takes two variables: ref to the database, what's being pushed
+			// push(dbRef, charName);
+			// push(dbRef, character);
 
 			// clear user input
 			setCharName("");
@@ -93,6 +105,7 @@ function App() {
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
 							handleRadioChange={handleRadioChange}
+							gearPieces={gearPieces}
 						/>
 					}
 				/>

@@ -1,22 +1,23 @@
-const Radio = ({ gearPiece, handleInputChange, handleRadioChange }) => {
-	const gearPieces = [
-		"head",
-		"body",
-		"legs",
-		"feet",
-		"earring",
-		"necklace",
-		"bracelet",
-		"ring",
-	];
+// !IMPORT ZONE
+import { useState } from "react";
 
+const Radio = ({ gearPieces, handleInputChange, handleRadioChange }) => {
+	// !STATE ZONE
+	const [radioValue, setRadioValue] = useState([]);
+
+	// !Component
 	return (
 		<div className="charCreate__gearChoices">
 			{gearPieces.map((gearPiece) => {
+				let testObect = {
+					test: "it worked",
+				};
+
 				return (
 					<>
 						<div className="charCreate__option">
 							<p>{gearPiece}</p>
+
 							{/* //*No Need */}
 							<div className="charCreate__radioContainer">
 								<div className="charCreate__radio">

@@ -1,7 +1,12 @@
 // !IMPORT ZONE
 import Radio from "./Radio";
 
-const CharacterEdit = () => {
+const CharacterEdit = ({
+	handleSubmit,
+	handleNameChange,
+	handleRadioChange,
+	gearPieces,
+}) => {
 	return (
 		<div>
 			<header>
@@ -31,7 +36,11 @@ const CharacterEdit = () => {
 
 					{/* //* mid container */}
 					<fieldset className="charCreate__rightContainer">
-						<Radio />
+						<Radio
+							handleNameChange={handleNameChange}
+							handleRadioChange={handleRadioChange}
+							gearPieces={gearPieces}
+						/>
 					</fieldset>
 				</form>
 			</main>

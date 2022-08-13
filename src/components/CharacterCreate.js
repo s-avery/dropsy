@@ -4,9 +4,13 @@ const CharacterCreate = ({
 	handleSubmit,
 	handleNameChange,
 	handleRadioChange,
+	gearPieces,
 }) => {
+	// *Letting useRadio work
+	// const { radioSelected, render } = useRadio();
+
 	return (
-		<div>
+		<>
 			<header>
 				<h1>ff14 gear planner</h1>
 
@@ -50,11 +54,11 @@ const CharacterCreate = ({
 						<Radio
 							handleNameChange={handleNameChange}
 							handleRadioChange={handleRadioChange}
-						/>
+							gearPieces={gearPieces}						/>
 					</fieldset>
 				</form>
 			</main>
-		</div>
+		</>
 	);
 };
 
