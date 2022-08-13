@@ -29,6 +29,7 @@ const CharacterCreate = ({
 								id="charName"
 								className="button"
 								placeholder="paisley pudge?"
+								required
 								onChange={handleNameChange}
 							/>
 						</div>
@@ -53,8 +54,9 @@ const CharacterCreate = ({
 					<fieldset className="charCreate__rightContainer">
 						<Radio
 							handleNameChange={handleNameChange}
-							handleRadioChange={handleRadioChange}
-							gearPieces={gearPieces}						/>
+							// handleRadioChange={handleRadioChange}
+							gearPieces={gearPieces}
+						/>
 					</fieldset>
 				</form>
 			</main>
