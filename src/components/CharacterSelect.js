@@ -8,6 +8,10 @@ const CharacterSelect = ({
 	dropdownValue,
 	handleDropdownChange,
 	gearPieces,
+	handleRadioChange,
+	characterList,
+	setCharacterList,
+	
 }) => {
 	return (
 		<div>

@@ -1,5 +1,7 @@
 // !IMPORT ZONE
+import { useEffect, useState } from "react";
 import Radio from "./Radio";
+import EditRadio from "./EditRadio";
 
 const CharacterEdit = ({
 	handleSubmit,
@@ -7,9 +9,28 @@ const CharacterEdit = ({
 	gearPieces,
 	setRadioValue,
 	radioValue,
-	dropdownValue,
-	characterNamesList,
+	characterList,
+	setCharacterList,
+	populateDropdown,
 }) => {
+	// !STATE ZONE
+	// *Selected Character
+	const [selectedCharacterName, setSelectedCharacterName] = useState([]);
+	const [selectedCharacterGearlist, setselectedCharacterGearlist] = useState(
+		{}
+	);
+
+	useEffect(() => {}, []);
+
+	// *Handle Dropdown Change
+	const handleDropdownChange = (e) => {
+		setSelectedCharacterName(e.target.value);
+		let statelessCharacterList = [...characterList];
+
+		console.log(statelessCharacterList);
+	};
+
+	// !RETURN
 	return (
 		<div>
 			<header>
@@ -33,20 +54,28 @@ const CharacterEdit = ({
 									id="charSelectDropdown"
 									placeholder="paisley pudge"
 									defaultValue={"placeholder"}
+									onChange={handleDropdownChange()}
 								>
 									<option value="placeholder" disabled>
 										who's it gonna be
 									</option>
-
-									{characterNamesList.map((character) => {
+									//* Populate Dropdown
+									{characterList.map((character) => {
 										return (
-											<option value={character}>
-												{character}
+											<option
+												key={character.key}
+												value={character.characterName}
+											>
+												{character.characterName}
 											</option>
 										);
 									})}
 								</select>
-							</div>{" "}
+
+								<p>character name:</p>
+
+								<h2>{selectedCharacterName}</h2>
+							</div>
 						</div>
 						<div className="charCreate__instructions">
 							<p>
@@ -62,12 +91,7 @@ const CharacterEdit = ({
 
 					{/* //* mid container */}
 					<fieldset className="charCreate__rightContainer">
-						<Radio
-							handleNameChange={handleNameChange}
-							setRadioValue={setRadioValue}
-							gearPieces={gearPieces}
-							radioValue={radioValue}
-						/>
+						{}
 					</fieldset>
 				</form>
 			</main>

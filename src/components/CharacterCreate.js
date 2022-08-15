@@ -4,8 +4,12 @@ const CharacterCreate = ({
 	handleSubmit,
 	handleNameChange,
 	gearPieces,
+	setGearPieces,
 	setRadioValue,
 	radioValue,
+	characterList,
+	setCharacterList,
+	handleRadioChange,
 }) => {
 	// *Letting useRadio work
 	// const { radioSelected, render } = useRadio();
@@ -21,7 +25,7 @@ const CharacterCreate = ({
 			<main>
 				<form className="charCreate">
 					{/* //*left container */}
-					<fieldset className="charCreate__leftContainer">
+					<div className="charCreate__leftContainer">
 						<div className="charCreate__charName">
 							<label htmlFor="charName">character name: </label>
 							<input
@@ -45,21 +49,26 @@ const CharacterCreate = ({
 							</ol>
 						</div>
 						<div className="charCreate__submit">
-							<button className="button" onClick={handleSubmit}>
+							<button
+								type="submit"
+								className="button"
+								onClick={handleSubmit}
+							>
 								submit!
 							</button>
 						</div>
-					</fieldset>
+					</div>
 
 					{/* //* right container */}
-					<fieldset className="charCreate__rightContainer">
+					<div className="charCreate__rightContainer">
 						<Radio
 							handleNameChange={handleNameChange}
 							setRadioValue={setRadioValue}
 							gearPieces={gearPieces}
+							setGearPieces={setGearPieces}
 							radioValue={radioValue}
 						/>
-					</fieldset>
+					</div>
 				</form>
 			</main>
 		</>

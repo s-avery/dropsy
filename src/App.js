@@ -10,25 +10,23 @@ import Home from "./components/Home";
 import CharacterSelect from "./components/CharacterSelect";
 import CharacterEdit from "./components/CharacterEdit";
 import CharacterCreate from "./components/CharacterCreate";
-
-// *Create references to the database
-const database = getDatabase(firebase);
-const dbRef = ref(database);
+import ErrorPage from "./components/ErrorPage.Js";
 
 // !APP
+
 function App() {
 	// !ARRAY ZONE
-	const gearPieces = [
-		// { characterName: "", isCharacterName: true },
-		{ pieceName: "head", wanted: "" },
-		{ pieceName: "body", wanted: "" },
-		{ pieceName: "legs", wanted: "" },
-		{ pieceName: "feet", wanted: "" },
-		{ pieceName: "earring", wanted: "" },
-		{ pieceName: "necklace", wanted: "" },
-		{ pieceName: "bracelet", wanted: "" },
-		{ pieceName: "ring", wanted: "" },
-	];
+	// const gearPieces = [
+	// 	// { characterName: "", isCharacterName: true },
+	// 	{ pieceName: "head", wanted: "" },
+	// 	{ pieceName: "body", wanted: "" },
+	// 	{ pieceName: "legs", wanted: "" },
+	// 	{ pieceName: "feet", wanted: "" },
+	// 	{ pieceName: "earring", wanted: "" },
+	// 	{ pieceName: "necklace", wanted: "" },
+	// 	{ pieceName: "bracelet", wanted: "" },
+	// 	{ pieceName: "ring", wanted: "" },
+	// ];
 
 	// !STATE ZONE
 	// *character
@@ -40,11 +38,67 @@ function App() {
 	// *Radio Value
 	const [radioValue, setRadioValue] = useState([false]);
 
-	// *Dropdown Value
-	const [dropdownValue, setDropdownValue] = useState([]);
+	// *Gear Pieces
+	const [gearPieces, setGearPieces] = useState([]);
 
-	// *Name Valid
-	const [nameValid, setNameValid] = useState(false);
+	// *Character List
+	const [characterList, setCharacterList] = useState([]);
+
+	// *Object To Push
+	const [objectToPush, setObjectToPush] = useState({});
+
+	// !USE EFFECT ZONE
+	useEffect(() => {
+		setGearPieces([
+			{ pieceName: "head", wanted: "" },
+			{ pieceName: "body", wanted: "" },
+			{ pieceName: "legs", wanted: "" },
+			{ pieceName: "feet", wanted: "" },
+			{ pieceName: "earring", wanted: "" },
+			{ pieceName: "necklace", wanted: "" },
+			{ pieceName: "bracelet", wanted: "" },
+			{ pieceName: "ring", wanted: "" },
+		]);
+	}, []);
+
+	useEffect(() => {
+		//*Getting data from database
+		// holding the database details from firebase
+		const database = getDatabase(firebase);
+
+		// a variable that references a specific location of our database
+		const dbRef = ref(database);
+		// console.log(dbRef);
+
+		// when db value changes, clg it
+		onValue(dbRef, (response) => {
+			const newState = [];
+			const data = response.val();
+
+			// loop over the data object and push each book title into the newState empty array
+			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+			for (let key in data) {
+				newState.push({
+					key: key,
+					gearListItems: data[key],
+					// head: data[key][0],
+					// headWanted: data[key][0].wanted,
+					// body: data[key][1],
+					// legs: data[key][2],
+					// feet: data[key][3],
+					// earring: data[key][4],
+					// necklace: data[key][5],
+					// bracelet: data[key][6],
+					// ring: data[key][7],
+					characterName: data[key].characterName,
+				});
+			}
+			// console.log(newState);
+
+			// update characterList state to hold our character names stored in newState
+			setCharacterList(newState);
+		});
+	}, []);
 
 	// !FUNCTION ZONE
 	// *Handle Name Change
@@ -52,23 +106,20 @@ function App() {
 		setCharName(e.target.value);
 	};
 
-	// *Populate Dropdown
-	const characterNamesList = ["zat", "pp", "blibby"];
-	// database.forEach((item) => {
-	// 	return item.characterName;
-	// });
-
-	// *Handle Dropdown Change
-	const handleDropdownChange = (e) => {
-		setDropdownValue(e.target.value);
+	// *Handle Radio Change
+	const handleRadioChange = (gearPiece, e) => {
+		setGearPieces((gearPiece.wanted = e.target.value));
 	};
 
-	// *Validate Name
-	const validateName = () => {
-		if (charName.trim) {
-			console.log("name exists!");
-			setNameValid(true);
-		}
+	// *Populate Dropdown
+	const populateDropdown = () => {
+		characterList.map((character) => {
+			return (
+				<option value={character.characterName}>
+					{character.characterName}
+				</option>
+			);
+		});
 	};
 
 	// *Handle Form Submit
@@ -76,49 +127,101 @@ function App() {
 		e.preventDefault();
 
 		// *update gearPieces with user name input (radio input updating the array was delegated to within the Radio component cuz it was the best way I found to make it not change the state of EVERY radio button value when one was clicked)
-		gearPieces.characterName = charName;
-
-		validateName();
+		// gearPieces.characterName = charName;
 
 		// *submit it!
-		// if (radioValue == true && charName == true) {
-		// console.log("valid!");
-		// ! add charName to our firebase database. takes two variables: ref to the database, what's being pushed
-		// push(dbRef, gearPieces);
 
-		// clear user input
-		// setCharName("");
+		// *if form is valid...
+		if (
+			(gearPieces[0].wanted === "noNeed" ||
+				gearPieces[0].wanted === "want" ||
+				gearPieces[0].wanted === "got") &&
+			(gearPieces[1].wanted === "noNeed" ||
+				gearPieces[1].wanted === "want" ||
+				gearPieces[1].wanted === "got") &&
+			(gearPieces[2].wanted === "noNeed" ||
+				gearPieces[2].wanted === "want" ||
+				gearPieces[2].wanted === "got") &&
+			(gearPieces[3].wanted === "noNeed" ||
+				gearPieces[3].wanted === "want" ||
+				gearPieces[3].wanted === "got") &&
+			(gearPieces[4].wanted === "noNeed" ||
+				gearPieces[4].wanted === "want" ||
+				gearPieces[4].wanted === "got") &&
+			(gearPieces[5].wanted === "noNeed" ||
+				gearPieces[5].wanted === "want" ||
+				gearPieces[5].wanted === "got") &&
+			(gearPieces[6].wanted === "noNeed" ||
+				gearPieces[6].wanted === "want" ||
+				gearPieces[6].wanted === "got") &&
+			(gearPieces[7].wanted === "noNeed" ||
+				gearPieces[7].wanted === "want" ||
+				gearPieces[7].wanted === "got")
+			// TODO why doesnt this work lol
+			// &&
+			// charName
+		) {
+			// *Create references to the database
+			const database = getDatabase(firebase);
+			const dbRef = ref(database);
 
-		// alert user
-		// console.log(gearPieces);
-		// alert("user info updated!");
-		// }
-		// *if not, alert user
-		// else {
-		// console.log(gearPieces);
-		// console.log("form invalid");
-		// alert("please fill out all the boxes!");
-		// }
+			// *Update ObjectToPush With Data
+			let statelessObjectToPush = {
+				characterName: charName,
+				gearPiecesObject: { gearPieces },
+			};
+			setObjectToPush({
+				characterName: charName,
+				gearPiecesObject: { gearPieces },
+			});
+
+			// *push to firebase
+			console.log("yippee!");
+			alert(
+				// TODO change this lol
+				"you did it! i'm so proud of you and your coding skills are sexually hot!"
+			);
+			console.log(objectToPush);
+			push(dbRef, objectToPush);
+
+			// *clear user input
+			setCharName("");
+		} else {
+			alert("you gotta click all da boxes");
+			console.log(gearPieces);
+		}
 	};
 
 	// !PRINT TO PAGE ZONE
 	return (
 		<div>
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route
+					path="/"
+					element={
+						<Home
+							characterList={characterList}
+							setCharacterList={setCharacterList}
+						/>
+					}
+				/>
 				<Route
 					path="/charSelect"
 					element={
 						<CharacterSelect
-							characterNamesList={characterNamesList}
-							dropdownValue={dropdownValue}
-							handleDropdownChange={handleDropdownChange}
+							// characterNamesList={characterNamesList}
+							// handleDropdownChange={handleDropdownChange}
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
 							// handleRadioChange={handleRadioChange}
 							gearPieces={gearPieces}
+							setGearPieces={setGearPieces}
 							setRadioValue={setRadioValue}
 							radioValue={radioValue}
+							handleRadioChange={handleRadioChange}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
+							populateDropdown={populateDropdown}
 						/>
 					}
 				/>
@@ -126,14 +229,17 @@ function App() {
 					path="/charEdit"
 					element={
 						<CharacterEdit
-							dropdownValue={dropdownValue}
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
 							// handleRadioChange={handleRadioChange}
 							gearPieces={gearPieces}
 							setRadioValue={setRadioValue}
 							radioValue={radioValue}
-							characterNamesList={characterNamesList}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
+							populateDropdown={populateDropdown}
+
+							// populateDropdown={populateDropdown}
 						/>
 					}
 				/>
@@ -144,12 +250,20 @@ function App() {
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
 							// handleRadioChange={handleRadioChange}
-							gearPieces={gearPieces}
 							setRadioValue={setRadioValue}
 							radioValue={radioValue}
+							gearPieces={gearPieces}
+							setGearPieces={setGearPieces}
+							handleRadioChange={handleRadioChange}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
+
+				<Route path="*" element={<ErrorPage />} />
+
+				{/* <Route path="*" element={<Error />} /> */}
 			</Routes>
 		</div>
 	);
@@ -206,17 +320,11 @@ export default App;
 // 	}
 // });
 
-// *if form is valid...
-// if (
-// 	// gearPieces.characterName &&
-// 	gearPieces[0].wanted === (true || false) &&
-// 	gearPieces[1].wanted === (true || false) &&
-// 	gearPieces[2].wanted === (true || false) &&
-// 	gearPieces[3].wanted === (true || false) &&
-// 	gearPieces[4].wanted === (true || false) &&
-// 	gearPieces[5].wanted === (true || false) &&
-// 	gearPieces[6].wanted === (true || false) &&
-// 	gearPieces[7].wanted === (true || false)
-
-// ) {
+// *Validate Name
+// const validateName = () => {
+// 	if (charName.trim) {
+// 		console.log("name exists!");
+// 		setNameValid(true);
+// 	}
+// };
 

@@ -1,11 +1,18 @@
 // !IMPORT ZONE
 import { useState } from "react";
 
-const Radio = ({ gearPieces, setRadioValue, radioValue }) => {
+const Radio = ({
+	gearPieces,
+	setGearPieces,
+	setRadioValue,
+	radioValue,
+	characterList,
+}) => {
+	let newGearArray = [...gearPieces];
 	// !Component
 	return (
 		<div className="charCreate__gearChoices">
-			{gearPieces.map((gearPiece) => {
+			{newGearArray.map((gearPiece) => {
 				return (
 					<>
 						<div className="charCreate__option">
@@ -19,11 +26,19 @@ const Radio = ({ gearPieces, setRadioValue, radioValue }) => {
 										name={gearPiece.pieceName}
 										id={`noNeed${gearPiece.pieceName}`}
 										value={false}
-										onChange={(e) => {
-											gearPiece.wanted = false;
-											setRadioValue(true);
+										onChange={() => {
+											newGearArray.forEach((thingy) => {
+												if (
+													thingy.pieceName ===
+													gearPiece.pieceName
+												) {
+													thingy.wanted = "noNeed";
+													// console.log(thingy);
+													setGearPieces(newGearArray);
+												}
+											});
 										}}
-										required="required"
+										required
 									/>
 									<label
 										htmlFor={`noNeed${gearPiece.pieceName}`}
@@ -40,11 +55,18 @@ const Radio = ({ gearPieces, setRadioValue, radioValue }) => {
 										name={gearPiece.pieceName}
 										id={`want${gearPiece.pieceName}`}
 										value={true}
-										onChange={(e) => {
-											gearPiece.wanted = true;
-											setRadioValue(true);
+										onChange={() => {
+											newGearArray.forEach((thingy) => {
+												if (
+													thingy.pieceName ===
+													gearPiece.pieceName
+												) {
+													thingy.wanted = "want";
+													// console.log(thingy);
+												}
+											});
 										}}
-										required="required"
+										required
 									/>
 									<label
 										htmlFor={`want${gearPiece.pieceName}`}
@@ -61,11 +83,19 @@ const Radio = ({ gearPieces, setRadioValue, radioValue }) => {
 										name={gearPiece.pieceName}
 										id={`got${gearPiece.pieceName}`}
 										value={false}
-										onChange={(e) => {
-											gearPiece.wanted = false;
-											setRadioValue(true);
+										onChange={() => {
+											newGearArray.forEach((thingy) => {
+												if (
+													thingy.pieceName ===
+													gearPiece.pieceName
+												) {
+													thingy.wanted = "got";
+													// console.log(thingy);
+													// console.log(newGearArray);
+												}
+											});
 										}}
-										required="required"
+										required
 									/>
 									<label
 										htmlFor={`got${gearPiece.pieceName}`}
