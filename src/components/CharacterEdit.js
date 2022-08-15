@@ -20,14 +20,13 @@ const CharacterEdit = ({
 		{}
 	);
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		setSelectedCharacterName([]);
+	}, []);
 
 	// *Handle Dropdown Change
 	const handleDropdownChange = (e) => {
 		setSelectedCharacterName(e.target.value);
-		let statelessCharacterList = [...characterList];
-
-		console.log(statelessCharacterList);
 	};
 
 	// !RETURN
@@ -54,7 +53,7 @@ const CharacterEdit = ({
 									id="charSelectDropdown"
 									placeholder="paisley pudge"
 									defaultValue={"placeholder"}
-									onChange={handleDropdownChange()}
+									onChange={handleDropdownChange}
 								>
 									<option value="placeholder" disabled>
 										who's it gonna be
@@ -89,9 +88,13 @@ const CharacterEdit = ({
 						</div>{" "}
 					</fieldset>
 
-					{/* //* mid container */}
+					{/* //* right container */}
 					<fieldset className="charCreate__rightContainer">
-						{}
+						<EditRadio
+							characterList={characterList}
+							setCharacterList={setCharacterList}
+							setSelectedCharacterName={setSelectedCharacterName}
+						/>
 					</fieldset>
 				</form>
 			</main>
