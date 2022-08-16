@@ -1,5 +1,7 @@
 // !IMPORT ZONE
 import { useEffect, useState } from "react";
+import firebase from "../firebase";
+import { update, getDatabase, ref, set } from "firebase/database";
 import Radio from "./Radio";
 import EditRadio from "./EditRadio";
 
@@ -17,16 +19,19 @@ const CharacterEdit = ({
 	// !STATE ZONE
 	// *Selected Character
 	const [selectedCharacterName, setSelectedCharacterName] = useState([]);
-	const [selectedCharacterGearlist, setselectedCharacterGearlist] = useState(
-		{}
-	);
 
+	// *Object to Update
+	const [objectToUpdate, setObjectToUpdate] = useState({});
+
+	// *nonsense
+	const [nonsenseGearPieces, setNonsenseGearPieces] = useState([]);
+
+	// !USE EFFECT ZONE
 	useEffect(() => {
 		setSelectedCharacterName([]);
 	}, []);
 
-	let newGearArray = [...gearPieces];
-
+	// !FUNCTION ZONE
 	// *Handle Dropdown Change
 	const handleDropdownChange = (e) => {
 		setSelectedCharacterName(e.target.value);
@@ -34,12 +39,11 @@ const CharacterEdit = ({
 			if (character.characterName === selectedCharacterName) {
 				// console.log(character.characterName);
 				// *set gearList state
-				setGearPieces(
+				setNonsenseGearPieces(
 					character.gearListItems.gearPiecesObject.gearPieces
 				);
-				// newGearArray = [...gearPieces];
-				newGearArray = [...gearPieces];
-				console.log(newGearArray);
+				// let newGearArray = [...nonsenseGearPieces];
+				// console.log(newGearArray);
 
 				// *make stateless gearPieces array...
 				// const newGearPieces = [
@@ -48,6 +52,41 @@ const CharacterEdit = ({
 				// *so we can map over it...
 			}
 		});
+	};
+
+	// *Handle Edit Submit
+	const handleEditSubmit = (e) => {
+		e.preventDefault();
+		// *if form is valid...
+		if (
+			!selectedCharacterName ||
+			!gearPieces[0].wanted ||
+			!gearPieces[1].wanted ||
+			!gearPieces[2].wanted ||
+			!gearPieces[3].wanted ||
+			!gearPieces[4].wanted ||
+			!gearPieces[5].wanted ||
+			!gearPieces[6].wanted ||
+			!gearPieces[7].wanted
+		) {
+			//* then...
+			alert("i love u but pls click all the boxes");
+		} else {
+			// *Create references to the database
+			const database = getDatabase(firebase);
+			const dbRef = ref(database, `${selectedCharacterName}/`);
+
+			// *setObjectToUpdate to include our new data
+			let statelessObjectToUpdate = {
+				key: selectedCharacterName,
+				characterName: selectedCharacterName,
+				gearPiecesObject: { gearPieces },
+			};
+
+			// *update it
+			set(dbRef, statelessObjectToUpdate);
+			alert("your boobies are huge");
+		}
 	};
 
 	// !RETURN
@@ -105,7 +144,12 @@ const CharacterEdit = ({
 							</p>
 						</div>
 						<div className="charCreate__submit">
-							<button className="button">submit!</button>
+							<button
+								className="button"
+								onClick={handleEditSubmit}
+							>
+								submit!
+							</button>
 						</div>{" "}
 					</fieldset>
 
@@ -118,7 +162,8 @@ const CharacterEdit = ({
 							setSelectedCharacterName={setSelectedCharacterName}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
-							newGearArray={newGearArray}
+							nonsenseGearPieces={nonsenseGearPieces}
+							// newGearArray={newGearArray}
 						/>
 					</fieldset>
 				</form>

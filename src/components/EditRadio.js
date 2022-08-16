@@ -6,21 +6,23 @@ const EditRadio = ({
 	setSelectedCharacterName,
 	gearPieces,
 	setGearPieces,
+	nonsenseGearPieces,
 }) => {
 	useEffect(() => {
 		let newGearArray = [...gearPieces];
 	}, []);
 
 	// !Component
-	let newGearArray = [...gearPieces];
 	return (
 		<div className="charCreate__gearChoices">
-			{newGearArray.map((gearPiece) => {
+			{nonsenseGearPieces.map((gearPiece) => {
 				// console.log(gearPiece);
 				return (
 					<>
 						<div className="charCreate__option">
-							<p>{gearPiece.pieceName}</p>
+							<p>
+								{gearPiece.pieceName}: {gearPiece.wanted}
+							</p>
 
 							{/* //*No Need */}
 							<div className="charCreate__radioContainer">
@@ -30,8 +32,13 @@ const EditRadio = ({
 										name={gearPiece.pieceName}
 										id={`noNeed${gearPiece.pieceName}`}
 										value={false}
-										defaultChecked={gearPiece.wanted}
+										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
+											// *update the label
+											gearPiece.wanted = "don't need it";
+
+											// *updates the actual value
+											let newGearArray = [...gearPieces];
 											newGearArray.forEach((thingy) => {
 												if (
 													thingy.pieceName ===
@@ -60,8 +67,13 @@ const EditRadio = ({
 										name={gearPiece.pieceName}
 										id={`want${gearPiece.pieceName}`}
 										value={true}
-										defaultChecked={gearPiece.wanted}
+										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
+											// *update the label
+											gearPiece.wanted = "want it";
+
+											// *updates the actual value
+											let newGearArray = [...gearPieces];
 											newGearArray.forEach((thingy) => {
 												if (
 													thingy.pieceName ===
@@ -90,8 +102,13 @@ const EditRadio = ({
 										name={gearPiece.pieceName}
 										id={`got${gearPiece.pieceName}`}
 										value={false}
-										defaultChecked={gearPiece.wanted}
+										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
+											// *update the label
+											gearPiece.wanted = "got it";
+
+											// *updates the actual value
+											let newGearArray = [...gearPieces];
 											newGearArray.forEach((thingy) => {
 												if (
 													thingy.pieceName ===

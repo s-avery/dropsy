@@ -1,7 +1,14 @@
 // !IMPORT ZONE
 import "./App.css";
 import firebase from "./firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+import {
+	getDatabase,
+	ref,
+	onValue,
+	push,
+	remove,
+	set,
+} from "firebase/database";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Link, Routes, Route, Outlet } from "react-router-dom";
 
@@ -33,7 +40,7 @@ function App() {
 	const [character, setCharacter] = useState([]);
 
 	// *charName
-	const [charName, setCharName] = useState([]);
+	const [charName, setCharName] = useState("");
 
 	// *Radio Value
 	const [radioValue, setRadioValue] = useState([false]);
@@ -126,69 +133,43 @@ function App() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// *update gearPieces with user name input (radio input updating the array was delegated to within the Radio component cuz it was the best way I found to make it not change the state of EVERY radio button value when one was clicked)
-		// gearPieces.characterName = charName;
-
-		// *submit it!
-
 		// *if form is valid...
 		if (
-			(gearPieces[0].wanted === "noNeed" ||
-				gearPieces[0].wanted === "want" ||
-				gearPieces[0].wanted === "got") &&
-			(gearPieces[1].wanted === "noNeed" ||
-				gearPieces[1].wanted === "want" ||
-				gearPieces[1].wanted === "got") &&
-			(gearPieces[2].wanted === "noNeed" ||
-				gearPieces[2].wanted === "want" ||
-				gearPieces[2].wanted === "got") &&
-			(gearPieces[3].wanted === "noNeed" ||
-				gearPieces[3].wanted === "want" ||
-				gearPieces[3].wanted === "got") &&
-			(gearPieces[4].wanted === "noNeed" ||
-				gearPieces[4].wanted === "want" ||
-				gearPieces[4].wanted === "got") &&
-			(gearPieces[5].wanted === "noNeed" ||
-				gearPieces[5].wanted === "want" ||
-				gearPieces[5].wanted === "got") &&
-			(gearPieces[6].wanted === "noNeed" ||
-				gearPieces[6].wanted === "want" ||
-				gearPieces[6].wanted === "got") &&
-			(gearPieces[7].wanted === "noNeed" ||
-				gearPieces[7].wanted === "want" ||
-				gearPieces[7].wanted === "got")
-			// TODO why doesnt this work lol
-			// &&
-			// charName
+			!charName ||
+			!gearPieces[0].wanted ||
+			!gearPieces[1].wanted ||
+			!gearPieces[2].wanted ||
+			!gearPieces[3].wanted ||
+			!gearPieces[4].wanted ||
+			!gearPieces[5].wanted ||
+			!gearPieces[6].wanted ||
+			!gearPieces[7].wanted
 		) {
+			alert("you gotta click all da boxes");
+			console.log(gearPieces);
+		} else {
 			// *Create references to the database
 			const database = getDatabase(firebase);
-			const dbRef = ref(database);
+			const dbRef = ref(database, `${charName}/`);
+
+			// let statelessObjectToPush = { ...objectToPush };
 
 			// *Update ObjectToPush With Data
 			let statelessObjectToPush = {
+				key: charName,
 				characterName: charName,
 				gearPiecesObject: { gearPieces },
 			};
-			setObjectToPush({
-				characterName: charName,
-				gearPiecesObject: { gearPieces },
-			});
 
 			// *push to firebase
 			console.log("yippee!");
 			alert(
-				// TODO change this lol
 				"you did it! i'm so proud of you and your coding skills are sexually hot!"
 			);
-			console.log(objectToPush);
-			push(dbRef, objectToPush);
+			set(dbRef, statelessObjectToPush);
 
 			// *clear user input
 			setCharName("");
-		} else {
-			alert("you gotta click all da boxes");
-			console.log(gearPieces);
 		}
 	};
 
@@ -272,6 +253,32 @@ function App() {
 export default App;
 
 // !THE DEPRECATION ZONE
+
+// * old if statement
+// ((gearPieces[0].wanted === "noNeed" ||
+// 	gearPieces[0].wanted === "want" ||
+// 	gearPieces[0].wanted === "got") &&
+// 	(gearPieces[1].wanted === "noNeed" ||
+// 		gearPieces[1].wanted === "want" ||
+// 		gearPieces[1].wanted === "got") &&
+// 	(gearPieces[2].wanted === "noNeed" ||
+// 		gearPieces[2].wanted === "want" ||
+// 		gearPieces[2].wanted === "got") &&
+// 	(gearPieces[3].wanted === "noNeed" ||
+// 		gearPieces[3].wanted === "want" ||
+// 		gearPieces[3].wanted === "got") &&
+// 	(gearPieces[4].wanted === "noNeed" ||
+// 		gearPieces[4].wanted === "want" ||
+// 		gearPieces[4].wanted === "got") &&
+// 	(gearPieces[5].wanted === "noNeed" ||
+// 		gearPieces[5].wanted === "want" ||
+// 		gearPieces[5].wanted === "got") &&
+// 	(gearPieces[6].wanted === "noNeed" ||
+// 		gearPieces[6].wanted === "want" ||
+// 		gearPieces[6].wanted === "got") &&
+// 	(gearPieces[7].wanted === "noNeed" ||
+// 		gearPieces[7].wanted === "want" ||
+// 		gearPieces[7].wanted === "got"))
 // *Handle Radio Change
 // const handleRadioChange = (e) => {
 // 	setRadioValue(e.target.value);
