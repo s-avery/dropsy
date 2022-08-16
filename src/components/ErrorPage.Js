@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
 	return (
-		<div className="error">
+		<main className="error">
+			<Link to="/" className="homeButton">
+				home
+			</Link>
+
 			<h1>this should not have happened.</h1>
 			<img src={angy} alt="angry paisley pudge" className="angy" />
 			<p className="error__text">
@@ -13,7 +17,7 @@ const ErrorPage = () => {
 				</Link>
 				.
 			</p>
-		</div>
+		</main>
 	);
 };
 

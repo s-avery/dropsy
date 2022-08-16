@@ -25,7 +25,8 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 													thingy.pieceName ===
 													gearPiece.pieceName
 												) {
-													thingy.wanted = "noNeed";
+													thingy.wanted =
+														"don't need it";
 													// console.log(thingy);
 													setGearPieces(newGearArray);
 												}
@@ -54,7 +55,7 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 													thingy.pieceName ===
 													gearPiece.pieceName
 												) {
-													thingy.wanted = "want";
+													thingy.wanted = "want it";
 													setGearPieces(newGearArray);
 													// console.log(thingy);
 												}
@@ -83,7 +84,7 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 													thingy.pieceName ===
 													gearPiece.pieceName
 												) {
-													thingy.wanted = "got";
+													thingy.wanted = "got it";
 													setGearPieces(newGearArray);
 
 													// console.log(thingy);

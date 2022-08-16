@@ -1,4 +1,5 @@
 import Radio from "./Radio";
+import { Link } from "react-router-dom";
 
 const CharacterCreate = ({
 	handleSubmit,
@@ -16,7 +17,11 @@ const CharacterCreate = ({
 			<header>
 				<h1>ff14 gear planner</h1>
 
-				<h2>character creator</h2>
+				<h2>character editor</h2>
+
+				<Link to="/" className="homeButton">
+					home
+				</Link>
 			</header>
 
 			<main>

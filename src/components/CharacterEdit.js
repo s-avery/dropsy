@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import EditRadio from "./EditRadio";
+import { Link } from "react-router-dom";
 
 const CharacterEdit = ({
 	gearPieces,
@@ -22,30 +23,20 @@ const CharacterEdit = ({
 
 	// !USE EFFECT ZONE
 	useEffect(() => {
-		setSelectedCharacterName([]);
-	}, []);
+		characterList.forEach((character) => {
+			if (character.characterName === selectedCharacterName) {
+				// *set gearList state
+				setNonsenseGearPieces(
+					character.gearListItems.gearPiecesObject.gearPieces
+				);
+			}
+		});
+	}, [selectedCharacterName]);
 
 	// !FUNCTION ZONE
 	// *Handle Dropdown Change
 	const handleDropdownChange = (e) => {
 		setSelectedCharacterName(e.target.value);
-		characterList.forEach((character) => {
-			if (character.characterName === selectedCharacterName) {
-				// console.log(character.characterName);
-				// *set gearList state
-				setNonsenseGearPieces(
-					character.gearListItems.gearPiecesObject.gearPieces
-				);
-				// let newGearArray = [...nonsenseGearPieces];
-				// console.log(newGearArray);
-
-				// *make stateless gearPieces array...
-				// const newGearPieces = [
-				// 	...character.gearListItems.gearPiecesObject.gearPieces,
-				// ];
-				// *so we can map over it...
-			}
-		});
 	};
 
 	// *Handle Edit Submit
@@ -64,7 +55,9 @@ const CharacterEdit = ({
 			!gearPieces[7].wanted
 		) {
 			//* then...
-			alert("i love u but pls click all the boxes");
+			alert(
+				"you must select a value for each option. (sorry i couldn't make it select a radio option by default without breaking it lol)"
+			);
 		} else {
 			// *Create references to the database
 			const database = getDatabase(firebase);
@@ -79,7 +72,7 @@ const CharacterEdit = ({
 
 			// *update it
 			set(dbRef, statelessObjectToUpdate);
-			alert("your boobies are huge");
+			alert("character updated!");
 		}
 	};
 
@@ -90,6 +83,10 @@ const CharacterEdit = ({
 				<h1>ff14 gear planner</h1>
 
 				<h2>character editor</h2>
+
+				<Link to="/" className="homeButton">
+					home
+				</Link>
 			</header>
 
 			<main>

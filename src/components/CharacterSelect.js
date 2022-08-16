@@ -9,7 +9,11 @@ const CharacterSelect = () => {
 			<header>
 				<h1>ff14 gear planner</h1>
 
-				<h2>choose a guy or make a guy</h2>
+				<h2>character editor</h2>
+
+				<Link to="/" className="homeButton">
+					home
+				</Link>
 			</header>
 
 			<main className="charSelect">

@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 
 const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
-	useEffect(() => {
-		// let newGearArray = [...gearPieces];
-	}, []);
-
 	// !Component
 	return (
 		<div className="charCreate__gearChoices">
@@ -14,7 +10,18 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 					<>
 						<div className="charCreate__option">
 							<p>
-								{gearPiece.pieceName}: {gearPiece.wanted}
+								{gearPiece.pieceName}:{" "}
+								<span
+									className={
+										gearPiece.wanted === "don't need it"
+											? "neutral"
+											: gearPiece.wanted === "want it"
+											? "red"
+											: "green"
+									}
+								>
+									{gearPiece.wanted}
+								</span>
 							</p>
 
 							{/* //*No Need */}
@@ -28,7 +35,11 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
 											// *update the label
-											gearPiece.wanted = "don't need it";
+											gearPiece.wanted = (
+												<span className="neutral">
+													don't need it
+												</span>
+											);
 
 											// *updates the actual value
 											let newGearArray = [...gearPieces];
@@ -37,7 +48,8 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 													thingy.pieceName ===
 													gearPiece.pieceName
 												) {
-													thingy.wanted = "noNeed";
+													thingy.wanted =
+														"don't need it";
 													// console.log(thingy);
 													setGearPieces(newGearArray);
 												}
@@ -63,7 +75,11 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
 											// *update the label
-											gearPiece.wanted = "want it";
+											gearPiece.wanted = (
+												<span className="red">
+													want it
+												</span>
+											);
 
 											// *updates the actual value
 											let newGearArray = [...gearPieces];
@@ -72,7 +88,7 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 													thingy.pieceName ===
 													gearPiece.pieceName
 												) {
-													thingy.wanted = "want";
+													thingy.wanted = "want it";
 													setGearPieces(newGearArray);
 													// console.log(thingy);
 												}
@@ -98,7 +114,11 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
 											// *update the label
-											gearPiece.wanted = "got it";
+											gearPiece.wanted = (
+												<span className="green">
+													got it
+												</span>
+											);
 
 											// *updates the actual value
 											let newGearArray = [...gearPieces];
@@ -107,7 +127,7 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 													thingy.pieceName ===
 													gearPiece.pieceName
 												) {
-													thingy.wanted = "got";
+													thingy.wanted = "got it";
 													setGearPieces(newGearArray);
 													// console.log(thingy);
 													// console.log(newGearArray);

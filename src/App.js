@@ -136,7 +136,7 @@ function App() {
 			!gearPieces[6].wanted ||
 			!gearPieces[7].wanted
 		) {
-			alert("you gotta click all da boxes");
+			alert("you must select a value for each option. silly.");
 			console.log(gearPieces);
 		} else {
 			// *Create references to the database
@@ -153,10 +153,7 @@ function App() {
 			};
 
 			// *push to firebase
-			console.log("yippee!");
-			alert(
-				"you did it! i'm so proud of you and your coding skills are sexually hot!"
-			);
+			alert("character created!");
 			set(dbRef, statelessObjectToPush);
 
 			// *clear user input
