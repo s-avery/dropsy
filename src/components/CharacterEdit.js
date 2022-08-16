@@ -25,6 +25,8 @@ const CharacterEdit = ({
 		setSelectedCharacterName([]);
 	}, []);
 
+	let newGearArray = [...gearPieces];
+
 	// *Handle Dropdown Change
 	const handleDropdownChange = (e) => {
 		setSelectedCharacterName(e.target.value);
@@ -35,6 +37,9 @@ const CharacterEdit = ({
 				setGearPieces(
 					character.gearListItems.gearPiecesObject.gearPieces
 				);
+				// newGearArray = [...gearPieces];
+				newGearArray = [...gearPieces];
+				console.log(newGearArray);
 
 				// *make stateless gearPieces array...
 				// const newGearPieces = [
@@ -112,6 +117,8 @@ const CharacterEdit = ({
 							selectedCharacterName={selectedCharacterName}
 							setSelectedCharacterName={setSelectedCharacterName}
 							gearPieces={gearPieces}
+							setGearPieces={setGearPieces}
+							newGearArray={newGearArray}
 						/>
 					</fieldset>
 				</form>

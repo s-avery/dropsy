@@ -62,6 +62,7 @@ const Radio = ({
 													gearPiece.pieceName
 												) {
 													thingy.wanted = "want";
+													setGearPieces(newGearArray);
 													// console.log(thingy);
 												}
 											});
@@ -90,6 +91,8 @@ const Radio = ({
 													gearPiece.pieceName
 												) {
 													thingy.wanted = "got";
+													setGearPieces(newGearArray);
+
 													// console.log(thingy);
 													// console.log(newGearArray);
 												}
