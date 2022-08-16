@@ -10,7 +10,7 @@ import Home from "./components/Home";
 import CharacterSelect from "./components/CharacterSelect";
 import CharacterEdit from "./components/CharacterEdit";
 import CharacterCreate from "./components/CharacterCreate";
-import ErrorPage from "./components/ErrorPage.Js";
+import ErrorPage from "./components/ErrorPage";
 
 // !APP
 
@@ -235,8 +235,6 @@ function App() {
 				/>
 
 				<Route path="*" element={<ErrorPage />} />
-
-				{/* <Route path="*" element={<Error />} /> */}
 			</Routes>
 		</div>
 	);

@@ -32,3 +32,14 @@ button {
 	color: var(--white);
 	cursor: pointer;
 }
+
+.angy {
+	max-width: 30%;
+}
+
+.error {
+	text-align: center;
+}
+.error__text {
+	font-size: 2rem;
+}
