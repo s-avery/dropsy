@@ -7,9 +7,6 @@ const CharacterCreate = ({
 	setGearPieces,
 	setRadioValue,
 	radioValue,
-	characterList,
-	setCharacterList,
-	handleRadioChange,
 }) => {
 	// *Letting useRadio work
 	// const { radioSelected, render } = useRadio();

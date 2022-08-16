@@ -1,18 +1,9 @@
 // !IMPORT ZONE
-import { useState, useEffect } from "react";
-import { Link, Routes, Route, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // *Components
 
-const CharacterSelect = ({
-	dropdownValue,
-	handleDropdownChange,
-	gearPieces,
-	handleRadioChange,
-	characterList,
-	setCharacterList,
-	
-}) => {
+const CharacterSelect = () => {
 	return (
 		<div>
 			<header>
