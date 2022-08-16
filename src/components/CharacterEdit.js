@@ -1,27 +1,21 @@
 // !IMPORT ZONE
 import { useEffect, useState } from "react";
 import firebase from "../firebase";
-import { update, getDatabase, ref, set } from "firebase/database";
-import Radio from "./Radio";
+import { getDatabase, ref, set } from "firebase/database";
 import EditRadio from "./EditRadio";
 
 const CharacterEdit = ({
-	handleSubmit,
-	handleNameChange,
 	gearPieces,
 	setGearPieces,
-	setRadioValue,
-	radioValue,
 	characterList,
 	setCharacterList,
-	populateDropdown,
 }) => {
 	// !STATE ZONE
 	// *Selected Character
 	const [selectedCharacterName, setSelectedCharacterName] = useState([]);
 
 	// *Object to Update
-	const [objectToUpdate, setObjectToUpdate] = useState({});
+	// const [objectToUpdate, setObjectToUpdate] = useState({});
 
 	// *nonsense
 	const [nonsenseGearPieces, setNonsenseGearPieces] = useState([]);
@@ -118,7 +112,8 @@ const CharacterEdit = ({
 									<option value="placeholder" disabled>
 										who's it gonna be
 									</option>
-									//* Populate Dropdown
+
+									{/* //* Populate Dropdown */}
 									{characterList.map((character) => {
 										return (
 											<option

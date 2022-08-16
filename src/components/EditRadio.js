@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const EditRadio = ({
-	characterList,
-	selectedCharacterName,
-	setSelectedCharacterName,
-	gearPieces,
-	setGearPieces,
-	nonsenseGearPieces,
-}) => {
+const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 	useEffect(() => {
-		let newGearArray = [...gearPieces];
+		// let newGearArray = [...gearPieces];
 	}, []);
 
 	// !Component

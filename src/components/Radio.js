@@ -1,13 +1,6 @@
 // !IMPORT ZONE
-import { useState } from "react";
 
-const Radio = ({
-	gearPieces,
-	setGearPieces,
-	setRadioValue,
-	radioValue,
-	characterList,
-}) => {
+const Radio = ({ gearPieces, setGearPieces }) => {
 	let newGearArray = [...gearPieces];
 	// !Component
 	return (

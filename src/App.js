@@ -1,16 +1,9 @@
 // !IMPORT ZONE
 import "./App.css";
 import firebase from "./firebase";
-import {
-	getDatabase,
-	ref,
-	onValue,
-	push,
-	remove,
-	set,
-} from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Link, Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // *Components
 import Home from "./components/Home";
@@ -36,8 +29,6 @@ function App() {
 	// ];
 
 	// !STATE ZONE
-	// *character
-	const [character, setCharacter] = useState([]);
 
 	// *charName
 	const [charName, setCharName] = useState("");
@@ -52,7 +43,7 @@ function App() {
 	const [characterList, setCharacterList] = useState([]);
 
 	// *Object To Push
-	const [objectToPush, setObjectToPush] = useState({});
+	// const [objectToPush, setObjectToPush] = useState({});
 
 	// !USE EFFECT ZONE
 	useEffect(() => {
