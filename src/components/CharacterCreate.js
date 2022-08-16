@@ -15,13 +15,13 @@ const CharacterCreate = ({
 	return (
 		<>
 			<header>
-				<h1>ff14 gear planner</h1>
-
-				<h2>character editor</h2>
-
 				<Link to="/" className="homeButton">
 					home
 				</Link>
+
+				<h1>ff14 gear planner</h1>
+
+				<h2>character editor</h2>
 			</header>
 
 			<main>
