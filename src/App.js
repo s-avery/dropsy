@@ -233,6 +233,7 @@ function App() {
 							handleNameChange={handleNameChange}
 							// handleRadioChange={handleRadioChange}
 							gearPieces={gearPieces}
+							setGearPieces={setGearPieces}
 							setRadioValue={setRadioValue}
 							radioValue={radioValue}
 							characterList={characterList}

@@ -7,6 +7,7 @@ const CharacterEdit = ({
 	handleSubmit,
 	handleNameChange,
 	gearPieces,
+	setGearPieces,
 	setRadioValue,
 	radioValue,
 	characterList,
@@ -27,6 +28,21 @@ const CharacterEdit = ({
 	// *Handle Dropdown Change
 	const handleDropdownChange = (e) => {
 		setSelectedCharacterName(e.target.value);
+		characterList.forEach((character) => {
+			if (character.characterName === selectedCharacterName) {
+				// console.log(character.characterName);
+				// *set gearList state
+				setGearPieces(
+					character.gearListItems.gearPiecesObject.gearPieces
+				);
+
+				// *make stateless gearPieces array...
+				// const newGearPieces = [
+				// 	...character.gearListItems.gearPiecesObject.gearPieces,
+				// ];
+				// *so we can map over it...
+			}
+		});
 	};
 
 	// !RETURN
@@ -93,7 +109,9 @@ const CharacterEdit = ({
 						<EditRadio
 							characterList={characterList}
 							setCharacterList={setCharacterList}
+							selectedCharacterName={selectedCharacterName}
 							setSelectedCharacterName={setSelectedCharacterName}
+							gearPieces={gearPieces}
 						/>
 					</fieldset>
 				</form>

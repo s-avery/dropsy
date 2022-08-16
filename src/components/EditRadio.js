@@ -4,21 +4,19 @@ const EditRadio = ({
 	characterList,
 	selectedCharacterName,
 	setSelectedCharacterName,
+	gearPieces,
 }) => {
 	useEffect(() => {
-		setSelectedCharacterName("");
+		// setSelectedCharacterName("");
 	}, []);
 
-	let statelessCharacterList = [...characterList];
-	statelessCharacterList.forEach((character) => {
-		if (character.characterName === selectedCharacterName) {
-			const newGearPieces = [
-				...character.gearListItems.gearPiecesObject.gearPieces,
-			];
-			newGearPieces.map((gearPieces) => {
-				return gearPieces.pieceName;
-			});
-		}
-	});
+	// *run thru that array to do things...
+	return (
+		<div>
+			{gearPieces.map((gearPiece) => {
+				return <div>test</div>;
+			})}
+		</div>
+	);
 };
 export default EditRadio;
