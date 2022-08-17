@@ -10,7 +10,6 @@ const CharacterCreate = ({
 	radioValue,
 }) => {
 	// *Letting useRadio work
-	// const { radioSelected, render } = useRadio();
 
 	return (
 		<>

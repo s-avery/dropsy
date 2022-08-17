@@ -1,0 +1,43 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "s-avery"
+      },
+      "creation_time": "2022-08-17T18:54:38.286Z",
+      "id": "1",
+      "references": [],
+      "title": "add disclaimer abt css imports and BEM naming"
+    },
+    {
+      "assignedTo": {
+        "name": "s-avery"
+      },
+      "creation_time": "2022-08-17T18:59:41.520Z",
+      "id": "3",
+      "references": [],
+      "title": "delete deprecation zone"
+    },
+    {
+      "assignedTo": {
+        "name": "s-avery"
+      },
+      "creation_time": "2022-08-17T18:55:11.702Z",
+      "id": "2",
+      "references": [],
+      "title": "under construction on we killed a boss"
+    },
+    {
+      "assignedTo": {
+        "name": "s-avery"
+      },
+      "creation_time": "2022-08-17T19:02:18.566Z",
+      "id": "4",
+      "references": [],
+      "title": "check if everything has keys"
+    }
+  ],
+  "in-progress": [],
+  "testing": [],
+  "done": []
+}

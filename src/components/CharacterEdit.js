@@ -15,9 +15,6 @@ const CharacterEdit = ({
 	// *Selected Character
 	const [selectedCharacterName, setSelectedCharacterName] = useState([]);
 
-	// *Object to Update
-	// const [objectToUpdate, setObjectToUpdate] = useState({});
-
 	// *nonsense
 	const [nonsenseGearPieces, setNonsenseGearPieces] = useState([]);
 

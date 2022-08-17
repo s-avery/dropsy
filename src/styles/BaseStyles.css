@@ -12,6 +12,7 @@ main {
 button {
 	border: 3px solid transparent;
 }
+
 .button {
 	font-size: 2.6rem;
 	text-decoration: none;
@@ -42,12 +43,8 @@ button {
 	display: inline-block;
 	align-self: center;
 	text-align: center;
-	/* position: absolute; */
 	top: 2px;
 	left: 2px;
-	/* width: 40%; */
-
-	/* margin: 2%; */
 }
 
 .homeButton:hover {
@@ -55,6 +52,7 @@ button {
 	color: var(--white);
 	cursor: pointer;
 }
+
 .angy {
 	max-width: 30%;
 }

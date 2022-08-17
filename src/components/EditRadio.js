@@ -1,10 +1,8 @@
-
 const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 	// !Component
 	return (
 		<div className="charCreate__gearChoices">
 			{nonsenseGearPieces.map((gearPiece) => {
-				// console.log(gearPiece);
 				return (
 					<>
 						<div className="charCreate__option">
@@ -31,7 +29,6 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 										name={gearPiece.pieceName}
 										id={`noNeed${gearPiece.pieceName}`}
 										value={false}
-										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
 											// *update the label
 											gearPiece.wanted = (
@@ -49,7 +46,6 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 												) {
 													thingy.wanted =
 														"don't need it";
-													// console.log(thingy);
 													setGearPieces(newGearArray);
 												}
 											});
@@ -89,7 +85,6 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 												) {
 													thingy.wanted = "want it";
 													setGearPieces(newGearArray);
-													// console.log(thingy);
 												}
 											});
 										}}
@@ -110,7 +105,6 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 										name={gearPiece.pieceName}
 										id={`got${gearPiece.pieceName}`}
 										value={false}
-										// defaultChecked={gearPiece.wanted}
 										onChange={() => {
 											// *update the label
 											gearPiece.wanted = (
@@ -128,8 +122,6 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 												) {
 													thingy.wanted = "got it";
 													setGearPieces(newGearArray);
-													// console.log(thingy);
-													// console.log(newGearArray);
 												}
 											});
 										}}
