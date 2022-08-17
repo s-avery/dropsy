@@ -31,7 +31,7 @@ const CharacterEdit = ({
 				);
 			}
 		});
-	}, [selectedCharacterName]);
+	}, [characterList, selectedCharacterName]);
 
 	// !FUNCTION ZONE
 	// *Handle Dropdown Change

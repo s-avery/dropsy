@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 
 const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 	// !Component
