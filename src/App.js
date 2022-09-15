@@ -13,6 +13,8 @@ import CharacterCreate from "./components/CharacterCreate";
 import ErrorPage from "./components/ErrorPage";
 import BossKilled from "./components/BossKilled";
 import P5s from "./components/bosses/P5s";
+import P6s from "./components/bosses/P6s";
+import P7s from "./components/bosses/P7s";
 
 // !APP
 
@@ -30,6 +32,17 @@ function App() {
 
 	// *Character List
 	const [characterList, setCharacterList] = useState([]);
+
+	// *Dropped Gear
+	const [earring, setEarring] = useState(0);
+	const [necklace, setNecklace] = useState(0);
+	const [bracelet, setBracelet] = useState(0);
+	const [ring, setRing] = useState(0);
+	const [head, setHead] = useState(0);
+	const [body, setBody] = useState(0);
+	const [hands, setHands] = useState(0);
+	const [legs, setLegs] = useState(0);
+	const [feet, setFeet] = useState(0);
 
 	// !USE EFFECT ZONE
 	useEffect(() => {
@@ -52,14 +65,13 @@ function App() {
 
 		// a variable that references a specific location of our database
 		const dbRef = ref(database);
-		// console.log(dbRef);
 
-		// when db value changes, clg it
+		// when db value changes, make storage state
 		onValue(dbRef, (response) => {
 			const newState = [];
 			const data = response.val();
 
-			// loop over the data object and push each book title into the newState empty array
+			// loop over the data object and push each character into the newState empty array
 			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
 			for (let key in data) {
 				newState.push({
@@ -199,12 +211,79 @@ function App() {
 					}
 				/>
 
-				<Route path="bossKilled" element={<BossKilled />} />
+				<Route
+					path="bossKilled"
+					element={
+						<BossKilled
+							earring={earring}
+							setEarring={setEarring}
+							necklace={necklace}
+							setNecklace={setNecklace}
+							bracelet={bracelet}
+							setBracelet={setBracelet}
+							ring={ring}
+							setRing={setRing}
+							head={head}
+							setHead={setHead}
+							body={body}
+							setBody={setBody}
+							hands={hands}
+							setHands={setHands}
+							legs={legs}
+							setLegs={setLegs}
+							feet={feet}
+							setFeet={setFeet}
+						/>
+					}
+				/>
 
-				<Route path="p5s" element={<P5s />} />
-				{/* <Route path="p6s" element={<P6s />} /> */}
-				{/* <Route path="p7s" element={<P7s />} /> */}
-				{/* <Route path="p8s" element={<P8s />} /> */}
+				<Route
+					path="p5s"
+					element={
+						<P5s
+							earring={earring}
+							setEarring={setEarring}
+							necklace={necklace}
+							setNecklace={setNecklace}
+							bracelet={bracelet}
+							setBracelet={setBracelet}
+							ring={ring}
+							setRing={setRing}
+						/>
+					}
+				/>
+
+				<Route
+					path="p6s"
+					element={
+						<P6s
+							head={head}
+							setHead={setHead}
+							setBody={setBody}
+							hands={hands}
+							setHands={setHands}
+							feet={feet}
+							setFeet={setFeet}
+						/>
+					}
+				/>
+
+				<Route
+					path="p7s"
+					element={
+						<P7s
+							head={head}
+							setHead={setHead}
+							setBody={setBody}
+							hands={hands}
+							setHands={setHands}
+							feet={feet}
+							setFeet={setFeet}
+							legs={legs}
+							setLegs={setLegs}
+						/>
+					}
+				/>
 
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

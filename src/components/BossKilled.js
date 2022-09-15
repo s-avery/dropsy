@@ -1,22 +1,35 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
-const BossKilled = () => {
-	// *drop tables
-	const p5sDrops = ["earring", "necklace", "bracelet", "ring"];
-
-	const p6sDrops = ["feet", "head", "hands"];
-
-	const p7sDrops = ["feet", "hands", "head", "legs"];
-
-	const p8sDrops = ["body"];
+const BossKilled = ({
+	earring,
+	setEarring,
+	necklace,
+	setNecklace,
+	bracelet,
+	setBracelet,
+	ring,
+	setRing,
+	head,
+	setHead,
+	body,
+	setBody,
+	hands,
+	setHands,
+	legs,
+	setLegs,
+	feet,
+	setFeet,
+}) => {
+	// !STATE ZONE
 
 	return (
 		<>
 			<header>
-				<Link to="/" className="homeButton">
-					home
-				</Link>
+				<Link to="/">home</Link>
 
 				<h1>ff14 gear planner</h1>
 
@@ -25,11 +38,16 @@ const BossKilled = () => {
 
 			<main className="bossKilled">
 				<div className="whichBoss">
-					<Link to="/p5s" className="button">
+					<Link className="button" to="/p5s">
 						p5s
 					</Link>
-					<button className="button">p6s</button>
-					<button className="button">p7s</button>
+
+					<Link className="button" to="/p6s">
+						p6s
+					</Link>
+					<Link className="button" to="/p7s">
+						p7s
+					</Link>
 					<button className="button">p8s</button>
 				</div>
 
