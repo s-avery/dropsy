@@ -11,6 +11,8 @@ import CharacterSelect from "./components/CharacterSelect";
 import CharacterEdit from "./components/CharacterEdit";
 import CharacterCreate from "./components/CharacterCreate";
 import ErrorPage from "./components/ErrorPage";
+import BossKilled from "./components/BossKilled";
+import P5s from "./components/bosses/P5s";
 
 // !APP
 
@@ -196,6 +198,13 @@ function App() {
 						/>
 					}
 				/>
+
+				<Route path="bossKilled" element={<BossKilled />} />
+
+				<Route path="p5s" element={<P5s />} />
+				{/* <Route path="p6s" element={<P6s />} /> */}
+				{/* <Route path="p7s" element={<P7s />} /> */}
+				{/* <Route path="p8s" element={<P8s />} /> */}
 
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

@@ -1,0 +1,12 @@
+.whichBoss,
+.drops {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	justify-content: center;
+}
+.drop {
+	width: 200px;
+	text-align: center;
+	margin: 1.6rem;
+}

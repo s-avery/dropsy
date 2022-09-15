@@ -16,7 +16,9 @@ const Home = () => {
 					edit characters
 				</Link>
 
-				<button className="button">we killed a boss!</button>
+				<Link to="/bossKilled" className="button">
+					we killed a boss!
+				</Link>
 			</main>
 
 			<footer>created at juno college</footer>
