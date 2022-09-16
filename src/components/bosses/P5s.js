@@ -1,9 +1,12 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import WhoWantsIt from "../WhoWantsIt";
+import firebase from "../../firebase";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const P5s = ({
+	//#region props
 	setCharacterList,
 	earring,
 	setEarring,
@@ -23,10 +26,12 @@ const P5s = ({
 	setLegs,
 	feet,
 	setFeet,
+	//#endregion
 }) => {
 	// !COMPONENT MOUNT
 	// *reset drop value states
 	useEffect(() => {
+		// *reset states
 		setEarring(0);
 		setNecklace(0);
 		setBracelet(0);
@@ -36,7 +41,46 @@ const P5s = ({
 		setHands(0);
 		setLegs(0);
 		setFeet(0);
+
+		//*Getting data from database
+		//#region getting data from firebase
+		// holding the database details from firebase
+		const database = getDatabase(firebase);
+
+		// a variable that references a specific location of our database
+		const dbRef = ref(database);
+
+		// when db value changes, make storage state
+		onValue(dbRef, (response) => {
+			const newState = [];
+			const data = response.val();
+
+			// loop over the data object and push each character into the newState empty array
+			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+			for (let key in data) {
+				newState.push({
+					key: key,
+					gearListItems: data[key],
+
+					characterName: data[key].characterName,
+				});
+			}
+
+			// update characterList state to hold our character names stored in newState
+			setCharacterList(newState);
+		});
+		//#endregion
 	}, []);
+
+	// !STATE ZONE
+	const [printEarring, setPrintEarring] = useState(false);
+	const [printNecklace, setPrintNecklace] = useState(false);
+	const [printBracelet, setPrintBracelet] = useState(false);
+	const [printRing, setPrintRing] = useState(false);
+	const [printHead, setPrintHead] = useState(false);
+	const [printHands, setPrintHands] = useState(false);
+	const [printLegs, setPrintLegs] = useState(false);
+	const [printFeet, setPrintFeet] = useState(false);
 
 	// !FUNCTION ZONE
 	// *Increment/Decrements
@@ -86,6 +130,11 @@ const P5s = ({
 	};
 	//#endregion
 
+	// *Rack Em Up
+	const rackEmUp = () => {
+		// array of objects for each dropped gearpiece and how many dropped
+		
+	};
 	// !RETURN
 	return (
 		<>
@@ -147,7 +196,9 @@ const P5s = ({
 				</div>
 
 				<div>
-					<button className="button">rack em up!</button>
+					<button className="button" onClick={rackEmUp}>
+						rack em up!
+					</button>
 				</div>
 
 				<WhoWantsIt
