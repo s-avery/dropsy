@@ -1,8 +1,8 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const BossKilled = ({
 	earring,
@@ -23,7 +23,40 @@ const BossKilled = ({
 	setLegs,
 	feet,
 	setFeet,
+	characterList,
+	setCharacterList,
 }) => {
+	
+	// !COMPONENT MOUNT
+	useEffect(() => {
+		//*Getting data from database
+		// holding the database details from firebase
+		const database = getDatabase(firebase);
+
+		// a variable that references a specific location of our database
+		const dbRef = ref(database);
+
+		// when db value changes, make storage state
+		onValue(dbRef, (response) => {
+			const newState = [];
+			const data = response.val();
+
+			// loop over the data object and push each character into the newState empty array
+			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+			for (let key in data) {
+				newState.push({
+					key: key,
+					gearListItems: data[key],
+
+					characterName: data[key].characterName,
+				});
+			}
+
+			// update characterList state to hold our character names stored in newState
+			setCharacterList(newState);
+		});
+	}, []);
+
 	// !STATE ZONE
 
 	return (

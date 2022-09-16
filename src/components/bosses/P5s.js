@@ -1,8 +1,7 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import firebase from "../../firebase";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect } from "react";
+import WhoWantsIt from "../WhoWantsIt";
 
 const P5s = ({
 	setCharacterList,
@@ -14,40 +13,34 @@ const P5s = ({
 	setBracelet,
 	ring,
 	setRing,
+	head,
+	setHead,
+	body,
+	setBody,
+	hands,
+	setHands,
+	legs,
+	setLegs,
+	feet,
+	setFeet,
 }) => {
 	// !COMPONENT MOUNT
-	// TODO move this to BossKilled and pass to the components
+	// *reset drop value states
 	useEffect(() => {
-		//*Getting data from database
-		// holding the database details from firebase
-		const database = getDatabase(firebase);
-
-		// a variable that references a specific location of our database
-		const dbRef = ref(database);
-
-		// when db value changes, make storage state
-		onValue(dbRef, (response) => {
-			const newState = [];
-			const data = response.val();
-
-			// loop over the data object and push each character into the newState empty array
-			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-			for (let key in data) {
-				newState.push({
-					key: key,
-					gearListItems: data[key],
-
-					characterName: data[key].characterName,
-				});
-			}
-
-			// update characterList state to hold our character names stored in newState
-			setCharacterList(newState);
-		});
+		setEarring(0);
+		setNecklace(0);
+		setBracelet(0);
+		setRing(0);
+		setHead(0);
+		setBody(0);
+		setHands(0);
+		setLegs(0);
+		setFeet(0);
 	}, []);
 
 	// !FUNCTION ZONE
 	// *Increment/Decrements
+	//#region
 	const incrementEarring = () => {
 		setEarring(earring + 1);
 	};
@@ -91,6 +84,7 @@ const P5s = ({
 			setRing(ring - 1);
 		}
 	};
+	//#endregion
 
 	// !RETURN
 	return (
@@ -156,20 +150,27 @@ const P5s = ({
 					<button className="button">rack em up!</button>
 				</div>
 
-				{/* PSEUDO CODE: WHO WANTS WHAT
-                - look at the states of what dropped
-                - access the firebase db of characters
-
-                - for each drop, .map to see:
-                    - print an h3 of the gearpiece's name
-                    - if a character wants it:
-                        - print radio options for that character
-                         
-                - on submit button:
-                    - update each selected character's value for that gearpiece to "got"
-                    - do it all locally? download data and do an onchange on the radio buttons?
-                        - would mean downloading the entire firebase in batch and then setting it to update with the new values but that's probably fine?
-                         */}
+				<WhoWantsIt
+					earring={earring}
+					setEarring={setEarring}
+					necklace={necklace}
+					setNecklace={setNecklace}
+					bracelet={bracelet}
+					setBracelet={setBracelet}
+					ring={ring}
+					setRing={setRing}
+					head={head}
+					setHead={setHead}
+					body={body}
+					setBody={setBody}
+					hands={hands}
+					setHands={setHands}
+					legs={legs}
+					setLegs={setLegs}
+					feet={feet}
+					setFeet={setFeet}
+					setCharacterList={setCharacterList}
+				/>
 			</main>
 		</>
 	);

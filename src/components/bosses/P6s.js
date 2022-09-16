@@ -6,15 +6,38 @@ import { getDatabase, ref, onValue } from "firebase/database";
 
 const P6s = ({
 	setCharacterList,
+	earring,
+	setEarring,
+	necklace,
+	setNecklace,
+	bracelet,
+	setBracelet,
+	ring,
+	setRing,
 	head,
 	setHead,
+	body,
+	setBody,
 	hands,
 	setHands,
+	legs,
+	setLegs,
 	feet,
 	setFeet,
 }) => {
 	// !COMPONENT MOUNT
-
+	// *reset drop value states
+	useEffect(() => {
+		setEarring(0);
+		setNecklace(0);
+		setBracelet(0);
+		setRing(0);
+		setHead(0);
+		setBody(0);
+		setHands(0);
+		setLegs(0);
+		setFeet(0);
+	}, []);
 	// !FUNCTION ZONE
 	// *Increment/Decrements
 	const incrementHead = () => {

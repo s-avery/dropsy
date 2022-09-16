@@ -44,11 +44,12 @@ function App() {
 	const [legs, setLegs] = useState(0);
 	const [feet, setFeet] = useState(0);
 
-	// !USE EFFECT ZONE
+	// !COMPONENT MOUNT
+	// *define gearlist
 	useEffect(() => {
 		setGearPieces([
 			{ pieceName: "head", wanted: "" },
-			{ pieceName: "body", wanted: "" },
+			{ pieceName: "hands", wanted: "" },
 			{ pieceName: "legs", wanted: "" },
 			{ pieceName: "feet", wanted: "" },
 			{ pieceName: "earring", wanted: "" },
@@ -58,8 +59,8 @@ function App() {
 		]);
 	}, []);
 
+	//*Getting data from database
 	useEffect(() => {
-		//*Getting data from database
 		// holding the database details from firebase
 		const database = getDatabase(firebase);
 
@@ -233,6 +234,8 @@ function App() {
 							setLegs={setLegs}
 							feet={feet}
 							setFeet={setFeet}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -249,6 +252,18 @@ function App() {
 							setBracelet={setBracelet}
 							ring={ring}
 							setRing={setRing}
+							head={head}
+							setHead={setHead}
+							body={body}
+							setBody={setBody}
+							hands={hands}
+							setHands={setHands}
+							legs={legs}
+							setLegs={setLegs}
+							feet={feet}
+							setFeet={setFeet}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -257,13 +272,26 @@ function App() {
 					path="p6s"
 					element={
 						<P6s
+							earring={earring}
+							setEarring={setEarring}
+							necklace={necklace}
+							setNecklace={setNecklace}
+							bracelet={bracelet}
+							setBracelet={setBracelet}
+							ring={ring}
+							setRing={setRing}
 							head={head}
 							setHead={setHead}
+							body={body}
 							setBody={setBody}
 							hands={hands}
 							setHands={setHands}
+							legs={legs}
+							setLegs={setLegs}
 							feet={feet}
 							setFeet={setFeet}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -272,15 +300,26 @@ function App() {
 					path="p7s"
 					element={
 						<P7s
+							earring={earring}
+							setEarring={setEarring}
+							necklace={necklace}
+							setNecklace={setNecklace}
+							bracelet={bracelet}
+							setBracelet={setBracelet}
+							ring={ring}
+							setRing={setRing}
 							head={head}
 							setHead={setHead}
+							body={body}
 							setBody={setBody}
 							hands={hands}
 							setHands={setHands}
-							feet={feet}
-							setFeet={setFeet}
 							legs={legs}
 							setLegs={setLegs}
+							feet={feet}
+							setFeet={setFeet}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
