@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
                         - would mean downloading the entire firebase in batch and then setting it to update with the new values but that's probably fine?
                          */
 const WhoWantsIt = ({
+	characterList,
 	setCharacterList,
 	earring,
 	setEarring,
@@ -37,36 +38,7 @@ const WhoWantsIt = ({
 	const [droppedGearState, setDroppedGearState] = useState([]);
 
 	// !COMPONENT MOUNT
-	useEffect(() => {
-		//Getting data from database
-		//#region getting data from firebase
-		// holding the database details from firebase
-		const database = getDatabase(firebase);
-
-		// a variable that references a specific location of our database
-		const dbRef = ref(database);
-
-		// when db value changes, make storage state
-		onValue(dbRef, (response) => {
-			const newState = [];
-			const data = response.val();
-
-			// loop over the data object and push each character into the newState empty array
-			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-			for (let key in data) {
-				newState.push({
-					key: key,
-					gearListItems: data[key],
-
-					characterName: data[key].characterName,
-				});
-			}
-
-			// update characterList state to hold our character names stored in newState
-			setCharacterList(newState);
-		});
-		//#endregion
-	}, []);
+	useEffect(() => {}, []);
 
 	// for each drop, .map to see:
 	// droppedGearArray.map((drop) => {
@@ -102,9 +74,23 @@ const WhoWantsIt = ({
 					// print it if it has dropped
 					if (dropValue > 0) {
 						return (
-							<>
-								<h3>{dropName}</h3>
-							</>
+							<form className="whoWantsIt">
+								<div className="drop">
+									<h3>{dropName}</h3>
+									{/* <div className="dropWanter">
+										<input
+											type="radio"
+											name={"blibby"}
+											id={"blibby"}
+											required
+										/>
+										<label htmlFor={"blibby"}>blibby</label> 
+									</div>*/}
+									{characterList.map((character) => {
+										console.log(character);
+									})}
+								</div>
+							</form>
 						);
 					}
 				})

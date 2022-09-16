@@ -7,6 +7,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 
 const P5s = ({
 	//#region props
+	characterList,
 	setCharacterList,
 	earring,
 	setEarring,
@@ -41,6 +42,7 @@ const P5s = ({
 		setHands(0);
 		setLegs(0);
 		setFeet(0);
+		setShowWhoWantsIt(false);
 
 		//*Getting data from database
 		//#region getting data from firebase
@@ -81,6 +83,8 @@ const P5s = ({
 	const [printHands, setPrintHands] = useState(false);
 	const [printLegs, setPrintLegs] = useState(false);
 	const [printFeet, setPrintFeet] = useState(false);
+
+	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
 
 	// !FUNCTION ZONE
 	// *Increment/Decrements
@@ -130,11 +134,39 @@ const P5s = ({
 	};
 	//#endregion
 
-	// *Rack Em Up
 	const rackEmUp = () => {
-		// array of objects for each dropped gearpiece and how many dropped
-		
+		setShowWhoWantsIt(true);
+
+		//Getting data from database
+		//#region getting data from firebase
+		// holding the database details from firebase
+		const database = getDatabase(firebase);
+
+		// a variable that references a specific location of our database
+		const dbRef = ref(database);
+
+		// when db value changes, make storage state
+		onValue(dbRef, (response) => {
+			const newState = [];
+			const data = response.val();
+
+			// loop over the data object and push each character into the newState empty array
+			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+			for (let key in data) {
+				newState.push({
+					key: key,
+					gearListItems: data[key],
+
+					characterName: data[key].characterName,
+				});
+			}
+
+			// update characterList state to hold our character names stored in newState
+			setCharacterList(newState);
+		});
+		//#endregion
 	};
+
 	// !RETURN
 	return (
 		<>
@@ -149,51 +181,73 @@ const P5s = ({
 			</header>
 
 			<main>
-				<div className="drops">
-					<div className="drop">
-						<h3>earring</h3>
-						<button className="button" onClick={incrementEarring}>
-							+
-						</button>
-						<p>x{earring}</p>
-						<button className="button" onClick={decrementEarring}>
-							-
-						</button>
-					</div>
+				{showWhoWantsIt ? (
+					""
+				) : (
+					<div className="drops">
+						<div className="drop">
+							<h3>earring</h3>
+							<button
+								className="button"
+								onClick={incrementEarring}
+							>
+								+
+							</button>
+							<p>x{earring}</p>
+							<button
+								className="button"
+								onClick={decrementEarring}
+							>
+								-
+							</button>
+						</div>
 
-					<div className="drop">
-						<h3>necklace</h3>
-						<button className="button" onClick={incrementNecklace}>
-							+
-						</button>
-						<p>x{necklace}</p>
-						<button className="button" onClick={decrementNecklace}>
-							-
-						</button>
-					</div>
+						<div className="drop">
+							<h3>necklace</h3>
+							<button
+								className="button"
+								onClick={incrementNecklace}
+							>
+								+
+							</button>
+							<p>x{necklace}</p>
+							<button
+								className="button"
+								onClick={decrementNecklace}
+							>
+								-
+							</button>
+						</div>
 
-					<div className="drop">
-						<h3>bracelet</h3>
-						<button className="button" onClick={incrementBracelet}>
-							+
-						</button>
-						<p>x{bracelet}</p>
-						<button className="button" onClick={decrementBracelet}>
-							-
-						</button>
-					</div>
+						<div className="drop">
+							<h3>bracelet</h3>
+							<button
+								className="button"
+								onClick={incrementBracelet}
+							>
+								+
+							</button>
+							<p>x{bracelet}</p>
+							<button
+								className="button"
+								onClick={decrementBracelet}
+							>
+								-
+							</button>
+						</div>
 
-					<div className="drop">
-						<h3>ring</h3>
-						<button className="button" onClick={incrementRing}>
-							+
-						</button>
-						<p>x{ring}</p>
-						<button className="button" onClick={decrementRing}>
-							-
-						</button>
+						<div className="drop">
+							<h3>ring</h3>
+							<button className="button" onClick={incrementRing}>
+								+
+							</button>
+							<p>x{ring}</p>
+							<button className="button" onClick={decrementRing}>
+								-
+							</button>
+						</div>
 					</div>
-				</div>
+				)}
 
 				<div>
 					<button className="button" onClick={rackEmUp}>
@@ -201,27 +255,32 @@ const P5s = ({
 					</button>
 				</div>
 
-				<WhoWantsIt
-					earring={earring}
-					setEarring={setEarring}
-					necklace={necklace}
-					setNecklace={setNecklace}
-					bracelet={bracelet}
-					setBracelet={setBracelet}
-					ring={ring}
-					setRing={setRing}
-					head={head}
-					setHead={setHead}
-					body={body}
-					setBody={setBody}
-					hands={hands}
-					setHands={setHands}
-					legs={legs}
-					setLegs={setLegs}
-					feet={feet}
-					setFeet={setFeet}
-					setCharacterList={setCharacterList}
-				/>
+				{showWhoWantsIt ? (
+					<WhoWantsIt
+						earring={earring}
+						setEarring={setEarring}
+						necklace={necklace}
+						setNecklace={setNecklace}
+						bracelet={bracelet}
+						setBracelet={setBracelet}
+						ring={ring}
+						setRing={setRing}
+						head={head}
+						setHead={setHead}
+						body={body}
+						setBody={setBody}
+						hands={hands}
+						setHands={setHands}
+						legs={legs}
+						setLegs={setLegs}
+						feet={feet}
+						setFeet={setFeet}
+						characterList={characterList}
+						setCharacterList={setCharacterList}
+					/>
+				) : (
+					""
+				)}
 			</main>
 		</>
 	);
