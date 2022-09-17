@@ -60,6 +60,9 @@ const WhoWantsIt = ({
 		{ legs },
 		{ feet },
 	];
+
+	let statelessCharacterList = [...characterList];
+
 	return (
 		<>
 			{
@@ -74,20 +77,30 @@ const WhoWantsIt = ({
 					// print it if it has dropped
 					if (dropValue > 0) {
 						return (
-							<form className="whoWantsIt">
-								<div className="drop">
+							<form className="drops__choices">
+								<div className="drops__option">
 									<h3>{dropName}</h3>
-									{/* <div className="dropWanter">
-										<input
-											type="radio"
-											name={"blibby"}
-											id={"blibby"}
-											required
-										/>
-										<label htmlFor={"blibby"}>blibby</label> 
-									</div>*/}
-									{characterList.map((character) => {
-										console.log(character);
+
+									{statelessCharacterList.map((character) => {
+										return (
+											<div className="drops__radio radio">
+												<input
+													type="radio"
+													key={`${character.key}_${dropName}`}
+													name={dropName}
+													value={character.key}
+													id={`${character.key}_${dropName}`}
+													required
+												/>
+												<label
+													htmlFor={`${character.key}_${dropName}`}
+													key={`${character.key}Label`}
+													className="drops__checked green"
+												>
+													{character.key}
+												</label>
+											</div>
+										);
 									})}
 								</div>
 							</form>

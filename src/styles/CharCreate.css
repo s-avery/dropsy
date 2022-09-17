@@ -45,13 +45,13 @@
 	margin: 0 3%;
 }
 
-.charCreate__radio {
+.radio {
 	width: 33%;
 }
-.charCreate__radio input {
+.radio input {
 	display: none;
 }
-.charCreate__radio label {
+.radio label {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -65,8 +65,8 @@
 	text-align: center;
 }
 
-.charCreate__radio label:hover,
-.charCreate__radio label:focus {
+.radio label:hover,
+.radio label:focus {
 	border: 4px solid white;
 }
 
@@ -82,6 +82,11 @@ input[type="radio"]:checked + .charCreate__want {
 }
 
 input[type="radio"]:checked + .charCreate__got {
+	border: 4px solid var(--black);
+	background-color: var(--green);
+}
+
+input[type="radio"]:checked + .green {
 	border: 4px solid var(--black);
 	background-color: var(--green);
 }

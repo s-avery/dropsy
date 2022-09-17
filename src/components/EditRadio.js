@@ -23,7 +23,7 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 
 							{/* //*No Need */}
 							<div className="charCreate__radioContainer">
-								<div className="charCreate__radio">
+								<div className="charCreate__radio radio">
 									<input
 										type="radio"
 										name={gearPiece.pieceName}
@@ -61,7 +61,7 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 								</div>
 
 								{/* //*Want It */}
-								<div className="charCreate__radio">
+								<div className="charCreate__radio radio">
 									<input
 										type="radio"
 										name={gearPiece.pieceName}
@@ -99,7 +99,7 @@ const EditRadio = ({ gearPieces, setGearPieces, nonsenseGearPieces }) => {
 								</div>
 
 								{/* //*Got It */}
-								<div className="charCreate__radio">
+								<div className="charCreate__radio radio">
 									<input
 										type="radio"
 										name={gearPiece.pieceName}

@@ -184,77 +184,84 @@ const P5s = ({
 				{showWhoWantsIt ? (
 					""
 				) : (
-					<div className="drops">
-						<div className="drop">
-							<h3>earring</h3>
-							<button
-								className="button"
-								onClick={incrementEarring}
-							>
-								+
-							</button>
-							<p>x{earring}</p>
-							<button
-								className="button"
-								onClick={decrementEarring}
-							>
-								-
-							</button>
+					<>
+						<div className="drops">
+							<div className="drop">
+								<h3>earring</h3>
+								<button
+									className="button"
+									onClick={incrementEarring}
+								>
+									+
+								</button>
+								<p>x{earring}</p>
+								<button
+									className="button"
+									onClick={decrementEarring}
+								>
+									-
+								</button>
+							</div>
+
+							<div className="drop">
+								<h3>necklace</h3>
+								<button
+									className="button"
+									onClick={incrementNecklace}
+								>
+									+
+								</button>
+								<p>x{necklace}</p>
+								<button
+									className="button"
+									onClick={decrementNecklace}
+								>
+									-
+								</button>
+							</div>
+
+							<div className="drop">
+								<h3>bracelet</h3>
+								<button
+									className="button"
+									onClick={incrementBracelet}
+								>
+									+
+								</button>
+								<p>x{bracelet}</p>
+								<button
+									className="button"
+									onClick={decrementBracelet}
+								>
+									-
+								</button>
+							</div>
+
+							<div className="drop">
+								<h3>ring</h3>
+								<button
+									className="button"
+									onClick={incrementRing}
+								>
+									+
+								</button>
+								<p>x{ring}</p>
+								<button
+									className="button"
+									onClick={decrementRing}
+								>
+									-
+								</button>
+							</div>
 						</div>
 
-						<div className="drop">
-							<h3>necklace</h3>
-							<button
-								className="button"
-								onClick={incrementNecklace}
-							>
-								+
-							</button>
-							<p>x{necklace}</p>
-							<button
-								className="button"
-								onClick={decrementNecklace}
-							>
-								-
+						<div>
+							<button className="button" onClick={rackEmUp}>
+								rack em up!
 							</button>
 						</div>
-
-						<div className="drop">
-							<h3>bracelet</h3>
-							<button
-								className="button"
-								onClick={incrementBracelet}
-							>
-								+
-							</button>
-							<p>x{bracelet}</p>
-							<button
-								className="button"
-								onClick={decrementBracelet}
-							>
-								-
-							</button>
-						</div>
-
-						<div className="drop">
-							<h3>ring</h3>
-							<button className="button" onClick={incrementRing}>
-								+
-							</button>
-							<p>x{ring}</p>
-							<button className="button" onClick={decrementRing}>
-								-
-							</button>
-						</div>
-					</div>
+					</>
 				)}
-
-				<div>
-					<button className="button" onClick={rackEmUp}>
-						rack em up!
-					</button>
-				</div>
-
 				{showWhoWantsIt ? (
 					<WhoWantsIt
 						earring={earring}

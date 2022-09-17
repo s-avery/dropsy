@@ -13,7 +13,7 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 
 							{/* //*No Need */}
 							<div className="charCreate__radioContainer">
-								<div className="charCreate__radio">
+								<div className="charCreate__radio radio">
 									<input
 										type="radio"
 										name={gearPiece.pieceName}
@@ -42,7 +42,7 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 								</div>
 
 								{/* //*Want It */}
-								<div className="charCreate__radio">
+								<div className="charCreate__radio radio">
 									<input
 										type="radio"
 										name={gearPiece.pieceName}
@@ -63,14 +63,14 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 									/>
 									<label
 										htmlFor={`want${gearPiece.pieceName}`}
-										className="charCreate__want"
+										className="charCreate__want red"
 									>
 										want it
 									</label>
 								</div>
 
 								{/* //*Got It */}
-								<div className="charCreate__radio">
+								<div className="charCreate__radio radio">
 									<input
 										type="radio"
 										name={gearPiece.pieceName}
@@ -91,7 +91,7 @@ const Radio = ({ gearPieces, setGearPieces }) => {
 									/>
 									<label
 										htmlFor={`got${gearPiece.pieceName}`}
-										className="charCreate__got"
+										className="charCreate__got green"
 									>
 										got it
 									</label>
