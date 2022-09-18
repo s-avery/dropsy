@@ -136,35 +136,6 @@ const P5s = ({
 
 	const rackEmUp = () => {
 		setShowWhoWantsIt(true);
-
-		//Getting data from database
-		//#region getting data from firebase
-		// holding the database details from firebase
-		const database = getDatabase(firebase);
-
-		// a variable that references a specific location of our database
-		const dbRef = ref(database);
-
-		// when db value changes, make storage state
-		onValue(dbRef, (response) => {
-			const newState = [];
-			const data = response.val();
-
-			// loop over the data object and push each character into the newState empty array
-			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-			for (let key in data) {
-				newState.push({
-					key: key,
-					gearListItems: data[key],
-
-					characterName: data[key].characterName,
-				});
-			}
-
-			// update characterList state to hold our character names stored in newState
-			setCharacterList(newState);
-		});
-		//#endregion
 	};
 
 	// !RETURN

@@ -1,6 +1,6 @@
 // !IMPORT ZONE
 import firebase from "../firebase";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import { useEffect, useState } from "react";
 /* PSEUDO CODE: WHO WANTS WHAT
                 - look at the states of what dropped
@@ -38,6 +38,12 @@ const WhoWantsIt = ({
 }) => {
 	// !STATE ZONE
 	const [droppedGearState, setDroppedGearState] = useState([]);
+	const [receiver, setReceiver] = useState({
+		earring: "",
+		necklace: "",
+		bracelet: "",
+		ring: "",
+	});
 
 	// !COMPONENT MOUNT
 	useEffect(() => {}, []);
@@ -60,30 +66,83 @@ const WhoWantsIt = ({
 	let statelessCharacterList = [...characterList];
 
 	// *onChange for selecting a player to give a drop to
-	const giveDrop = (e, drop) => {
-		// loop thru character list to find matching character name (key)
-		statelessCharacterList.forEach((character) => {
-			// if character's name matches selected radio value:
-			if (character.key === e.target.value) {
-				// find matching drop and update its value to "got it"
-				// loop thru that character's gearPieces in gearPiecesObject
-				character.gearListItems.gearPiecesObject.gearPieces.forEach(
-					(gearPiece) => {
-						// if its pieceName is the same as e.target.name (this fn can't see dropName but they're equated below):
-						if (gearPiece.pieceName === e.target.name) {
-							// edit that char to update the drop's value for that char to "got it"
-							gearPiece.wanted = "got it";
-							console.log(character.key);
-							console.log(
-								character.gearListItems.gearPiecesObject
-									.gearPieces
-								// TODO this may need to be done on submit: as is if they click on 2 ppl it will change both. hmmm. is there a "do if checked"? use state? idk
-							);
-						}
+	const giveDrop = (e) => {
+		let charName = e.target.value;
+		let dropName = e.target.name;
+
+		let statelessReceiver = { ...receiver };
+		statelessReceiver[dropName] = charName;
+		setReceiver(statelessReceiver);
+	};
+
+	//* handle Submit to give the chosen player their drop
+	const handleSubmitGiveDrop = (e) => {
+		e.preventDefault();
+		// get firebase data
+		//#region getting data from firebase
+		// holding the database details from firebase
+		const database = getDatabase(firebase);
+
+		// a variable that references a specific location of our database
+		const dbRef = ref(database);
+
+		// when db value changes, make storage state
+		onValue(dbRef, (response) => {
+			const statelessCharacterList = [];
+			const data = response.val();
+
+			// loop over the data object and push each character into the newState empty array
+			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+			for (let key in data) {
+				statelessCharacterList.push({
+					key: key,
+					gearListItems: data[key],
+
+					characterName: data[key].characterName,
+				});
+			}
+
+			// update characterList state to hold our character names stored in newState
+			setCharacterList(statelessCharacterList);
+		});
+		//#endregion
+
+		// get array of entries of stateless receiver object
+		let statelessReceiver = { ...receiver };
+		let entries = Object.entries(receiver);
+		// loop thru that array
+		entries.forEach((entry) => {
+			// make vars for ease of use
+			let dropToGive = entry[0];
+			let dropReceiver = entry[1];
+			if (dropReceiver) {
+				// loop thru character list
+				statelessCharacterList.forEach((character) => {
+					// if the character's name matches the entry's 2nd value (who it goes to:)
+					if (character.key === dropReceiver) {
+						// mark that gearPiece.wanted in the characterList as "got it"
+						// making var for the (very) nested array for ease
+						let gearPieces =
+							character.gearListItems.gearPiecesObject.gearPieces;
+						// loop thru that array
+						gearPieces.forEach((gearPiece) => {
+							// console.log(gearPiece);
+							// if the piece matches the dropToGive:
+							if (gearPiece.pieceName === dropToGive) {
+								// say they've got it
+								gearPiece.wanted = "got it";
+							}
+						});
 					}
-				);
+				});
 			}
 		});
+
+		// set firebase db to be equal to new, modified characterList
+		// console.log(statelessCharacterList);
+		// setCharacterList(statelessCharacterList);
+		// set(dbRef, statelessCharacterList);
+		// alert("drops distributed!");
 	};
 
 	return (
@@ -133,7 +192,11 @@ const WhoWantsIt = ({
 				})
 			}
 			<div className="drops__submit">
-				<button className="button" type="submit">
+				<button
+					className="button"
+					type="submit"
+					onClick={handleSubmitGiveDrop}
+				>
 					submit!
 				</button>
 			</div>
