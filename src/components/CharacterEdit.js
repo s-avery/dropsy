@@ -56,18 +56,18 @@ const CharacterEdit = ({
 				"you must select a value for each option. (sorry i couldn't make it select a radio option by default without breaking it lol)"
 			);
 		} else {
-			// *Create references to the database
+			// Create references to the database
 			const database = getDatabase(firebase);
 			const dbRef = ref(database, `${selectedCharacterName}/`);
 
-			// *setObjectToUpdate to include our new data
+			// objectToUpdate to include our new data
 			let statelessObjectToUpdate = {
 				key: selectedCharacterName,
 				characterName: selectedCharacterName,
 				gearPiecesObject: { gearPieces },
 			};
 
-			// *update it
+			// update it
 			set(dbRef, statelessObjectToUpdate);
 			alert("character updated!");
 		}

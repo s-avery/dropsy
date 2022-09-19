@@ -255,6 +255,7 @@ const P5s = ({
 						setFeet={setFeet}
 						characterList={characterList}
 						setCharacterList={setCharacterList}
+						setShowWhoWantsIt={setShowWhoWantsIt}
 					/>
 				) : (
 					""

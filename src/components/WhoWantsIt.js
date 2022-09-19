@@ -34,6 +34,7 @@ const WhoWantsIt = ({
 	setLegs,
 	feet,
 	setFeet,
+	setShowWhoWantsIt,
 	//#endregion
 }) => {
 	// !STATE ZONE
@@ -78,33 +79,31 @@ const WhoWantsIt = ({
 	//* handle Submit to give the chosen player their drop
 	const handleSubmitGiveDrop = (e) => {
 		e.preventDefault();
-		// get firebase data
-		//#region getting data from firebase
-		// holding the database details from firebase
-		const database = getDatabase(firebase);
+		// // holding the database details from firebase
+		// const database = getDatabase(firebase);
 
-		// a variable that references a specific location of our database
-		const dbRef = ref(database);
+		// // a variable that references a specific location of our database
+		// const dbRef = ref(database);
 
-		// when db value changes, make storage state
-		onValue(dbRef, (response) => {
-			const statelessCharacterList = [];
-			const data = response.val();
+		// // when db value changes, make storage state
+		// onValue(dbRef, (response) => {
+		// 	const statelessCharacterList = [];
+		// 	const data = response.val();
 
-			// loop over the data object and push each character into the newState empty array
-			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-			for (let key in data) {
-				statelessCharacterList.push({
-					key: key,
-					gearListItems: data[key],
+		// 	// loop over the data object and push each character into the newState empty array
+		// 	// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+		// 	for (let key in data) {
+		// 		statelessCharacterList.push({
+		// 			key: key,
+		// 			gearListItems: data[key],
 
-					characterName: data[key].characterName,
-				});
-			}
+		// 			characterName: data[key].characterName,
+		// 		});
+		// 	}
 
-			// update characterList state to hold our character names stored in newState
-			setCharacterList(statelessCharacterList);
-		});
+		// 	// update characterList state to hold our character names stored in newState
+		// 	setCharacterList(statelessCharacterList);
+		// });
 		//#endregion
 
 		// get array of entries of stateless receiver object
@@ -119,7 +118,7 @@ const WhoWantsIt = ({
 				// loop thru character list
 				statelessCharacterList.forEach((character) => {
 					// if the character's name matches the entry's 2nd value (who it goes to:)
-					if (character.key === dropReceiver) {
+					if (character.characterName === dropReceiver) {
 						// mark that gearPiece.wanted in the characterList as "got it"
 						// making var for the (very) nested array for ease
 						let gearPieces =
@@ -133,16 +132,31 @@ const WhoWantsIt = ({
 								gearPiece.wanted = "got it";
 							}
 						});
+
+						// *set firebase db to be equal to new, modified characterList
+						// Create references to the database
+						const database = getDatabase(firebase);
+						const dbRef = ref(
+							database,
+							`${character.characterName}/`
+						);
+
+						// objectToUpdate to include our new data
+						let statelessObjectToUpdate = {
+							key: character.characterName,
+							characterName: character.characterName,
+							gearPiecesObject: { gearPieces },
+						};
+
+						// update it
+						set(dbRef, statelessObjectToUpdate);
 					}
 				});
 			}
 		});
 
-		// set firebase db to be equal to new, modified characterList
-		// console.log(statelessCharacterList);
-		// setCharacterList(statelessCharacterList);
-		// set(dbRef, statelessCharacterList);
-		// alert("drops distributed!");
+		alert("drops distributed!");
+		setShowWhoWantsIt(false);
 	};
 
 	return (
@@ -152,9 +166,7 @@ const WhoWantsIt = ({
 				droppedGearArray.map((drop) => {
 					// get the keys & values as string/int
 					let dropName = Object.keys(drop).toString();
-					// console.log(dropName);
 					let dropValue = Object.values(drop).toString();
-					// console.log(dropValue);
 
 					// print it if it has dropped
 					if (dropValue > 0) {
@@ -164,26 +176,47 @@ const WhoWantsIt = ({
 									<h3>{dropName}</h3>
 
 									{statelessCharacterList.map((character) => {
-										return (
-											<div className="drops__radio radio">
-												<input
-													type="radio"
-													key={`${character.key}_${dropName}`}
-													name={dropName}
-													value={character.key}
-													id={`${character.key}_${dropName}`}
-													onChange={giveDrop}
-													required
-												/>
-												<label
-													htmlFor={`${character.key}_${dropName}`}
-													key={`${character.key}Label`}
-													className="drops__checked green"
-												>
-													{character.key}
-												</label>
-											</div>
-										);
+										let gearPieces =
+											character.gearListItems
+												.gearPiecesObject.gearPieces;
+										// only print radio option if the character wants the drop
+										return gearPieces.map((gearPiece) => {
+											// matching the drop to the character's piece
+											return gearPiece.pieceName ===
+												dropName ? (
+												// printing it only if they want it
+												gearPiece.wanted ===
+												"want it" ? (
+													<div className="drops__radio radio">
+														<input
+															type="radio"
+															key={`${character.key}_${dropName}`}
+															name={dropName}
+															value={
+																character.characterName
+															}
+															id={`${character.characterName}_${dropName}`}
+															onChange={giveDrop}
+															required
+														/>
+														<label
+															htmlFor={`${character.characterName}_${dropName}`}
+															key={`${character.characterName}Label`}
+															className="drops__checked green"
+														>
+															{
+																character.characterName
+															}
+														</label>
+													</div>
+												) : (
+													// if none of the above are true: print empty strings
+													""
+												)
+											) : (
+												""
+											);
+										});
 									})}
 								</div>
 							</>
