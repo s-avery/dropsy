@@ -1,17 +1,8 @@
 // !IMPORT ZONE
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, set } from "firebase/database";
-import { useEffect, useState } from "react";
-/* PSEUDO CODE: WHO WANTS WHAT
-                - look at the states of what dropped
-                - access the firebase db of characters
+import { getDatabase, ref, set } from "firebase/database";
+import { useState } from "react";
 
-                         
-                - on submit button:
-                    - update each selected character's value for that gearpiece to "got"
-                    - do it all locally? download data and do an onchange on the radio buttons?
-                        - would mean downloading the entire firebase in batch and then setting it to update with the new values but that's probably fine?
-                         */
 const WhoWantsIt = ({
 	//#region props
 	characterList,
@@ -85,7 +76,6 @@ const WhoWantsIt = ({
 	const handleSubmitGiveDrop = (e) => {
 		e.preventDefault();
 		// get array of entries of stateless receiver object
-		let statelessReceiver = { ...receiver };
 		let entries = Object.entries(receiver);
 		// loop thru that array
 		entries.forEach((entry) => {

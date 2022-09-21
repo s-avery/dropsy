@@ -1,6 +1,6 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 
@@ -56,7 +56,7 @@ const BossKilled = ({
 			// update characterList state to hold our character names stored in newState
 			setCharacterList(newState);
 		});
-	}, []);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<>
