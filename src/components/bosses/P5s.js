@@ -2,8 +2,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import WhoWantsIt from "../WhoWantsIt";
-import firebase from "../../firebase";
-import { getDatabase, ref, onValue } from "firebase/database";
 
 const P5s = ({
 	//#region props
@@ -17,6 +15,7 @@ const P5s = ({
 	setBracelet,
 	ring,
 	setRing,
+	setWeapon,
 	head,
 	setHead,
 	body,
@@ -32,54 +31,21 @@ const P5s = ({
 	// !COMPONENT MOUNT
 	// *reset drop value states
 	useEffect(() => {
-		// *reset states
+		//*reset states
 		setEarring(0);
 		setNecklace(0);
 		setBracelet(0);
 		setRing(0);
+		setWeapon(0);
 		setHead(0);
 		setBody(0);
 		setHands(0);
 		setLegs(0);
 		setFeet(0);
 		setShowWhoWantsIt(false);
-
-		//*Getting data from database
-		//#region getting data from firebase
-		// holding the database details from firebase
-		const database = getDatabase(firebase);
-
-		// a variable that references a specific location of our database
-		const dbRef = ref(database);
-
-		// when db value changes, make storage state
-		onValue(dbRef, (response) => {
-			const newState = [];
-			const data = response.val();
-
-			// loop over the data object and push each character into the newState empty array
-			// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-			for (let key in data) {
-				newState.push({
-					key: key,
-					gearListItems: data[key],
-
-					characterName: data[key].characterName,
-				});
-			}
-
-			// update characterList state to hold our character names stored in newState
-			setCharacterList(newState);
-		});
-		//#endregion
-	}, []);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	// !STATE ZONE
-	const [printEarring, setPrintEarring] = useState(false);
-	const [printNecklace, setPrintNecklace] = useState(false);
-	const [printBracelet, setPrintBracelet] = useState(false);
-	const [printRing, setPrintRing] = useState(false);
-
 	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
 
 	// !FUNCTION ZONE

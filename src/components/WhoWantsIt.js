@@ -189,6 +189,8 @@ const WhoWantsIt = ({
 								</div>
 							</>
 						);
+					} else {
+						return null;
 					}
 				})
 			}

@@ -1,8 +1,6 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import firebase from "../../firebase";
-import { getDatabase, ref, onValue } from "firebase/database";
 import WhoWantsIt from "../WhoWantsIt";
 
 const P7s = ({
@@ -17,6 +15,7 @@ const P7s = ({
 	setBracelet,
 	ring,
 	setRing,
+	setWeapon,
 	head,
 	setHead,
 	body,
@@ -32,23 +31,21 @@ const P7s = ({
 	// !COMPONENT MOUNT
 	// *reset drop value states
 	useEffect(() => {
+		//*reset states
 		setEarring(0);
 		setNecklace(0);
 		setBracelet(0);
 		setRing(0);
+		setWeapon(0);
 		setHead(0);
 		setBody(0);
 		setHands(0);
 		setLegs(0);
 		setFeet(0);
-	}, []);
+		setShowWhoWantsIt(false);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	// !STATE ZONE
-	const [printHead, setPrintHead] = useState(false);
-	const [printHands, setPrintHands] = useState(false);
-	const [printLegs, setPrintLegs] = useState(false);
-	const [printFeet, setPrintFeet] = useState(false);
-
 	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
 
 	// !FUNCTION ZONE

@@ -32,6 +32,7 @@ const P8s = ({
 	// !COMPONENT MOUNT
 	// *reset drop value states
 	useEffect(() => {
+		//*reset states
 		setEarring(0);
 		setNecklace(0);
 		setBracelet(0);
@@ -42,13 +43,10 @@ const P8s = ({
 		setHands(0);
 		setLegs(0);
 		setFeet(0);
-	}, []);
+		setShowWhoWantsIt(false);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	// !STATE ZONE
-	const [printHead, setPrintHead] = useState(false);
-	const [printHands, setPrintHands] = useState(false);
-	const [printFeet, setPrintFeet] = useState(false);
-
 	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
 
 	// !FUNCTION ZONE

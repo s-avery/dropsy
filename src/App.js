@@ -258,6 +258,8 @@ function App() {
 							setBracelet={setBracelet}
 							ring={ring}
 							setRing={setRing}
+							weapon={weapon}
+							setWeapon={setWeapon}
 							head={head}
 							setHead={setHead}
 							body={body}
@@ -286,6 +288,8 @@ function App() {
 							setBracelet={setBracelet}
 							ring={ring}
 							setRing={setRing}
+							weapon={weapon}
+							setWeapon={setWeapon}
 							head={head}
 							setHead={setHead}
 							body={body}
@@ -314,6 +318,8 @@ function App() {
 							setBracelet={setBracelet}
 							ring={ring}
 							setRing={setRing}
+							weapon={weapon}
+							setWeapon={setWeapon}
 							head={head}
 							setHead={setHead}
 							body={body}
