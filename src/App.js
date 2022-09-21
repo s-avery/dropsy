@@ -39,6 +39,7 @@ function App() {
 	const [necklace, setNecklace] = useState(0);
 	const [bracelet, setBracelet] = useState(0);
 	const [ring, setRing] = useState(0);
+	const [weapon, setWeapon] = useState(0);
 	const [head, setHead] = useState(0);
 	const [body, setBody] = useState(0);
 	const [hands, setHands] = useState(0);
@@ -49,7 +50,9 @@ function App() {
 	// *define gearlist
 	useEffect(() => {
 		setGearPieces([
+			{ pieceName: "weapon", wanted: "" },
 			{ pieceName: "head", wanted: "" },
+			{ pieceName: "body", wanted: "" },
 			{ pieceName: "hands", wanted: "" },
 			{ pieceName: "legs", wanted: "" },
 			{ pieceName: "feet", wanted: "" },
@@ -225,6 +228,8 @@ function App() {
 							setBracelet={setBracelet}
 							ring={ring}
 							setRing={setRing}
+							weapon={weapon}
+							setWeapon={setWeapon}
 							head={head}
 							setHead={setHead}
 							body={body}
@@ -325,7 +330,35 @@ function App() {
 					}
 				/>
 
-				<Route path="p8s" element={<P8s />} />
+				<Route
+					path="p8s"
+					element={
+						<P8s
+							earring={earring}
+							setEarring={setEarring}
+							necklace={necklace}
+							setNecklace={setNecklace}
+							bracelet={bracelet}
+							setBracelet={setBracelet}
+							ring={ring}
+							setRing={setRing}
+							weapon={weapon}
+							setWeapon={setWeapon}
+							head={head}
+							setHead={setHead}
+							body={body}
+							setBody={setBody}
+							hands={hands}
+							setHands={setHands}
+							legs={legs}
+							setLegs={setLegs}
+							feet={feet}
+							setFeet={setFeet}
+							characterList={characterList}
+							setCharacterList={setCharacterList}
+						/>
+					}
+				/>
 
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

@@ -108,47 +108,64 @@ const P6s = ({
 				{showWhoWantsIt ? (
 					""
 				) : (
-					<div className="drops">
-						<div className="drop">
-							<h3>head</h3>
-							<button className="button" onClick={incrementHead}>
-								+
-							</button>
-							<p>x{head}</p>
-							<button className="button" onClick={decrementHead}>
-								-
+					<>
+						<div className="drops">
+							<div className="drop">
+								<h3>head</h3>
+								<button
+									className="button"
+									onClick={incrementHead}
+								>
+									+
+								</button>
+								<p>x{head}</p>
+								<button
+									className="button"
+									onClick={decrementHead}
+								>
+									-
+								</button>
+							</div>
+							<div className="drop">
+								<h3>hands</h3>
+								<button
+									className="button"
+									onClick={incrementHands}
+								>
+									+
+								</button>
+								<p>x{hands}</p>
+								<button
+									className="button"
+									onClick={decrementHands}
+								>
+									-
+								</button>
+							</div>
+							<div className="drop">
+								<h3>feet</h3>
+								<button
+									className="button"
+									onClick={incrementFeet}
+								>
+									+
+								</button>
+								<p>x{feet}</p>
+								<button
+									className="button"
+									onClick={decrementFeet}
+								>
+									-
+								</button>
+							</div>
+						</div>
+						<div>
+							<button className="button" onClick={rackEmUp}>
+								rack em up!
 							</button>
 						</div>
-
-						<div className="drop">
-							<h3>hands</h3>
-							<button className="button" onClick={incrementHands}>
-								+
-							</button>
-							<p>x{hands}</p>
-							<button className="button" onClick={decrementHands}>
-								-
-							</button>
-						</div>
-
-						<div className="drop">
-							<h3>feet</h3>
-							<button className="button" onClick={incrementFeet}>
-								+
-							</button>
-							<p>x{feet}</p>
-							<button className="button" onClick={decrementFeet}>
-								-
-							</button>
-						</div>
-					</div>
+					</>
 				)}
-
-				<div>
-					<button className="button" onClick={rackEmUp}>
-						rack em up!
-					</button>
-				</div>
 
 				{showWhoWantsIt ? (
 					<WhoWantsIt

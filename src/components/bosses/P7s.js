@@ -117,54 +117,111 @@ const P7s = ({
 			</header>
 
 			<main>
-				<div className="drops">
-					<div className="drop">
-						<h3>head</h3>
-						<button className="button" onClick={incrementHead}>
-							+
-						</button>
-						<p>x{head}</p>
-						<button className="button" onClick={decrementHead}>
-							-
-						</button>
-					</div>
+				{showWhoWantsIt ? (
+					""
+				) : (
+					<>
+						<div className="drops">
+							<div className="drop">
+								<h3>head</h3>
+								<button
+									className="button"
+									onClick={incrementHead}
+								>
+									+
+								</button>
+								<p>x{head}</p>
+								<button
+									className="button"
+									onClick={decrementHead}
+								>
+									-
+								</button>
+							</div>
+							<div className="drop">
+								<h3>hands</h3>
+								<button
+									className="button"
+									onClick={incrementHands}
+								>
+									+
+								</button>
+								<p>x{hands}</p>
+								<button
+									className="button"
+									onClick={decrementHands}
+								>
+									-
+								</button>
+							</div>
+							<div className="drop">
+								<h3>feet</h3>
+								<button
+									className="button"
+									onClick={incrementFeet}
+								>
+									+
+								</button>
+								<p>x{feet}</p>
+								<button
+									className="button"
+									onClick={decrementFeet}
+								>
+									-
+								</button>
+							</div>
+							<div className="drop">
+								<h3>legs</h3>
+								<button
+									className="button"
+									onClick={incrementLegs}
+								>
+									+
+								</button>
+								<p>x{legs}</p>
+								<button
+									className="button"
+									onClick={decrementLegs}
+								>
+									-
+								</button>
+							</div>
+						</div>
+						<div>
+							<button className="button" onClick={rackEmUp}>
+								rack em up!
+							</button>
+						</div>
+					</>
+				)}
 
-					<div className="drop">
-						<h3>hands</h3>
-						<button className="button" onClick={incrementHands}>
-							+
-						</button>
-						<p>x{hands}</p>
-						<button className="button" onClick={decrementHands}>
-							-
-						</button>
-					</div>
-
-					<div className="drop">
-						<h3>feet</h3>
-						<button className="button" onClick={incrementFeet}>
-							+
-						</button>
-						<p>x{feet}</p>
-						<button className="button" onClick={decrementFeet}>
-							-
-						</button>
-					</div>
-
-					<div className="drop">
-						<h3>legs</h3>
-						<button className="button" onClick={incrementLegs}>
-							+
-						</button>
-						<p>x{legs}</p>
-						<button className="button" onClick={decrementLegs}>
-							-
-						</button>
-					</div>
-				</div>
-				<div>
-					<button className="button">rack em up!</button>
-				</div>
+				{showWhoWantsIt ? (
+					<WhoWantsIt
+						earring={earring}
+						setEarring={setEarring}
+						necklace={necklace}
+						setNecklace={setNecklace}
+						bracelet={bracelet}
+						setBracelet={setBracelet}
+						ring={ring}
+						setRing={setRing}
+						head={head}
+						setHead={setHead}
+						body={body}
+						setBody={setBody}
+						hands={hands}
+						setHands={setHands}
+						legs={legs}
+						setLegs={setLegs}
+						feet={feet}
+						setFeet={setFeet}
+						characterList={characterList}
+						setCharacterList={setCharacterList}
+						setShowWhoWantsIt={setShowWhoWantsIt}
+					/>
+				) : (
+					""
+				)}
 			</main>
 		</>
 	);

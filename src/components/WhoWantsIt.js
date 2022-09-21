@@ -24,6 +24,8 @@ const WhoWantsIt = ({
 	setBracelet,
 	ring,
 	setRing,
+	weapon,
+	setWeapon,
 	head,
 	setHead,
 	body,
@@ -38,16 +40,18 @@ const WhoWantsIt = ({
 	//#endregion
 }) => {
 	// !STATE ZONE
-	const [droppedGearState, setDroppedGearState] = useState([]);
 	const [receiver, setReceiver] = useState({
 		earring: "",
 		necklace: "",
 		bracelet: "",
 		ring: "",
+		weapon: "",
+		head: "",
+		body: "",
+		hands: "",
+		legs: "",
+		feet: "",
 	});
-
-	// !COMPONENT MOUNT
-	useEffect(() => {}, []);
 
 	// !LOGIC ZONE
 	// *array of objects tracking which gear dropped
@@ -56,6 +60,7 @@ const WhoWantsIt = ({
 		{ necklace },
 		{ bracelet },
 		{ ring },
+		{ weapon },
 		{ head },
 		{ body },
 		{ hands },
@@ -79,33 +84,6 @@ const WhoWantsIt = ({
 	//* handle Submit to give the chosen player their drop
 	const handleSubmitGiveDrop = (e) => {
 		e.preventDefault();
-		// // holding the database details from firebase
-		// const database = getDatabase(firebase);
-
-		// // a variable that references a specific location of our database
-		// const dbRef = ref(database);
-
-		// // when db value changes, make storage state
-		// onValue(dbRef, (response) => {
-		// 	const statelessCharacterList = [];
-		// 	const data = response.val();
-
-		// 	// loop over the data object and push each character into the newState empty array
-		// 	// we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-		// 	for (let key in data) {
-		// 		statelessCharacterList.push({
-		// 			key: key,
-		// 			gearListItems: data[key],
-
-		// 			characterName: data[key].characterName,
-		// 		});
-		// 	}
-
-		// 	// update characterList state to hold our character names stored in newState
-		// 	setCharacterList(statelessCharacterList);
-		// });
-		//#endregion
-
 		// get array of entries of stateless receiver object
 		let statelessReceiver = { ...receiver };
 		let entries = Object.entries(receiver);

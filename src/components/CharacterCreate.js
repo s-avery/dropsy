@@ -48,10 +48,6 @@ const CharacterCreate = ({
 									yet, or got it.
 								</li>
 							</ol>
-							<p>
-								note: this assumes everyone wants the weapon &
-								chestpiece by default.
-							</p>
 						</div>
 						<div className="charCreate__submit">
 							<button

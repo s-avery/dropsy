@@ -13,15 +13,13 @@ const Home = () => {
 
 			<main>
 				<Link to="/charSelect" className="button">
-					edit characters
+					view characters
 				</Link>
 
 				<Link to="/bossKilled" className="button">
 					we killed a boss!
 				</Link>
 			</main>
-
-			<footer>created at juno college</footer>
 		</div>
 	);
 };
