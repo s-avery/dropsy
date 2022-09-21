@@ -79,10 +79,6 @@ const P5s = ({
 	const [printNecklace, setPrintNecklace] = useState(false);
 	const [printBracelet, setPrintBracelet] = useState(false);
 	const [printRing, setPrintRing] = useState(false);
-	const [printHead, setPrintHead] = useState(false);
-	const [printHands, setPrintHands] = useState(false);
-	const [printLegs, setPrintLegs] = useState(false);
-	const [printFeet, setPrintFeet] = useState(false);
 
 	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
 

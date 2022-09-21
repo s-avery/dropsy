@@ -5,6 +5,7 @@ import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 const BossKilled = ({
+	//#region props
 	earring,
 	setEarring,
 	necklace,
@@ -25,8 +26,8 @@ const BossKilled = ({
 	setFeet,
 	characterList,
 	setCharacterList,
+	//#endregion
 }) => {
-	
 	// !COMPONENT MOUNT
 	useEffect(() => {
 		//*Getting data from database
@@ -57,12 +58,12 @@ const BossKilled = ({
 		});
 	}, []);
 
-	// !STATE ZONE
-
 	return (
 		<>
 			<header>
-				<Link to="/">home</Link>
+				<Link to="/" className="homeButton">
+					home
+				</Link>
 
 				<h1>ff14 gear planner</h1>
 
@@ -81,31 +82,10 @@ const BossKilled = ({
 					<Link className="button" to="/p7s">
 						p7s
 					</Link>
-					<button className="button">p8s</button>
+					<Link className="button" to="/p8s">
+						p8s
+					</Link>
 				</div>
-
-				<div className="drops">
-					<div className="dropButton">
-						<button className="button">option 1</button>
-						<p>x1</p>
-					</div>
-					<div className="dropButton">
-						<button className="button">option 2</button>
-						<p>x1</p>
-					</div>
-					<div className="dropButton">
-						<button className="button">option 3</button>
-						<p>x1</p>
-					</div>
-					<div className="dropButton">
-						<button className="button">option 4</button>
-						<p>x1</p>
-					</div>
-				</div>
-
-				<button className="button">who wants it?</button>
-
-				<h3>the following characters want this loot:</h3>
 			</main>
 		</>
 	);

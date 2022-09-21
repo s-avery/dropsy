@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
+import WhoWantsIt from "../WhoWantsIt";
 
 const P6s = ({
+	//#region props
+	characterList,
 	setCharacterList,
 	earring,
 	setEarring,
@@ -24,6 +27,7 @@ const P6s = ({
 	setLegs,
 	feet,
 	setFeet,
+	//#endregion
 }) => {
 	// !COMPONENT MOUNT
 	// *reset drop value states
@@ -38,8 +42,17 @@ const P6s = ({
 		setLegs(0);
 		setFeet(0);
 	}, []);
+
+	// !STATE ZONE
+	const [printHead, setPrintHead] = useState(false);
+	const [printHands, setPrintHands] = useState(false);
+	const [printFeet, setPrintFeet] = useState(false);
+
+	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
+
 	// !FUNCTION ZONE
 	// *Increment/Decrements
+	//#region
 	const incrementHead = () => {
 		setHead(head + 1);
 	};
@@ -72,6 +85,11 @@ const P6s = ({
 			setFeet(feet - 1);
 		}
 	};
+	//#endregion
+
+	const rackEmUp = () => {
+		setShowWhoWantsIt(true);
+	};
 
 	// !RETURN
 	return (
@@ -87,44 +105,78 @@ const P6s = ({
 			</header>
 
 			<main>
-				<div className="drops">
-					<div className="drop">
-						<h3>head</h3>
-						<button className="button" onClick={incrementHead}>
-							+
-						</button>
-						<p>x{head}</p>
-						<button className="button" onClick={decrementHead}>
-							-
-						</button>
-					</div>
+				{showWhoWantsIt ? (
+					""
+				) : (
+					<div className="drops">
+						<div className="drop">
+							<h3>head</h3>
+							<button className="button" onClick={incrementHead}>
+								+
+							</button>
+							<p>x{head}</p>
+							<button className="button" onClick={decrementHead}>
+								-
+							</button>
+						</div>
 
-					<div className="drop">
-						<h3>hands</h3>
-						<button className="button" onClick={incrementHands}>
-							+
-						</button>
-						<p>x{hands}</p>
-						<button className="button" onClick={decrementHands}>
-							-
-						</button>
-					</div>
+						<div className="drop">
+							<h3>hands</h3>
+							<button className="button" onClick={incrementHands}>
+								+
+							</button>
+							<p>x{hands}</p>
+							<button className="button" onClick={decrementHands}>
+								-
+							</button>
+						</div>
 
-					<div className="drop">
-						<h3>feet</h3>
-						<button className="button" onClick={incrementFeet}>
-							+
-						</button>
-						<p>x{feet}</p>
-						<button className="button" onClick={decrementFeet}>
-							-
-						</button>
+						<div className="drop">
+							<h3>feet</h3>
+							<button className="button" onClick={incrementFeet}>
+								+
+							</button>
+							<p>x{feet}</p>
+							<button className="button" onClick={decrementFeet}>
+								-
+							</button>
+						</div>
 					</div>
-				</div>
+				)}
 
 				<div>
-					<button className="button">rack em up!</button>
+					<button className="button" onClick={rackEmUp}>
+						rack em up!
+					</button>
 				</div>
+
+				{showWhoWantsIt ? (
+					<WhoWantsIt
+						earring={earring}
+						setEarring={setEarring}
+						necklace={necklace}
+						setNecklace={setNecklace}
+						bracelet={bracelet}
+						setBracelet={setBracelet}
+						ring={ring}
+						setRing={setRing}
+						head={head}
+						setHead={setHead}
+						body={body}
+						setBody={setBody}
+						hands={hands}
+						setHands={setHands}
+						legs={legs}
+						setLegs={setLegs}
+						feet={feet}
+						setFeet={setFeet}
+						characterList={characterList}
+						setCharacterList={setCharacterList}
+						setShowWhoWantsIt={setShowWhoWantsIt}
+					/>
+				) : (
+					""
+				)}
 			</main>
 		</>
 	);

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
+import WhoWantsIt from "../WhoWantsIt";
 
 const P7s = ({
+	//#region props
+	characterList,
 	setCharacterList,
 	earring,
 	setEarring,
@@ -24,6 +27,7 @@ const P7s = ({
 	setLegs,
 	feet,
 	setFeet,
+	//#endregion
 }) => {
 	// !COMPONENT MOUNT
 	// *reset drop value states
@@ -39,8 +43,17 @@ const P7s = ({
 		setFeet(0);
 	}, []);
 
+	// !STATE ZONE
+	const [printHead, setPrintHead] = useState(false);
+	const [printHands, setPrintHands] = useState(false);
+	const [printLegs, setPrintLegs] = useState(false);
+	const [printFeet, setPrintFeet] = useState(false);
+
+	const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
+
 	// !FUNCTION ZONE
 	// *Increment/Decrements
+	//#region
 	const incrementHead = () => {
 		setHead(head + 1);
 	};
@@ -83,6 +96,11 @@ const P7s = ({
 		} else {
 			setFeet(feet - 1);
 		}
+	};
+	//#endregion
+
+	const rackEmUp = () => {
+		setShowWhoWantsIt(true);
 	};
 
 	// !RETURN

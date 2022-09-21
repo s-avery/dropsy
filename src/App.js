@@ -15,6 +15,7 @@ import BossKilled from "./components/BossKilled";
 import P5s from "./components/bosses/P5s";
 import P6s from "./components/bosses/P6s";
 import P7s from "./components/bosses/P7s";
+import P8s from "./components/bosses/P8s";
 
 // !APP
 
@@ -323,6 +324,8 @@ function App() {
 						/>
 					}
 				/>
+
+				<Route path="p8s" element={<P8s />} />
 
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

@@ -8,6 +8,10 @@
 	flex-basis: 33%;
 }
 
+.charCreate p {
+	font-size: 0.8rem;
+}
+
 .charCreate__charName {
 	display: flex;
 	flex-direction: column;
