@@ -82,13 +82,24 @@ function App() {
 				newState.push({
 					key: key,
 					gearListItems: data[key],
-
 					characterName: data[key].characterName,
 				});
 			}
 
+			// !Doing it immutably with Alexandra
+			// Object.keys to make an array be able to .map
+			const keysArray = Object.keys(data);
+			// map it
+			const immutableState = keysArray.map((key) => {
+				return {
+					key: key,
+					gearListItems: data[key],
+					characterName: data[key].characterName,
+				};
+			});
+
 			// update characterList state to hold our character names stored in newState
-			setCharacterList(newState);
+			setCharacterList(immutableState);
 		});
 	}, []);
 
