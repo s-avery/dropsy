@@ -62,6 +62,7 @@ const CharacterCreate = ({
 
 					{/* //* right container */}
 					<div className="charCreate__rightContainer">
+						{/* Radio receives gearPieces, setGearPieces */}
 						<Radio
 							handleNameChange={handleNameChange}
 							setRadioValue={setRadioValue}
