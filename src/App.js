@@ -1,8 +1,13 @@
 // !IMPORT ZONE
 import "./App.css";
+// *firebase
 import firebase from "./firebase";
 import { getDatabase, ref, onValue, set } from "firebase/database";
+
+// *hooks
 import { useState, useEffect } from "react";
+
+// *routes
 import { Routes, Route } from "react-router-dom";
 
 // *Components
@@ -12,6 +17,9 @@ import CharacterEdit from "./components/CharacterEdit";
 import CharacterCreate from "./components/CharacterCreate";
 import ErrorPage from "./components/ErrorPage";
 import BossKilled from "./components/BossKilled";
+
+//*raid bosses - may need to be hardcoded to track specific drops, etc 
+// TODO see if these could be data objects
 import P5s from "./components/bosses/P5s";
 import P6s from "./components/bosses/P6s";
 import P7s from "./components/bosses/P7s";
@@ -22,10 +30,14 @@ import P8s from "./components/bosses/P8s";
 function App() {
 	// !STATE ZONE
 
-	// *charName
+	// all state managed at App.js
+	// *charName - expects string
+	// see handleNameChange below
+	// pull all of this to a Name context hook
 	const [charName, setCharName] = useState("");
 
-	// *Radio Value
+	// *Radio Value - expects [Boolean]
+	// this seems like its not needed/called anywhere
 	const [radioValue, setRadioValue] = useState([false]);
 
 	// *Gear Pieces
@@ -180,6 +192,7 @@ function App() {
 				<Route
 					path="/charSelect"
 					element={
+						// CharacterSelect receives no props - maybe wipe these
 						<CharacterSelect
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
@@ -197,6 +210,11 @@ function App() {
 				<Route
 					path="/charEdit"
 					element={
+						// CharacterEdit receives the props
+						// gearPieces,
+						// setGearPieces,
+						// characterList,
+						// setCharacterList,
 						<CharacterEdit
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
@@ -213,6 +231,13 @@ function App() {
 				<Route
 					path="/charCreate"
 					element={
+						// CharacterCreate receives
+						// handleSubmit,
+						// handleNameChange,
+						// gearPieces,
+						// setGearPieces,
+						// setRadioValue,
+						// radioValue,
 						<CharacterCreate
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
