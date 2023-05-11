@@ -6,8 +6,6 @@ const CharacterCreate = ({
 	handleNameChange,
 	gearPieces,
 	setGearPieces,
-	setRadioValue,
-	radioValue,
 }) => {
 	// *Letting useRadio work
 
@@ -65,10 +63,8 @@ const CharacterCreate = ({
 						{/* Radio receives gearPieces, setGearPieces */}
 						<Radio
 							handleNameChange={handleNameChange}
-							setRadioValue={setRadioValue}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
-							radioValue={radioValue}
 						/>
 					</div>
 				</form>

@@ -18,7 +18,7 @@ import CharacterCreate from "./components/CharacterCreate";
 import ErrorPage from "./components/ErrorPage";
 import BossKilled from "./components/BossKilled";
 
-//*raid bosses - may need to be hardcoded to track specific drops, etc 
+//*raid bosses - may need to be hardcoded to track specific drops, etc
 // TODO see if these could be data objects
 import P5s from "./components/bosses/P5s";
 import P6s from "./components/bosses/P6s";
@@ -35,10 +35,6 @@ function App() {
 	// see handleNameChange below
 	// pull all of this to a Name context hook
 	const [charName, setCharName] = useState("");
-
-	// *Radio Value - expects [Boolean]
-	// this seems like its not needed/called anywhere
-	const [radioValue, setRadioValue] = useState([false]);
 
 	// *Gear Pieces
 	const [gearPieces, setGearPieces] = useState([]);
@@ -198,8 +194,6 @@ function App() {
 							handleNameChange={handleNameChange}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
-							setRadioValue={setRadioValue}
-							radioValue={radioValue}
 							handleRadioChange={handleRadioChange}
 							characterList={characterList}
 							setCharacterList={setCharacterList}
@@ -220,8 +214,6 @@ function App() {
 							handleNameChange={handleNameChange}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
-							setRadioValue={setRadioValue}
-							radioValue={radioValue}
 							characterList={characterList}
 							setCharacterList={setCharacterList}
 							populateDropdown={populateDropdown}
@@ -236,13 +228,9 @@ function App() {
 						// handleNameChange,
 						// gearPieces,
 						// setGearPieces,
-						// setRadioValue,
-						// radioValue,
 						<CharacterCreate
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
-							setRadioValue={setRadioValue}
-							radioValue={radioValue}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
 							handleRadioChange={handleRadioChange}
