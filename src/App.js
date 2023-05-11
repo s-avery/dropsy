@@ -54,6 +54,17 @@ function App() {
 	const [legs, setLegs] = useState(0);
 	const [feet, setFeet] = useState(0);
 
+	const[droppedGear, setDroppedGear] = useState(
+		{
+			earring: 0,
+			necklace: 0,
+		}
+	)
+
+	const updateDrops = (droppedGearPiece, amount) => setDroppedGear( {[droppedGearPiece]: amount } )
+
+
+
 	// !COMPONENT MOUNT
 	// *define gearlist
 	useEffect(() => {
