@@ -176,15 +176,7 @@ function App() {
 	return (
 		<div>
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<Home
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-						/>
-					}
-				/>
+				<Route path="/" element={<Home />} />
 				<Route path="/charSelect" element={<CharacterSelect />} />
 				<Route
 					path="/charEdit"
