@@ -67,10 +67,19 @@ function App() {
     feet: 0,
   });
 
-  const updateDrops = (droppedGearPiece, amount) =>
+  const incrementDrops = (droppedGearPiece) =>
     setDroppedGear((currentDroppedGear) => ({
       ...currentDroppedGear,
-      [droppedGearPiece]: amount,
+      [droppedGearPiece]: currentDroppedGear[droppedGearPiece] + 1,
+    }));
+
+  const decrementDrops = (droppedGearPiece) =>
+    setDroppedGear((currentDroppedGear) => ({
+      ...currentDroppedGear,
+      [droppedGearPiece]:
+        currentDroppedGear[droppedGearPiece] <= 0
+          ? currentDroppedGear[droppedGearPiece]
+          : currentDroppedGear[droppedGearPiece] - 1,
     }));
 
   // !COMPONENT MOUNT
