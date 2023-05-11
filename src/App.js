@@ -117,21 +117,6 @@ function App() {
 		setCharName(e.target.value);
 	};
 
-	// *Handle Radio Change
-	const handleRadioChange = (gearPiece, e) => {
-		setGearPieces((gearPiece.wanted = e.target.value));
-	};
-
-	// *Populate Dropdown
-	const populateDropdown = () => {
-		characterList.map((character) => {
-			return (
-				<option value={character.characterName}>
-					{character.characterName}
-				</option>
-			);
-		});
-	};
 
 	// *Handle Form Submit
 	const handleSubmit = (e) => {
