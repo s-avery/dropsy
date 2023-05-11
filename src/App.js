@@ -242,32 +242,7 @@ function App() {
 
 				<Route
 					path="bossKilled"
-					element={
-						<BossKilled
-							earring={earring}
-							setEarring={setEarring}
-							necklace={necklace}
-							setNecklace={setNecklace}
-							bracelet={bracelet}
-							setBracelet={setBracelet}
-							ring={ring}
-							setRing={setRing}
-							weapon={weapon}
-							setWeapon={setWeapon}
-							head={head}
-							setHead={setHead}
-							body={body}
-							setBody={setBody}
-							hands={hands}
-							setHands={setHands}
-							legs={legs}
-							setLegs={setLegs}
-							feet={feet}
-							setFeet={setFeet}
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-						/>
-					}
+					element={<BossKilled setCharacterList={setCharacterList} />}
 				/>
 
 				<Route
@@ -295,7 +270,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -325,7 +299,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -355,7 +328,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -385,7 +357,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
