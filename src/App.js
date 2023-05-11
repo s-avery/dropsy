@@ -185,57 +185,25 @@ function App() {
 						/>
 					}
 				/>
-				<Route
-					path="/charSelect"
-					element={
-						// CharacterSelect receives no props - maybe wipe these
-						<CharacterSelect
-							handleSubmit={handleSubmit}
-							handleNameChange={handleNameChange}
-							gearPieces={gearPieces}
-							setGearPieces={setGearPieces}
-							handleRadioChange={handleRadioChange}
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-							populateDropdown={populateDropdown}
-						/>
-					}
-				/>
+				<Route path="/charSelect" element={<CharacterSelect />} />
 				<Route
 					path="/charEdit"
 					element={
-						// CharacterEdit receives the props
-						// gearPieces,
-						// setGearPieces,
-						// characterList,
-						// setCharacterList,
 						<CharacterEdit
-							handleSubmit={handleSubmit}
-							handleNameChange={handleNameChange}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
-							populateDropdown={populateDropdown}
 						/>
 					}
 				/>
 				<Route
 					path="/charCreate"
 					element={
-						// CharacterCreate receives
-						// handleSubmit,
-						// handleNameChange,
-						// gearPieces,
-						// setGearPieces,
 						<CharacterCreate
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
-							handleRadioChange={handleRadioChange}
-							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
