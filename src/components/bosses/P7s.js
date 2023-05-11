@@ -194,27 +194,17 @@ const P7s = ({
 
 				{showWhoWantsIt ? (
 					<WhoWantsIt
-						earring={earring}
-						setEarring={setEarring}
-						necklace={necklace}
-						setNecklace={setNecklace}
-						bracelet={bracelet}
-						setBracelet={setBracelet}
-						ring={ring}
-						setRing={setRing}
-						head={head}
-						setHead={setHead}
-						body={body}
-						setBody={setBody}
-						hands={hands}
-						setHands={setHands}
-						legs={legs}
-						setLegs={setLegs}
-						feet={feet}
-						setFeet={setFeet}
-						characterList={characterList}
-						setCharacterList={setCharacterList}
 						setShowWhoWantsIt={setShowWhoWantsIt}
+						earring={earring}
+						necklace={necklace}
+						bracelet={bracelet}
+						ring={ring}
+						head={head}
+						body={body}
+						hands={hands}
+						legs={legs}
+						feet={feet}
+						characterList={characterList}
 					/>
 				) : (
 					""
