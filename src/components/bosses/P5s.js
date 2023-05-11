@@ -6,7 +6,6 @@ import WhoWantsIt from "../WhoWantsIt";
 const P5s = ({
 	//#region props
 	characterList,
-	setCharacterList,
 	earring,
 	setEarring,
 	necklace,

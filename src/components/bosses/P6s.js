@@ -6,7 +6,6 @@ import WhoWantsIt from "../WhoWantsIt";
 const P6s = ({
 	//#region props
 	characterList,
-	setCharacterList,
 	earring,
 	setEarring,
 	necklace,
@@ -167,7 +166,7 @@ const P6s = ({
 
 				{showWhoWantsIt ? (
 					<WhoWantsIt
-						setShowWhoWantsIt={setShowWhoWantsIt}
+						characterList={characterList}
 						earring={earring}
 						necklace={necklace}
 						bracelet={bracelet}
@@ -177,7 +176,7 @@ const P6s = ({
 						hands={hands}
 						legs={legs}
 						feet={feet}
-						characterList={characterList}
+						setShowWhoWantsIt={setShowWhoWantsIt}
 					/>
 				) : (
 					""
