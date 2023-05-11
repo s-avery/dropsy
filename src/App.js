@@ -58,10 +58,18 @@ function App() {
 		{
 			earring: 0,
 			necklace: 0,
+			bracelet: 0,
+			ring: 0,
+			weapon: 0,
+			head: 0,
+			body: 0,
+			hands: 0,
+			legs: 0,
+			feet: 0
 		}
 	)
 
-	const updateDrops = (droppedGearPiece, amount) => setDroppedGear( {[droppedGearPiece]: amount } )
+	// const updateDrops = (droppedGearPiece, amount) => setDroppedGear( {[droppedGearPiece]: amount } )
 
 
 
