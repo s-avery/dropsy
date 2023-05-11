@@ -6,27 +6,16 @@ import { useState } from "react";
 const WhoWantsIt = ({
 	//#region props
 	characterList,
-	setCharacterList,
 	earring,
-	setEarring,
 	necklace,
-	setNecklace,
 	bracelet,
-	setBracelet,
 	ring,
-	setRing,
 	weapon,
-	setWeapon,
 	head,
-	setHead,
 	body,
-	setBody,
 	hands,
-	setHands,
 	legs,
-	setLegs,
 	feet,
-	setFeet,
 	setShowWhoWantsIt,
 	//#endregion
 }) => {

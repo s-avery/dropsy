@@ -117,21 +117,6 @@ function App() {
 		setCharName(e.target.value);
 	};
 
-	// *Handle Radio Change
-	const handleRadioChange = (gearPiece, e) => {
-		setGearPieces((gearPiece.wanted = e.target.value));
-	};
-
-	// *Populate Dropdown
-	const populateDropdown = () => {
-		characterList.map((character) => {
-			return (
-				<option value={character.characterName}>
-					{character.characterName}
-				</option>
-			);
-		});
-	};
 
 	// *Handle Form Submit
 	const handleSubmit = (e) => {
@@ -176,98 +161,33 @@ function App() {
 	return (
 		<div>
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<Home
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-						/>
-					}
-				/>
-				<Route
-					path="/charSelect"
-					element={
-						// CharacterSelect receives no props - maybe wipe these
-						<CharacterSelect
-							handleSubmit={handleSubmit}
-							handleNameChange={handleNameChange}
-							gearPieces={gearPieces}
-							setGearPieces={setGearPieces}
-							handleRadioChange={handleRadioChange}
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-							populateDropdown={populateDropdown}
-						/>
-					}
-				/>
+				<Route path="/" element={<Home />} />
+				<Route path="/charSelect" element={<CharacterSelect />} />
 				<Route
 					path="/charEdit"
 					element={
-						// CharacterEdit receives the props
-						// gearPieces,
-						// setGearPieces,
-						// characterList,
-						// setCharacterList,
 						<CharacterEdit
-							handleSubmit={handleSubmit}
-							handleNameChange={handleNameChange}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
-							populateDropdown={populateDropdown}
 						/>
 					}
 				/>
 				<Route
 					path="/charCreate"
 					element={
-						// CharacterCreate receives
-						// handleSubmit,
-						// handleNameChange,
-						// gearPieces,
-						// setGearPieces,
 						<CharacterCreate
 							handleSubmit={handleSubmit}
 							handleNameChange={handleNameChange}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
-							handleRadioChange={handleRadioChange}
-							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
 
 				<Route
 					path="bossKilled"
-					element={
-						<BossKilled
-							earring={earring}
-							setEarring={setEarring}
-							necklace={necklace}
-							setNecklace={setNecklace}
-							bracelet={bracelet}
-							setBracelet={setBracelet}
-							ring={ring}
-							setRing={setRing}
-							weapon={weapon}
-							setWeapon={setWeapon}
-							head={head}
-							setHead={setHead}
-							body={body}
-							setBody={setBody}
-							hands={hands}
-							setHands={setHands}
-							legs={legs}
-							setLegs={setLegs}
-							feet={feet}
-							setFeet={setFeet}
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-						/>
-					}
+					element={<BossKilled setCharacterList={setCharacterList} />}
 				/>
 
 				<Route
@@ -295,7 +215,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -325,7 +244,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -355,7 +273,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>
@@ -385,7 +302,6 @@ function App() {
 							feet={feet}
 							setFeet={setFeet}
 							characterList={characterList}
-							setCharacterList={setCharacterList}
 						/>
 					}
 				/>

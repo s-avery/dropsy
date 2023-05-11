@@ -5,12 +5,7 @@ import { getDatabase, ref, set } from "firebase/database";
 import EditRadio from "./EditRadio";
 import { Link } from "react-router-dom";
 
-const CharacterEdit = ({
-	gearPieces,
-	setGearPieces,
-	characterList,
-	setCharacterList,
-}) => {
+const CharacterEdit = ({ gearPieces, setGearPieces, characterList }) => {
 	// !STATE ZONE
 	// *Selected Character
 	const [selectedCharacterName, setSelectedCharacterName] = useState([]);
@@ -145,14 +140,9 @@ const CharacterEdit = ({
 					{/* //* right container */}
 					<fieldset className="charCreate__rightContainer">
 						<EditRadio
-							characterList={characterList}
-							setCharacterList={setCharacterList}
-							selectedCharacterName={selectedCharacterName}
-							setSelectedCharacterName={setSelectedCharacterName}
 							gearPieces={gearPieces}
 							setGearPieces={setGearPieces}
 							nonsenseGearPieces={nonsenseGearPieces}
-							// newGearArray={newGearArray}
 						/>
 					</fieldset>
 				</form>

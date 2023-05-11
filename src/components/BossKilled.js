@@ -4,30 +4,7 @@ import { useEffect } from "react";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 
-const BossKilled = ({
-	//#region props
-	earring,
-	setEarring,
-	necklace,
-	setNecklace,
-	bracelet,
-	setBracelet,
-	ring,
-	setRing,
-	head,
-	setHead,
-	body,
-	setBody,
-	hands,
-	setHands,
-	legs,
-	setLegs,
-	feet,
-	setFeet,
-	characterList,
-	setCharacterList,
-	//#endregion
-}) => {
+const BossKilled = ({ setCharacterList }) => {
 	// !COMPONENT MOUNT
 	useEffect(() => {
 		//*Getting data from database
