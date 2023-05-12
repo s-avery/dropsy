@@ -93,6 +93,17 @@ const P11s = ({
             setFeet(feet - 1);
         }
     };
+
+    const incrementBody = () => {
+        setBody(body + 1);
+    };
+    const decrementBody = () => {
+        if (body === 0) {
+            console.log("no negatives silly");
+        } else {
+            setBody(body - 1);
+        }
+    };
     //#endregion
 
     const rackEmUp = () => {
@@ -112,6 +123,7 @@ const P11s = ({
                 <h2>what dropped?</h2>
             </header>
 
+            {/* //TODO find out specific p11 drop table and adjust accordingly */}
             <main>
                 {showWhoWantsIt ? (
                     ""
@@ -134,6 +146,24 @@ const P11s = ({
                                     -
                                 </button>
                             </div>
+
+                            <div className="drop">
+                                <h3>body</h3>
+                                <button
+                                    className="button"
+                                    onClick={incrementBody}
+                                >
+                                    +
+                                </button>
+                                <p>x{body}</p>
+                                <button
+                                    className="button"
+                                    onClick={decrementBody}
+                                >
+                                    -
+                                </button>
+                            </div>
+
                             <div className="drop">
                                 <h3>hands</h3>
                                 <button
@@ -150,6 +180,7 @@ const P11s = ({
                                     -
                                 </button>
                             </div>
+
                             <div className="drop">
                                 <h3>feet</h3>
                                 <button
@@ -166,6 +197,7 @@ const P11s = ({
                                     -
                                 </button>
                             </div>
+
                             <div className="drop">
                                 <h3>legs</h3>
                                 <button
