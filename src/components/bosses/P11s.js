@@ -118,7 +118,7 @@ const P11s = ({
                     home
                 </Link>
 
-                <h1>ff14 gear planner</h1>
+                <h1>dropsy</h1>
 
                 <h2>what dropped?</h2>
             </header>

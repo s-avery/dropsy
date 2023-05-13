@@ -42,7 +42,7 @@ const BossKilled = ({ setCharacterList }) => {
                     home
                 </Link>
 
-                <h1>ff14 gear planner</h1>
+                <h1>dropsy</h1>
 
                 <h2>which boss died?</h2>
             </header>
