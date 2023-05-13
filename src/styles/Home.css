@@ -1,4 +1,10 @@
 .home {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
+}
+
+.about {
+    max-width: 40%;
+    margin: auto;
+    text-align: center;
 }
