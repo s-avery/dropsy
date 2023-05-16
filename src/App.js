@@ -20,10 +20,10 @@ import BossKilled from "./components/bossKilled/BossKilled";
 
 //*raid bosses - may need to be hardcoded to track specific drops, etc
 // TODO see if these could be data objects
-import P9s from "./components/bosses/P9s";
-import P10s from "./components/bosses/P10s";
-import P11s from "./components/bosses/P11s";
-import P12s from "./components/bosses/P12s";
+import P9s from "./components/bossKilled/bosses/P9s";
+import P10s from "./components/bossKilled/bosses/P10s";
+import P11s from "./components/bossKilled/bosses/P11s";
+import P12s from "./components/bossKilled/bosses/P12s";
 
 // !APP
 
@@ -33,6 +33,7 @@ function App() {
     // all state managed at App.js
     // *charName - expects string
     // see handleNameChange below
+    //  nb i moved handleNameChange fn to characterCreate -- sadie
     // pull all of this to a Name context hook
     const [charName, setCharName] = useState("");
 
@@ -112,10 +113,6 @@ function App() {
     }, []);
 
     // !FUNCTION ZONE
-    // *Handle Name Change
-    const handleNameChange = (e) => {
-        setCharName(e.target.value);
-    };
 
     // *Handle Form Submit
     const handleSubmit = (e) => {
@@ -177,7 +174,7 @@ function App() {
                     element={
                         <CharacterCreate
                             handleSubmit={handleSubmit}
-                            handleNameChange={handleNameChange}
+                            setCharName={setCharName}
                             gearPieces={gearPieces}
                             setGearPieces={setGearPieces}
                         />
