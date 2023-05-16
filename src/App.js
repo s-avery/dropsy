@@ -12,11 +12,11 @@ import { Routes, Route } from "react-router-dom";
 
 // *Components
 import Home from "./components/Home";
-import CharacterSelect from "./components/CharacterSelect";
-import CharacterEdit from "./components/CharacterEdit";
-import CharacterCreate from "./components/CharacterCreate";
+import CharacterSelect from "./components/characterSelect/CharacterSelect";
+import CharacterEdit from "./components/characterSelect/characterEdit/CharacterEdit";
+import CharacterCreate from "./components/characterSelect/characterCreate/CharacterCreate";
 import ErrorPage from "./components/ErrorPage";
-import BossKilled from "./components/BossKilled";
+import BossKilled from "./components/bossKilled/BossKilled";
 
 //*raid bosses - may need to be hardcoded to track specific drops, etc
 // TODO see if these could be data objects

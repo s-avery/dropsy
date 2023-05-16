@@ -1,6 +1,6 @@
 // !IMPORT ZONE
 import { useEffect, useState } from "react";
-import firebase from "../firebase";
+import firebase from "../../../firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import EditRadio from "./EditRadio";
 import { Link } from "react-router-dom";
