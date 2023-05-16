@@ -57,6 +57,7 @@ function App() {
 
     // !COMPONENT MOUNT
     // *define gearlist
+    // TODO investigate if this could be data object in context
     useEffect(() => {
         setGearPieces([
             { pieceName: "weapon", wanted: "" },
@@ -115,6 +116,7 @@ function App() {
     // !FUNCTION ZONE
 
     // *Handle Form Submit
+    // ? Unclear if this can/should be moved to CharacterCreate.js -- it's the only place it's called but the fact that it's stored in App.js means it can access charName and gearPieces more easily -- could also be renamed to handleCreateSubmit or smth
     const handleSubmit = (e) => {
         e.preventDefault();
 
