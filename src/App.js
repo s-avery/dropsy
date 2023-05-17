@@ -54,6 +54,7 @@ function App() {
     const [legs, setLegs] = useState(0);
     const [feet, setFeet] = useState(0);
 
+    // * the beginning of the context-based refactor of droppedGear, preserved but unused
     // const [droppedGear, setDroppedGear] = useState({
     //     earring: 0,
     //     necklace: 0,
