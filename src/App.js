@@ -218,9 +218,9 @@ function App() {
                 />
 
                 <Route
-                    path="p5s"
+                    path="p9s"
                     element={
-                        <P5s
+                        <P9s
                             earring={earring}
                             setEarring={setEarring}
                             necklace={necklace}
@@ -247,9 +247,9 @@ function App() {
                 />
 
                 <Route
-                    path="p6s"
+                    path="p10s"
                     element={
-                        <P6s
+                        <P10s
                             earring={earring}
                             setEarring={setEarring}
                             necklace={necklace}
@@ -276,9 +276,9 @@ function App() {
                 />
 
                 <Route
-                    path="p7s"
+                    path="p11s"
                     element={
-                        <P7s
+                        <P11s
                             earring={earring}
                             setEarring={setEarring}
                             necklace={necklace}
@@ -305,9 +305,9 @@ function App() {
                 />
 
                 <Route
-                    path="p8s"
+                    path="p12s"
                     element={
-                        <P8s
+                        <P12s
                             earring={earring}
                             setEarring={setEarring}
                             necklace={necklace}
