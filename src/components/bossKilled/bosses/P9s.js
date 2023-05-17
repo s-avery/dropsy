@@ -1,3 +1,13 @@
+// TODO calling the "incrementDrops" fn as an onclick on this buttons crashes & returns the following error:
+// Warning: Cannot update a component (`App`) while rendering a different component (`P9s`). To locate the bad setState() call inside `P9s`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
+// P9s@http://localhost:3000/main.947304dc3a4c20ffd5c0.hot-update.js:63:7
+// Routes@http://localhost:3000/static/js/bundle.js:62099:7
+// div
+// App@http://localhost:3000/static/js/bundle.js:71:82
+// Router@http://localhost:3000/static/js/bundle.js:62036:7
+// BrowserRouter@http://localhost:3000/static/js/bundle.js:60842:7
+// TODO I assume that this is where we need to use context hook? I'm going to leave this for us to investigate together
+
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -5,6 +15,10 @@ import WhoWantsIt from "../WhoWantsIt";
 
 const P9s = ({
     //#region props
+    droppedGear,
+    setDroppedGear,
+    incrementDrops,
+    decrementDrops,
     characterList,
     earring,
     setEarring,

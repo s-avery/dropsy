@@ -221,6 +221,10 @@ function App() {
                     path="p9s"
                     element={
                         <P9s
+                            droppedGear={droppedGear}
+                            setDroppedGear={setDroppedGear}
+                            incrementDrops={incrementDrops}
+                            decrementDrops={decrementDrops}
                             earring={earring}
                             setEarring={setEarring}
                             necklace={necklace}
