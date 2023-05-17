@@ -28,314 +28,314 @@ import P12s from "./components/bossKilled/bosses/P12s";
 // !APP
 
 function App() {
-  // !STATE ZONE
+    // !STATE ZONE
 
-  // all state managed at App.js
-  // *charName - expects string
-  // see handleNameChange below
-  // pull all of this to a Name context hook
-  const [charName, setCharName] = useState("");
+    // all state managed at App.js
+    // *charName - expects string
+    // see handleNameChange below
+    // pull all of this to a Name context hook
+    const [charName, setCharName] = useState("");
 
-  // *Gear Pieces
-  const [gearPieces, setGearPieces] = useState([]);
+    // *Gear Pieces
+    const [gearPieces, setGearPieces] = useState([]);
 
-  // *Character List
-  const [characterList, setCharacterList] = useState([]);
+    // *Character List
+    const [characterList, setCharacterList] = useState([]);
 
-  // *Dropped Gear
-  const [earring, setEarring] = useState(0);
-  const [necklace, setNecklace] = useState(0);
-  const [bracelet, setBracelet] = useState(0);
-  const [ring, setRing] = useState(0);
-  const [weapon, setWeapon] = useState(0);
-  const [head, setHead] = useState(0);
-  const [body, setBody] = useState(0);
-  const [hands, setHands] = useState(0);
-  const [legs, setLegs] = useState(0);
-  const [feet, setFeet] = useState(0);
+    // *Dropped Gear
+    const [earring, setEarring] = useState(0);
+    const [necklace, setNecklace] = useState(0);
+    const [bracelet, setBracelet] = useState(0);
+    const [ring, setRing] = useState(0);
+    const [weapon, setWeapon] = useState(0);
+    const [head, setHead] = useState(0);
+    const [body, setBody] = useState(0);
+    const [hands, setHands] = useState(0);
+    const [legs, setLegs] = useState(0);
+    const [feet, setFeet] = useState(0);
 
-  const [droppedGear, setDroppedGear] = useState({
-    earring: 0,
-    necklace: 0,
-    bracelet: 0,
-    ring: 0,
-    weapon: 0,
-    head: 0,
-    body: 0,
-    hands: 0,
-    legs: 0,
-    feet: 0,
-  });
-
-  const incrementDrops = (droppedGearPiece) =>
-    setDroppedGear((currentDroppedGear) => ({
-      ...currentDroppedGear,
-      [droppedGearPiece]: currentDroppedGear[droppedGearPiece] + 1,
-    }));
-
-  const decrementDrops = (droppedGearPiece) =>
-    setDroppedGear((currentDroppedGear) => ({
-      ...currentDroppedGear,
-      [droppedGearPiece]:
-        currentDroppedGear[droppedGearPiece] <= 0
-          ? currentDroppedGear[droppedGearPiece]
-          : currentDroppedGear[droppedGearPiece] - 1,
-    }));
-
-  // !COMPONENT MOUNT
-  // *define gearlist
-  useEffect(() => {
-    setGearPieces([
-      { pieceName: "weapon", wanted: "" },
-      { pieceName: "head", wanted: "" },
-      { pieceName: "body", wanted: "" },
-      { pieceName: "hands", wanted: "" },
-      { pieceName: "legs", wanted: "" },
-      { pieceName: "feet", wanted: "" },
-      { pieceName: "earring", wanted: "" },
-      { pieceName: "necklace", wanted: "" },
-      { pieceName: "bracelet", wanted: "" },
-      { pieceName: "ring", wanted: "" },
-    ]);
-  }, []);
-
-  //*Getting data from database
-  useEffect(() => {
-    // holding the database details from firebase
-    const database = getDatabase(firebase);
-
-    // a variable that references a specific location of our database
-    const dbRef = ref(database);
-
-    // when db value changes, make storage state
-    onValue(dbRef, (response) => {
-      const newState = [];
-      const data = response.val();
-
-      // loop over the data object and push each character into the newState empty array
-      // we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
-      for (let key in data) {
-        newState.push({
-          key: key,
-          gearListItems: data[key],
-          characterName: data[key].characterName,
-        });
-      }
-
-      // !Doing it immutably with Alexandra
-      // Object.keys to make an array be able to .map
-      const keysArray = Object.keys(data);
-      // map it
-      const immutableState = keysArray.map((key) => {
-        return {
-          key: key,
-          gearListItems: data[key],
-          characterName: data[key].characterName,
-        };
-      });
-
-      // update characterList state to hold our character names stored in newState
-      setCharacterList(immutableState);
+    const [droppedGear, setDroppedGear] = useState({
+        earring: 0,
+        necklace: 0,
+        bracelet: 0,
+        ring: 0,
+        weapon: 0,
+        head: 0,
+        body: 0,
+        hands: 0,
+        legs: 0,
+        feet: 0,
     });
-  }, []);
 
-  // !FUNCTION ZONE
-  // *Handle Name Change
-  const handleNameChange = (e) => {
-    setCharName(e.target.value);
-  };
+    const incrementDrops = (droppedGearPiece) =>
+        setDroppedGear((currentDroppedGear) => ({
+            ...currentDroppedGear,
+            [droppedGearPiece]: currentDroppedGear[droppedGearPiece] + 1,
+        }));
 
-  // *Handle Form Submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const decrementDrops = (droppedGearPiece) =>
+        setDroppedGear((currentDroppedGear) => ({
+            ...currentDroppedGear,
+            [droppedGearPiece]:
+                currentDroppedGear[droppedGearPiece] <= 0
+                    ? currentDroppedGear[droppedGearPiece]
+                    : currentDroppedGear[droppedGearPiece] - 1,
+        }));
 
-    // *if form is valid...
-    if (
-      !charName ||
-      !gearPieces[0].wanted ||
-      !gearPieces[1].wanted ||
-      !gearPieces[2].wanted ||
-      !gearPieces[3].wanted ||
-      !gearPieces[4].wanted ||
-      !gearPieces[5].wanted ||
-      !gearPieces[6].wanted ||
-      !gearPieces[7].wanted
-    ) {
-      alert("you must select a value for each option. silly.");
-      console.log(gearPieces);
-    } else {
-      // Create references to the database
-      const database = getDatabase(firebase);
-      const dbRef = ref(database, `${charName}/`);
+    // !COMPONENT MOUNT
+    // *define gearlist
+    useEffect(() => {
+        setGearPieces([
+            { pieceName: "weapon", wanted: "" },
+            { pieceName: "head", wanted: "" },
+            { pieceName: "body", wanted: "" },
+            { pieceName: "hands", wanted: "" },
+            { pieceName: "legs", wanted: "" },
+            { pieceName: "feet", wanted: "" },
+            { pieceName: "earring", wanted: "" },
+            { pieceName: "necklace", wanted: "" },
+            { pieceName: "bracelet", wanted: "" },
+            { pieceName: "ring", wanted: "" },
+        ]);
+    }, []);
 
-      // Update ObjectToPush With Data
-      let statelessObjectToPush = {
-        key: charName,
-        characterName: charName,
-        gearPiecesObject: { gearPieces },
-      };
+    //*Getting data from database
+    useEffect(() => {
+        // holding the database details from firebase
+        const database = getDatabase(firebase);
 
-      // push to firebase
-      alert("character created!");
-      set(dbRef, statelessObjectToPush);
+        // a variable that references a specific location of our database
+        const dbRef = ref(database);
 
-      // clear user input
-      setCharName("");
-    }
-  };
+        // when db value changes, make storage state
+        onValue(dbRef, (response) => {
+            const newState = [];
+            const data = response.val();
 
-  // !PRINT TO PAGE ZONE
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/charSelect" element={<CharacterSelect />} />
-        <Route
-          path="/charEdit"
-          element={
-            <CharacterEdit
-              gearPieces={gearPieces}
-              setGearPieces={setGearPieces}
-              characterList={characterList}
-            />
-          }
-        />
-        <Route
-          path="/charCreate"
-          element={
-            <CharacterCreate
-              handleSubmit={handleSubmit}
-              handleNameChange={handleNameChange}
-              gearPieces={gearPieces}
-              setGearPieces={setGearPieces}
-            />
-          }
-        />
+            // loop over the data object and push each character into the newState empty array
+            // we've given it multiple info as an object so we can get the key prop (so we can tell firebase how to remove items)
+            for (let key in data) {
+                newState.push({
+                    key: key,
+                    gearListItems: data[key],
+                    characterName: data[key].characterName,
+                });
+            }
 
-        <Route
-          path="bossKilled"
-          element={<BossKilled setCharacterList={setCharacterList} />}
-        />
+            // !Doing it immutably with Alexandra
+            // Object.keys to make an array be able to .map
+            const keysArray = Object.keys(data);
+            // map it
+            const immutableState = keysArray.map((key) => {
+                return {
+                    key: key,
+                    gearListItems: data[key],
+                    characterName: data[key].characterName,
+                };
+            });
 
-        <Route
-          path="p5s"
-          element={
-            <P5s
-              earring={earring}
-              setEarring={setEarring}
-              necklace={necklace}
-              setNecklace={setNecklace}
-              bracelet={bracelet}
-              setBracelet={setBracelet}
-              ring={ring}
-              setRing={setRing}
-              weapon={weapon}
-              setWeapon={setWeapon}
-              head={head}
-              setHead={setHead}
-              body={body}
-              setBody={setBody}
-              hands={hands}
-              setHands={setHands}
-              legs={legs}
-              setLegs={setLegs}
-              feet={feet}
-              setFeet={setFeet}
-              characterList={characterList}
-            />
-          }
-        />
+            // update characterList state to hold our character names stored in newState
+            setCharacterList(immutableState);
+        });
+    }, []);
 
-        <Route
-          path="p6s"
-          element={
-            <P6s
-              earring={earring}
-              setEarring={setEarring}
-              necklace={necklace}
-              setNecklace={setNecklace}
-              bracelet={bracelet}
-              setBracelet={setBracelet}
-              ring={ring}
-              setRing={setRing}
-              weapon={weapon}
-              setWeapon={setWeapon}
-              head={head}
-              setHead={setHead}
-              body={body}
-              setBody={setBody}
-              hands={hands}
-              setHands={setHands}
-              legs={legs}
-              setLegs={setLegs}
-              feet={feet}
-              setFeet={setFeet}
-              characterList={characterList}
-            />
-          }
-        />
+    // !FUNCTION ZONE
+    // *Handle Name Change
+    const handleNameChange = (e) => {
+        setCharName(e.target.value);
+    };
 
-        <Route
-          path="p7s"
-          element={
-            <P7s
-              earring={earring}
-              setEarring={setEarring}
-              necklace={necklace}
-              setNecklace={setNecklace}
-              bracelet={bracelet}
-              setBracelet={setBracelet}
-              ring={ring}
-              setRing={setRing}
-              weapon={weapon}
-              setWeapon={setWeapon}
-              head={head}
-              setHead={setHead}
-              body={body}
-              setBody={setBody}
-              hands={hands}
-              setHands={setHands}
-              legs={legs}
-              setLegs={setLegs}
-              feet={feet}
-              setFeet={setFeet}
-              characterList={characterList}
-            />
-          }
-        />
+    // *Handle Form Submit
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-        <Route
-          path="p8s"
-          element={
-            <P8s
-              earring={earring}
-              setEarring={setEarring}
-              necklace={necklace}
-              setNecklace={setNecklace}
-              bracelet={bracelet}
-              setBracelet={setBracelet}
-              ring={ring}
-              setRing={setRing}
-              weapon={weapon}
-              setWeapon={setWeapon}
-              head={head}
-              setHead={setHead}
-              body={body}
-              setBody={setBody}
-              hands={hands}
-              setHands={setHands}
-              legs={legs}
-              setLegs={setLegs}
-              feet={feet}
-              setFeet={setFeet}
-              characterList={characterList}
-            />
-          }
-        />
+        // *if form is valid...
+        if (
+            !charName ||
+            !gearPieces[0].wanted ||
+            !gearPieces[1].wanted ||
+            !gearPieces[2].wanted ||
+            !gearPieces[3].wanted ||
+            !gearPieces[4].wanted ||
+            !gearPieces[5].wanted ||
+            !gearPieces[6].wanted ||
+            !gearPieces[7].wanted
+        ) {
+            alert("you must select a value for each option. silly.");
+            console.log(gearPieces);
+        } else {
+            // Create references to the database
+            const database = getDatabase(firebase);
+            const dbRef = ref(database, `${charName}/`);
 
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </div>
-  );
+            // Update ObjectToPush With Data
+            let statelessObjectToPush = {
+                key: charName,
+                characterName: charName,
+                gearPiecesObject: { gearPieces },
+            };
+
+            // push to firebase
+            alert("character created!");
+            set(dbRef, statelessObjectToPush);
+
+            // clear user input
+            setCharName("");
+        }
+    };
+
+    // !PRINT TO PAGE ZONE
+    return (
+        <div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/charSelect" element={<CharacterSelect />} />
+                <Route
+                    path="/charEdit"
+                    element={
+                        <CharacterEdit
+                            gearPieces={gearPieces}
+                            setGearPieces={setGearPieces}
+                            characterList={characterList}
+                        />
+                    }
+                />
+                <Route
+                    path="/charCreate"
+                    element={
+                        <CharacterCreate
+                            handleSubmit={handleSubmit}
+                            handleNameChange={handleNameChange}
+                            gearPieces={gearPieces}
+                            setGearPieces={setGearPieces}
+                        />
+                    }
+                />
+
+                <Route
+                    path="bossKilled"
+                    element={<BossKilled setCharacterList={setCharacterList} />}
+                />
+
+                <Route
+                    path="p5s"
+                    element={
+                        <P5s
+                            earring={earring}
+                            setEarring={setEarring}
+                            necklace={necklace}
+                            setNecklace={setNecklace}
+                            bracelet={bracelet}
+                            setBracelet={setBracelet}
+                            ring={ring}
+                            setRing={setRing}
+                            weapon={weapon}
+                            setWeapon={setWeapon}
+                            head={head}
+                            setHead={setHead}
+                            body={body}
+                            setBody={setBody}
+                            hands={hands}
+                            setHands={setHands}
+                            legs={legs}
+                            setLegs={setLegs}
+                            feet={feet}
+                            setFeet={setFeet}
+                            characterList={characterList}
+                        />
+                    }
+                />
+
+                <Route
+                    path="p6s"
+                    element={
+                        <P6s
+                            earring={earring}
+                            setEarring={setEarring}
+                            necklace={necklace}
+                            setNecklace={setNecklace}
+                            bracelet={bracelet}
+                            setBracelet={setBracelet}
+                            ring={ring}
+                            setRing={setRing}
+                            weapon={weapon}
+                            setWeapon={setWeapon}
+                            head={head}
+                            setHead={setHead}
+                            body={body}
+                            setBody={setBody}
+                            hands={hands}
+                            setHands={setHands}
+                            legs={legs}
+                            setLegs={setLegs}
+                            feet={feet}
+                            setFeet={setFeet}
+                            characterList={characterList}
+                        />
+                    }
+                />
+
+                <Route
+                    path="p7s"
+                    element={
+                        <P7s
+                            earring={earring}
+                            setEarring={setEarring}
+                            necklace={necklace}
+                            setNecklace={setNecklace}
+                            bracelet={bracelet}
+                            setBracelet={setBracelet}
+                            ring={ring}
+                            setRing={setRing}
+                            weapon={weapon}
+                            setWeapon={setWeapon}
+                            head={head}
+                            setHead={setHead}
+                            body={body}
+                            setBody={setBody}
+                            hands={hands}
+                            setHands={setHands}
+                            legs={legs}
+                            setLegs={setLegs}
+                            feet={feet}
+                            setFeet={setFeet}
+                            characterList={characterList}
+                        />
+                    }
+                />
+
+                <Route
+                    path="p8s"
+                    element={
+                        <P8s
+                            earring={earring}
+                            setEarring={setEarring}
+                            necklace={necklace}
+                            setNecklace={setNecklace}
+                            bracelet={bracelet}
+                            setBracelet={setBracelet}
+                            ring={ring}
+                            setRing={setRing}
+                            weapon={weapon}
+                            setWeapon={setWeapon}
+                            head={head}
+                            setHead={setHead}
+                            body={body}
+                            setBody={setBody}
+                            hands={hands}
+                            setHands={setHands}
+                            legs={legs}
+                            setLegs={setLegs}
+                            feet={feet}
+                            setFeet={setFeet}
+                            characterList={characterList}
+                        />
+                    }
+                />
+
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
+        </div>
+    );
 }
 export default App;
