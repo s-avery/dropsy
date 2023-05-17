@@ -1,69 +1,70 @@
 * {
-	font-size: 20px;
-	background-color: var(--light);
+    font-size: 20px;
+    background-color: var(--light);
 }
 
 main {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 button {
-	border: 3px solid transparent;
+    border: 3px solid transparent;
 }
 
 .button {
-	font-size: 2.6rem;
-	text-decoration: none;
-	color: var(--black);
-	background-color: var(--grey);
-	transition: 300ms;
-	padding: 3%;
-	display: inline-block;
-	align-self: center;
-	text-align: center;
-	width: 40%;
-	margin: 2%;
+    font-size: 2.6rem;
+    text-decoration: none;
+    color: var(--black);
+    background-color: var(--grey);
+    transition: 300ms;
+    padding: 3%;
+    display: inline-block;
+    align-self: center;
+    text-align: center;
+    width: 40%;
+    margin: 2%;
 }
 
 .button:hover {
-	background-color: var(--black);
-	color: var(--white);
-	cursor: pointer;
+    background-color: var(--black);
+    color: var(--white);
+    cursor: pointer;
 }
 
 .homeButton {
-	font-size: 1rem;
-	text-decoration: none;
-	color: var(--black);
-	background-color: var(--grey);
-	transition: 300ms;
-	padding: 1%;
-	display: inline-block;
-	align-self: center;
-	text-align: center;
-	top: 2px;
-	left: 2px;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--black);
+    background-color: var(--grey);
+    transition: 300ms;
+    padding: 1%;
+    display: inline-block;
+    align-self: center;
+    text-align: center;
+    top: 2px;
+    left: 2px;
+    min-width: 70px;
 }
 
 .homeButton:hover {
-	background-color: var(--black);
-	color: var(--white);
-	cursor: pointer;
+    background-color: var(--black);
+    color: var(--white);
+    cursor: pointer;
 }
 
 .angy {
-	max-width: 30%;
+    max-width: 30%;
 }
 
 .error {
-	text-align: center;
+    text-align: center;
 }
 
 .error img {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 .error .error__text {
-	font-size: 2rem;
+    font-size: 2rem;
 }

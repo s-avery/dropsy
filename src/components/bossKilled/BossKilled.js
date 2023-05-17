@@ -1,7 +1,7 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import firebase from "../firebase";
+import firebase from "../../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 const BossKilled = ({ setCharacterList }) => {

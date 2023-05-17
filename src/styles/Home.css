@@ -1,4 +1,18 @@
 .home {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    position: relative;
+}
+
+.aboutContainer {
+    position: absolute;
+    border: 1px dashed var(--dark);
+    z-index: 10;
+    max-width: 200px;
+}
+
+.about {
+    margin-left: 0.3rem;
+    font-size: 0.8rem;
 }

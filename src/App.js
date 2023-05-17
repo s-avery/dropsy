@@ -12,18 +12,18 @@ import { Routes, Route } from "react-router-dom";
 
 // *Components
 import Home from "./components/Home";
-import CharacterSelect from "./components/CharacterSelect";
-import CharacterEdit from "./components/CharacterEdit";
-import CharacterCreate from "./components/CharacterCreate";
+import CharacterSelect from "./components/characterSelect/CharacterSelect";
+import CharacterEdit from "./components/characterSelect/characterEdit/CharacterEdit";
+import CharacterCreate from "./components/characterSelect/characterCreate/CharacterCreate";
 import ErrorPage from "./components/ErrorPage";
-import BossKilled from "./components/BossKilled";
+import BossKilled from "./components/bossKilled/BossKilled";
 
 //*raid bosses - may need to be hardcoded to track specific drops, etc
 // TODO see if these could be data objects
-import P9s from "./components/bosses/P9s";
-import P10s from "./components/bosses/P10s";
-import P11s from "./components/bosses/P11s";
-import P12s from "./components/bosses/P12s";
+import P9s from "./components/bossKilled/bosses/P9s";
+import P10s from "./components/bossKilled/bosses/P10s";
+import P11s from "./components/bossKilled/bosses/P11s";
+import P12s from "./components/bossKilled/bosses/P12s";
 
 // !APP
 
@@ -33,6 +33,7 @@ function App() {
     // all state managed at App.js
     // *charName - expects string
     // see handleNameChange below
+    //  nb i moved handleNameChange fn to characterCreate -- sadie
     // pull all of this to a Name context hook
     const [charName, setCharName] = useState("");
 
@@ -56,6 +57,7 @@ function App() {
 
     // !COMPONENT MOUNT
     // *define gearlist
+    // TODO investigate if this could be data object in context
     useEffect(() => {
         setGearPieces([
             { pieceName: "weapon", wanted: "" },
@@ -112,12 +114,9 @@ function App() {
     }, []);
 
     // !FUNCTION ZONE
-    // *Handle Name Change
-    const handleNameChange = (e) => {
-        setCharName(e.target.value);
-    };
 
     // *Handle Form Submit
+    // ? Unclear if this can/should be moved to CharacterCreate.js -- it's the only place it's called but the fact that it's stored in App.js means it can access charName and gearPieces more easily -- could also be renamed to handleCreateSubmit or smth
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -177,7 +176,7 @@ function App() {
                     element={
                         <CharacterCreate
                             handleSubmit={handleSubmit}
-                            handleNameChange={handleNameChange}
+                            setCharName={setCharName}
                             gearPieces={gearPieces}
                             setGearPieces={setGearPieces}
                         />
