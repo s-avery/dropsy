@@ -32,11 +32,26 @@ const BossDropsProvider = ({ children }) => {
                     : currentDroppedGear[droppedGearPiece] - 1,
         }));
 
+    const resetAllDrops = () =>
+        setDroppedGear({
+            earring: 0,
+            necklace: 0,
+            bracelet: 0,
+            ring: 0,
+            weapon: 0,
+            head: 0,
+            body: 0,
+            hands: 0,
+            legs: 0,
+            feet: 0,
+        });
+
     // storing those data/fns in an object to be passed to value below
     const currentDropsContext = {
         droppedGear,
         incrementDrops,
         decrementDrops,
+        resetAllDrops,
     };
 
     return (

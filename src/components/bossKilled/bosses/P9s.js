@@ -6,17 +6,19 @@ import WhoWantsIt from "../WhoWantsIt";
 import HowManyDropped from "./HowManyDropped";
 
 const P9s = ({ characterList }) => {
+    const { droppedGear, incrementDrops, decrementDrops, resetAllDrops } =
+        useContext(BossDropsContext);
     // !COMPONENT MOUNT
     // *reset drop value states
     useEffect(() => {
         //*reset states
+        // reset all values to zero
+        resetAllDrops();
         setShowWhoWantsIt(false);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // !STATE/CONTEXT ZONE
     const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
-    const { droppedGear, incrementDrops, decrementDrops } =
-        useContext(BossDropsContext);
 
     // !FUNCTION ZONE
     const rackEmUp = () => {
