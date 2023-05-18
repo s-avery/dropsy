@@ -1,14 +1,15 @@
 // !IMPORT ZONE
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { BossDropsContext } from "../../../providers/BossDropsProvider";
 import WhoWantsIt from "../WhoWantsIt";
 import HowManyDropped from "./HowManyDropped";
 
 const P9s = ({
     //#region props
-    droppedGear,
-    incrementDrops,
-    decrementDrops,
+    // droppedGear,
+    // incrementDrops,
+    // decrementDrops,
     characterList,
     earring,
     setEarring,
@@ -50,6 +51,8 @@ const P9s = ({
 
     // !STATE ZONE
     const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
+    const { droppedGear, incrementDrops, decrementDrops } =
+        useContext(BossDropsContext);
 
     // !FUNCTION ZONE
     // *Increment/Decrements
@@ -102,8 +105,6 @@ const P9s = ({
     const rackEmUp = () => {
         setShowWhoWantsIt(true);
     };
-
-    console.log(droppedGear, incrementDrops, decrementDrops);
 
     // !RETURN
     return (

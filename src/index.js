@@ -5,16 +5,18 @@ import App from "./App";
 // remove this cra artifact - others
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import BossDropsProvider from "./providers/BossDropsProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</React.StrictMode>
+    <React.StrictMode>
+        <BossDropsProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </BossDropsProvider>
+    </React.StrictMode>
 );
-
 
 // remove this cra artifact - and others
 
@@ -22,4 +24,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
