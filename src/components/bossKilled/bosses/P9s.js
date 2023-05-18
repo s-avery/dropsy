@@ -144,14 +144,14 @@ const P9s = ({
                                 <h3>necklace</h3>
                                 <button
                                     className="button"
-                                    onClick={incrementNecklace}
+                                    onClick={() => incrementDrops("necklace")}
                                 >
                                     +
                                 </button>
-                                <p>x{necklace}</p>
+                                <p>x{droppedGear.necklace}</p>
                                 <button
                                     className="button"
-                                    onClick={decrementNecklace}
+                                    onClick={() => decrementDrops("necklace")}
                                 >
                                     -
                                 </button>
@@ -161,14 +161,14 @@ const P9s = ({
                                 <h3>bracelet</h3>
                                 <button
                                     className="button"
-                                    onClick={incrementBracelet}
+                                    onClick={() => incrementDrops("bracelet")}
                                 >
                                     +
                                 </button>
-                                <p>x{bracelet}</p>
+                                <p>x{droppedGear.bracelet}</p>
                                 <button
                                     className="button"
-                                    onClick={decrementBracelet}
+                                    onClick={() => decrementDrops("bracelet")}
                                 >
                                     -
                                 </button>
