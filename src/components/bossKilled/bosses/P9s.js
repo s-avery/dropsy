@@ -5,103 +5,20 @@ import { BossDropsContext } from "../../../providers/BossDropsProvider";
 import WhoWantsIt from "../WhoWantsIt";
 import HowManyDropped from "./HowManyDropped";
 
-const P9s = ({
-    //#region props
-    // droppedGear,
-    // incrementDrops,
-    // decrementDrops,
-    characterList,
-    earring,
-    setEarring,
-    necklace,
-    setNecklace,
-    bracelet,
-    setBracelet,
-    ring,
-    setRing,
-    setWeapon,
-    head,
-    setHead,
-    body,
-    setBody,
-    hands,
-    setHands,
-    legs,
-    setLegs,
-    feet,
-    setFeet,
-    //#endregion
-}) => {
+const P9s = ({ characterList }) => {
     // !COMPONENT MOUNT
     // *reset drop value states
     useEffect(() => {
         //*reset states
-        setEarring(0);
-        setNecklace(0);
-        setBracelet(0);
-        setRing(0);
-        setWeapon(0);
-        setHead(0);
-        setBody(0);
-        setHands(0);
-        setLegs(0);
-        setFeet(0);
         setShowWhoWantsIt(false);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    // !STATE ZONE
+    // !STATE/CONTEXT ZONE
     const [showWhoWantsIt, setShowWhoWantsIt] = useState(false);
     const { droppedGear, incrementDrops, decrementDrops } =
         useContext(BossDropsContext);
 
     // !FUNCTION ZONE
-    // *Increment/Decrements
-    //#region
-    // const incrementEarring = () => {
-    //     setEarring(earring + 1);
-    // };
-    // const decrementEarring = () => {
-    //     if (earring === 0) {
-    //         console.log("no negatives silly");
-    //     } else {
-    //         setEarring(earring - 1);
-    //     }
-    // };
-
-    const incrementNecklace = () => {
-        setNecklace(necklace + 1);
-    };
-    const decrementNecklace = () => {
-        if (necklace === 0) {
-            console.log("no negatives silly");
-        } else {
-            setNecklace(necklace - 1);
-        }
-    };
-
-    const incrementBracelet = () => {
-        setBracelet(bracelet + 1);
-    };
-    const decrementBracelet = () => {
-        if (bracelet === 0) {
-            console.log("no negatives silly");
-        } else {
-            setBracelet(bracelet - 1);
-        }
-    };
-
-    const incrementRing = () => {
-        setRing(ring + 1);
-    };
-    const decrementRing = () => {
-        if (ring === 0) {
-            console.log("no negatives silly");
-        } else {
-            setRing(ring - 1);
-        }
-    };
-    //#endregion
-
     const rackEmUp = () => {
         setShowWhoWantsIt(true);
     };
@@ -164,15 +81,15 @@ const P9s = ({
                 {showWhoWantsIt ? (
                     <WhoWantsIt
                         characterList={characterList}
-                        earring={earring}
-                        necklace={necklace}
-                        bracelet={bracelet}
-                        ring={ring}
-                        head={head}
-                        body={body}
-                        hands={hands}
-                        legs={legs}
-                        feet={feet}
+                        earring={droppedGear.earring}
+                        necklace={droppedGear.necklace}
+                        bracelet={droppedGear.bracelet}
+                        ring={droppedGear.ring}
+                        head={droppedGear.head}
+                        body={droppedGear.body}
+                        hands={droppedGear.hands}
+                        legs={droppedGear.legs}
+                        feet={droppedGear.feet}
                         setShowWhoWantsIt={setShowWhoWantsIt}
                     />
                 ) : (
