@@ -5,6 +5,9 @@ import WhoWantsIt from "../WhoWantsIt";
 
 const P9s = ({
     //#region props
+    droppedGear,
+    incrementDrops,
+    decrementDrops,
     characterList,
     earring,
     setEarring,
@@ -99,6 +102,8 @@ const P9s = ({
         setShowWhoWantsIt(true);
     };
 
+    console.log(droppedGear, incrementDrops, decrementDrops);
+
     // !RETURN
     return (
         <>
@@ -122,14 +127,14 @@ const P9s = ({
                                 <h3>earring</h3>
                                 <button
                                     className="button"
-                                    onClick={incrementEarring}
+                                    onClick={() => incrementDrops("earring")}
                                 >
                                     +
                                 </button>
-                                <p>x{earring}</p>
+                                <p>x{droppedGear.earring}</p>
                                 <button
                                     className="button"
-                                    onClick={decrementEarring}
+                                    onClick={() => decrementDrops("earring")}
                                 >
                                     -
                                 </button>
