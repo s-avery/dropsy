@@ -53,16 +53,16 @@ const P9s = ({
     // !FUNCTION ZONE
     // *Increment/Decrements
     //#region
-    const incrementEarring = () => {
-        setEarring(earring + 1);
-    };
-    const decrementEarring = () => {
-        if (earring === 0) {
-            console.log("no negatives silly");
-        } else {
-            setEarring(earring - 1);
-        }
-    };
+    // const incrementEarring = () => {
+    //     setEarring(earring + 1);
+    // };
+    // const decrementEarring = () => {
+    //     if (earring === 0) {
+    //         console.log("no negatives silly");
+    //     } else {
+    //         setEarring(earring - 1);
+    //     }
+    // };
 
     const incrementNecklace = () => {
         setNecklace(necklace + 1);
