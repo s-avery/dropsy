@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import WhoWantsIt from "../WhoWantsIt";
+import HowManyDropped from "./HowManyDropped";
 
 const P9s = ({
     //#region props
@@ -123,6 +124,34 @@ const P9s = ({
                 ) : (
                     <>
                         <div className="drops">
+                            <HowManyDropped
+                                droppedGear={droppedGear}
+                                incrementDrops={incrementDrops}
+                                decrementDrops={decrementDrops}
+                                gearName={"earring"}
+                            />
+
+                            <HowManyDropped
+                                droppedGear={droppedGear}
+                                incrementDrops={incrementDrops}
+                                decrementDrops={decrementDrops}
+                                gearName={"necklace"}
+                            />
+
+                            <HowManyDropped
+                                droppedGear={droppedGear}
+                                incrementDrops={incrementDrops}
+                                decrementDrops={decrementDrops}
+                                gearName={"bracelet"}
+                            />
+
+                            <HowManyDropped
+                                droppedGear={droppedGear}
+                                incrementDrops={incrementDrops}
+                                decrementDrops={decrementDrops}
+                                gearName={"ring"}
+                            />
+
                             <div className="drop">
                                 <h3>earring</h3>
                                 <button
