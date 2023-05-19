@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import firebase from "../../firebase";
 import { getDatabase, ref, onValue } from "firebase/database";
+import { bossArray } from "../../singleSourceOfBosses";
 
 const BossKilled = ({ setCharacterList }) => {
     // !COMPONENT MOUNT
@@ -49,19 +50,11 @@ const BossKilled = ({ setCharacterList }) => {
 
             <main className="bossKilled">
                 <div className="whichBoss">
-                    <Link className="button" to="/P9s">
-                        p9s
-                    </Link>
-
-                    <Link className="button" to="/P10s">
-                        p10s
-                    </Link>
-                    <Link className="button" to="/P11s">
-                        p11s
-                    </Link>
-                    <Link className="button" to="/P12s">
-                        p12s
-                    </Link>
+                    {bossArray.map(({ bossName }) => (
+                        <Link className="button" to={`/${bossName}`}>
+                            {bossName}
+                        </Link>
+                    ))}
                 </div>
             </main>
         </>
