@@ -1,21 +1,12 @@
 // !IMPORT ZONE
 import firebase from "../../firebase";
 import { getDatabase, ref, set } from "firebase/database";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { BossDropsContext } from "../../providers/BossDropsProvider";
 
 const WhoWantsIt = ({
     //#region props
     characterList,
-    earring,
-    necklace,
-    bracelet,
-    ring,
-    weapon,
-    head,
-    body,
-    hands,
-    legs,
-    feet,
     setShowWhoWantsIt,
     //#endregion
 }) => {
@@ -35,6 +26,22 @@ const WhoWantsIt = ({
 
     // !LOGIC ZONE
     // *array of objects tracking which gear dropped
+    // note - this just refactors these simply from prop drill to context hook
+    // future further refactor possible
+    const { droppedGear } = useContext(BossDropsContext);
+    console.log(droppedGear);
+    const {
+        earring,
+        necklace,
+        bracelet,
+        ring,
+        weapon,
+        head,
+        body,
+        hands,
+        legs,
+        feet,
+    } = droppedGear;
     let droppedGearArray = [
         { earring },
         { necklace },
