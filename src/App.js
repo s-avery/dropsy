@@ -19,11 +19,7 @@ import ErrorPage from "./components/ErrorPage";
 import BossKilled from "./components/bossKilled/BossKilled";
 
 //*raid bosses - may need to be hardcoded to track specific drops, etc
-// TODO see if these could be data objects
-// import P9s from "./components/bossKilled/bosses/P9s";
-import P10s from "./components/bossKilled/bosses/P10s";
-import P11s from "./components/bossKilled/bosses/P11s";
-import P12s from "./components/bossKilled/bosses/P12s";
+
 import Boss from "./components/bossKilled/bosses/Boss";
 
 // !APP
@@ -42,18 +38,6 @@ function App() {
 
     // *Character List
     const [characterList, setCharacterList] = useState([]);
-
-    // *Dropped Gear
-    const [earring, setEarring] = useState(0);
-    const [necklace, setNecklace] = useState(0);
-    const [bracelet, setBracelet] = useState(0);
-    const [ring, setRing] = useState(0);
-    const [weapon, setWeapon] = useState(0);
-    const [head, setHead] = useState(0);
-    const [body, setBody] = useState(0);
-    const [hands, setHands] = useState(0);
-    const [legs, setLegs] = useState(0);
-    const [feet, setFeet] = useState(0);
 
     // !COMPONENT MOUNT
     // *define gearlist
@@ -195,7 +179,7 @@ function App() {
                     element={
                         <Boss
                             characterList={characterList}
-                            bossName={"P9s"}
+                            bossName={"p9s"}
                             bossLootTableArray={[
                                 "earring",
                                 "necklace",
@@ -209,28 +193,10 @@ function App() {
                 <Route
                     path="p10s"
                     element={
-                        <P10s
-                            earring={earring}
-                            setEarring={setEarring}
-                            necklace={necklace}
-                            setNecklace={setNecklace}
-                            bracelet={bracelet}
-                            setBracelet={setBracelet}
-                            ring={ring}
-                            setRing={setRing}
-                            weapon={weapon}
-                            setWeapon={setWeapon}
-                            head={head}
-                            setHead={setHead}
-                            body={body}
-                            setBody={setBody}
-                            hands={hands}
-                            setHands={setHands}
-                            legs={legs}
-                            setLegs={setLegs}
-                            feet={feet}
-                            setFeet={setFeet}
+                        <Boss
                             characterList={characterList}
+                            bossName={"p10s"}
+                            bossLootTableArray={["head", "hands", "feet"]}
                         />
                     }
                 />
@@ -238,28 +204,16 @@ function App() {
                 <Route
                     path="p11s"
                     element={
-                        <P11s
-                            earring={earring}
-                            setEarring={setEarring}
-                            necklace={necklace}
-                            setNecklace={setNecklace}
-                            bracelet={bracelet}
-                            setBracelet={setBracelet}
-                            ring={ring}
-                            setRing={setRing}
-                            weapon={weapon}
-                            setWeapon={setWeapon}
-                            head={head}
-                            setHead={setHead}
-                            body={body}
-                            setBody={setBody}
-                            hands={hands}
-                            setHands={setHands}
-                            legs={legs}
-                            setLegs={setLegs}
-                            feet={feet}
-                            setFeet={setFeet}
+                        <Boss
                             characterList={characterList}
+                            bossName={"p11s"}
+                            bossLootTableArray={[
+                                "head",
+                                "body",
+                                "hands",
+                                "legs",
+                                "feet",
+                            ]}
                         />
                     }
                 />
@@ -267,28 +221,10 @@ function App() {
                 <Route
                     path="p12s"
                     element={
-                        <P12s
-                            earring={earring}
-                            setEarring={setEarring}
-                            necklace={necklace}
-                            setNecklace={setNecklace}
-                            bracelet={bracelet}
-                            setBracelet={setBracelet}
-                            ring={ring}
-                            setRing={setRing}
-                            weapon={weapon}
-                            setWeapon={setWeapon}
-                            head={head}
-                            setHead={setHead}
-                            body={body}
-                            setBody={setBody}
-                            hands={hands}
-                            setHands={setHands}
-                            legs={legs}
-                            setLegs={setLegs}
-                            feet={feet}
-                            setFeet={setFeet}
+                        <Boss
                             characterList={characterList}
+                            bossName={"p12s"}
+                            bossLootTableArray={["weapon", "body"]}
                         />
                     }
                 />
