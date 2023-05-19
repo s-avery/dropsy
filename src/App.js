@@ -21,6 +21,7 @@ import BossKilled from "./components/bossKilled/BossKilled";
 //*raid bosses - may need to be hardcoded to track specific drops, etc
 
 import Boss from "./components/bossKilled/bosses/Boss";
+import { bossArray } from "./singleSourceOfBosses";
 
 // !APP
 
@@ -174,60 +175,19 @@ function App() {
                     element={<BossKilled setCharacterList={setCharacterList} />}
                 />
 
-                <Route
-                    path="p9s"
-                    element={
-                        <Boss
-                            characterList={characterList}
-                            bossName={"p9s"}
-                            bossLootTableArray={[
-                                "earring",
-                                "necklace",
-                                "bracelet",
-                                "ring",
-                            ]}
-                        />
-                    }
-                />
-
-                <Route
-                    path="p10s"
-                    element={
-                        <Boss
-                            characterList={characterList}
-                            bossName={"p10s"}
-                            bossLootTableArray={["head", "hands", "feet"]}
-                        />
-                    }
-                />
-
-                <Route
-                    path="p11s"
-                    element={
-                        <Boss
-                            characterList={characterList}
-                            bossName={"p11s"}
-                            bossLootTableArray={[
-                                "head",
-                                "body",
-                                "hands",
-                                "legs",
-                                "feet",
-                            ]}
-                        />
-                    }
-                />
-
-                <Route
-                    path="p12s"
-                    element={
-                        <Boss
-                            characterList={characterList}
-                            bossName={"p12s"}
-                            bossLootTableArray={["weapon", "body"]}
-                        />
-                    }
-                />
+                {bossArray.map(({ bossName, lootTableArray }) => (
+                    <Route
+                        key={bossName}
+                        path={bossName}
+                        element={
+                            <Boss
+                                characterList={characterList}
+                                bossName={bossName}
+                                bossLootTableArray={lootTableArray}
+                            />
+                        }
+                    />
+                ))}
 
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
