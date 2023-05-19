@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { BossDropsContext } from "../../../providers/BossDropsProvider";
 
-const HowManyDropped = ({
-    droppedGear,
-    incrementDrops,
-    decrementDrops,
-    gearName,
-}) => {
+const HowManyDropped = ({ gearName }) => {
+    const { droppedGear, incrementDrops, decrementDrops } =
+        useContext(BossDropsContext);
     return (
         <div className="drop">
             <h3>{gearName}</h3>
