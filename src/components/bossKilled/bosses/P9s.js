@@ -6,8 +6,7 @@ import WhoWantsIt from "../WhoWantsIt";
 import HowManyDropped from "./HowManyDropped";
 
 const P9s = ({ characterList }) => {
-    const { droppedGear, incrementDrops, decrementDrops, resetAllDrops } =
-        useContext(BossDropsContext);
+    const { droppedGear, resetAllDrops } = useContext(BossDropsContext);
     // !COMPONENT MOUNT
     // *reset drop value states
     useEffect(() => {
@@ -44,33 +43,13 @@ const P9s = ({ characterList }) => {
                 ) : (
                     <>
                         <div className="drops">
-                            <HowManyDropped
-                                droppedGear={droppedGear}
-                                incrementDrops={incrementDrops}
-                                decrementDrops={decrementDrops}
-                                gearName={"earring"}
-                            />
+                            <HowManyDropped gearName={"earring"} />
 
-                            <HowManyDropped
-                                droppedGear={droppedGear}
-                                incrementDrops={incrementDrops}
-                                decrementDrops={decrementDrops}
-                                gearName={"necklace"}
-                            />
+                            <HowManyDropped gearName={"necklace"} />
 
-                            <HowManyDropped
-                                droppedGear={droppedGear}
-                                incrementDrops={incrementDrops}
-                                decrementDrops={decrementDrops}
-                                gearName={"bracelet"}
-                            />
+                            <HowManyDropped gearName={"bracelet"} />
 
-                            <HowManyDropped
-                                droppedGear={droppedGear}
-                                incrementDrops={incrementDrops}
-                                decrementDrops={decrementDrops}
-                                gearName={"ring"}
-                            />
+                            <HowManyDropped gearName={"ring"} />
                         </div>
 
                         <div>
