@@ -17,10 +17,14 @@ const BossDropsProvider = ({ children }) => {
         feet: 0,
     });
 
+    // TODO this could be changed to be a true/false or smth alongside a ui redesign
     const incrementDrops = (droppedGearPiece) =>
         setDroppedGear((currentDroppedGear) => ({
             ...currentDroppedGear,
-            [droppedGearPiece]: currentDroppedGear[droppedGearPiece] + 1,
+            [droppedGearPiece]:
+                currentDroppedGear[droppedGearPiece] >= 1
+                    ? currentDroppedGear[droppedGearPiece]
+                    : currentDroppedGear[droppedGearPiece] + 1,
         }));
 
     const decrementDrops = (droppedGearPiece) =>
