@@ -20,10 +20,11 @@ import BossKilled from "./components/bossKilled/BossKilled";
 
 //*raid bosses - may need to be hardcoded to track specific drops, etc
 // TODO see if these could be data objects
-import P9s from "./components/bossKilled/bosses/P9s";
+// import P9s from "./components/bossKilled/bosses/P9s";
 import P10s from "./components/bossKilled/bosses/P10s";
 import P11s from "./components/bossKilled/bosses/P11s";
 import P12s from "./components/bossKilled/bosses/P12s";
+import Boss from "./components/bossKilled/bosses/Boss";
 
 // !APP
 
@@ -191,7 +192,18 @@ function App() {
 
                 <Route
                     path="p9s"
-                    element={<P9s characterList={characterList} />}
+                    element={
+                        <Boss
+                            characterList={characterList}
+                            bossName={"P9s"}
+                            bossLootTableArray={[
+                                "earring",
+                                "necklace",
+                                "bracelet",
+                                "ring",
+                            ]}
+                        />
+                    }
                 />
 
                 <Route

@@ -5,7 +5,7 @@ import { BossDropsContext } from "../../../providers/BossDropsProvider";
 import WhoWantsIt from "../WhoWantsIt";
 import HowManyDropped from "./HowManyDropped";
 
-const P9s = ({ characterList, bossName, bossLootTableArray }) => {
+const Boss = ({ characterList, bossName, bossLootTableArray }) => {
     const { resetAllDrops } = useContext(BossDropsContext);
     // !COMPONENT MOUNT
     // *reset drop value states
@@ -71,4 +71,4 @@ const P9s = ({ characterList, bossName, bossLootTableArray }) => {
     );
 };
 
-export default P9s;
+export default Boss;
