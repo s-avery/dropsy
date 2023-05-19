@@ -43,13 +43,14 @@ const P9s = ({ characterList }) => {
                 ) : (
                     <>
                         <div className="drops">
-                            <HowManyDropped gearName={"earring"} />
-
-                            <HowManyDropped gearName={"necklace"} />
-
-                            <HowManyDropped gearName={"bracelet"} />
-
-                            <HowManyDropped gearName={"ring"} />
+                            {["earring", "necklace", "bracelet", "ring"].map(
+                                (gearString) => (
+                                    <HowManyDropped
+                                        key={gearString}
+                                        gearName={gearString}
+                                    />
+                                )
+                            )}
                         </div>
 
                         <div>
