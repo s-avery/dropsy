@@ -1,55 +1,59 @@
 @media (max-width: 1200px) {
-	.charCreate {
-		flex-direction: column;
-	}
+    .charCreate {
+        flex-direction: column;
+    }
 
-	p {
-		font-size: 1.4rem;
-	}
+    p {
+        font-size: 1.4rem;
+    }
+    .whichBoss {
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 800px) {
-	.button {
-		width: 90vw;
-		padding: 10%;
-	}
+    .button {
+        width: 90vw;
+        padding: 10%;
+    }
 
-	.homeButton {
-		padding: 2%;
-	}
+    .homeButton {
+        padding: 2%;
+    }
 
-	.charCreate__gearChoices {
-		display: flex;
-		flex-direction: column;
-	}
+    .charCreate__gearChoices {
+        display: flex;
+        flex-direction: column;
+    }
 
-	.charCreate__radio label {
-		font-size: 1.4rem;
-		padding: 42%;
-		margin-bottom: 20%;
-	}
+    .charCreate__radio label {
+        font-size: 1.4rem;
+        padding: 42%;
+        margin-bottom: 20%;
+    }
 }
 
 @media (max-width: 500px) {
-	.button {
-		margin-bottom: 30%;
-	}
+    /* .button {
+        margin-bottom: 30%;
+    } */
 
-	.homeButton {
-		padding: 3%;
-	}
+    .homeButton {
+        padding: 3%;
+    }
 
-	h1 {
-		font-size: 2.2rem;
-	}
+    h1 {
+        font-size: 2.2rem;
+    }
 
-	h2 {
-		font-size: 1.3rem;
-	}
+    h2 {
+        font-size: 1.3rem;
+    }
 }
 
 @media (max-width: 400px) {
-	.homeButton {
-		padding: 4%;
-	}
+    .homeButton {
+        padding: 4%;
+    }
 }
