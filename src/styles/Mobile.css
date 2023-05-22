@@ -18,6 +18,21 @@
         padding: 10%;
     }
 
+    .drops {
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .drop {
+        margin: 0;
+        /* soft-forces 2-3 drops per row */
+        max-width: 50%;
+        min-width: 33%;
+    }
+    .drops .button {
+        min-width: 60px;
+        width: 40%;
+    }
+
     .homeButton {
         padding: 2%;
     }
