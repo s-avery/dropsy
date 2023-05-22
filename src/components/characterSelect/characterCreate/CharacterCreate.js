@@ -3,17 +3,12 @@ import { Link } from "react-router-dom";
 
 const CharacterCreate = ({
     handleSubmit,
-    setCharName,
+    handleNameChange,
     gearPieces,
     setGearPieces,
 }) => {
     // *Letting useRadio work
     // ? what does this mean
-
-    // *Handle Name Change
-    const handleNameChange = (e) => {
-        setCharName(e.target.value);
-    };
 
     return (
         <>

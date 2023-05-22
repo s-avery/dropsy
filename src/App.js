@@ -99,6 +99,7 @@ function App() {
 
     // !FUNCTION ZONE
     // *Handle Name Change
+    // moving this down to characterCreate broke it /shrug
     const handleNameChange = (e) => {
         setCharName(e.target.value);
     };
